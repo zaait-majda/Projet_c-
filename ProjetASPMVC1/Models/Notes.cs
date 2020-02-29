@@ -15,7 +15,7 @@ namespace ProjetASPMVC1.Models
         [Key]
         public int id_note { set; get; }
         public double note_diplome { set; get; }
-        public double note_concours { set; get; }
+        public double? note_concours { set; get; }
         public virtual ICollection<Candidat> Candidats { set; get; }
     }
 }

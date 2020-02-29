@@ -16,7 +16,7 @@ namespace ProjetASPMVC1.Models
         public String prenom { set; get; }
         public String sexe { set; get; }
         public String password { set; get; }
-        public byte[] photo { set; get; }
+        public String photo { set; get; }
         public String statut { set; get; }
         public String niveau { set; get; }
         public Nullable<System.DateTime> date_naiss { set; get; }

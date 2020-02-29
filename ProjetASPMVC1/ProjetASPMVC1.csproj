@@ -184,6 +184,18 @@
     <Compile Include="Migrations\202002281123343_InitialCreate1.Designer.cs">
       <DependentUpon>202002281123343_InitialCreate1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002291307358_InitialCreate2.cs" />
+    <Compile Include="Migrations\202002291307358_InitialCreate2.Designer.cs">
+      <DependentUpon>202002291307358_InitialCreate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002291328430_InitialCreate3.cs" />
+    <Compile Include="Migrations\202002291328430_InitialCreate3.Designer.cs">
+      <DependentUpon>202002291328430_InitialCreate3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002291331163_InitialCreate4.cs" />
+    <Compile Include="Migrations\202002291331163_InitialCreate4.Designer.cs">
+      <DependentUpon>202002291331163_InitialCreate4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Candidat.cs" />
@@ -316,6 +328,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002281123343_InitialCreate1.resx">
       <DependentUpon>202002281123343_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291307358_InitialCreate2.resx">
+      <DependentUpon>202002291307358_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291328430_InitialCreate3.resx">
+      <DependentUpon>202002291328430_InitialCreate3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291331163_InitialCreate4.resx">
+      <DependentUpon>202002291331163_InitialCreate4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

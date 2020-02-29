@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ProjetASPMVC1.Models.Candidat
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -21,22 +22,25 @@
                 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1">
                     <div class="booking-form">
                         <h3>
-                         @Html.Label(ProjetASPMVC1.Ressources.langues.Authentification)
+                            @Html.Label(ProjetASPMVC1.Ressources.langues.Authentification)
                         </h3>
-                        <form action="#">
-                            <div class="check-date">
-                                <label for="date-in">CNE:</label>
-                                <input type="text" class="date-input" id="date-in" name="cne">
-                                <i class="icon_calendar"></i>
-                            </div>
-                            <div class="check-date">
-                                <label for="date-out">@Html.Label(ProjetASPMVC1.Ressources.langues.Password)</label>
-                                <input type="password" class="date-input" id="date-out" name="pass">
-                                <i class="icon_calendar"></i>
-                            </div>
-                           
-                            <button type="submit">@Html.Label(ProjetASPMVC1.Ressources.langues.Login)</button>
-                        </form>
+                        @using (Html.BeginForm(FormMethod.Post))
+                        {
+                            <form action="#">
+                                <div class="check-date">
+                                    <label for="date-in">CNE:</label>
+                                    <input type="text" class="date-input" id="date-in" name="cne">
+                                    <i class="icon_calendar"></i>
+                                </div>
+                                <div class="check-date">
+                                    <label for="date-out">@Html.Label(ProjetASPMVC1.Ressources.langues.Password)</label>
+                                    <input type="password" class="date-input" id="date-out" name="pass">
+                                    <i class="icon_calendar"></i>
+                                </div>
+
+                                <button type="submit">@Html.Label(ProjetASPMVC1.Ressources.langues.Login)</button>
+                            </form>
+                        }
                     </div>
                 </div>
             </div>

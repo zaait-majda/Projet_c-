@@ -11,10 +11,12 @@ namespace ProjetASPMVC1.Models
     public partial class Candidat
     {
         [Key]
+        [Required]
         public String CIN { set; get; }
         public String CNE { set; get; }
         public String prenom { set; get; }
         public String sexe { set; get; }
+        [Required]
         public String password { set; get; }
         public String photo { set; get; }
         public String statut { set; get; }

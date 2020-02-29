@@ -9,40 +9,33 @@ using System.Web.Mvc;
 
 namespace ProjetASPMVC1.Controllers
 {
-    public class HomeController : Controller
+    public class CandidatsController : Controller
     {
         public ActionResult Index(Candidat objUser)
         {
 
             return View();
-                
-               
+
+
         }
         [HttpPost]
         public ActionResult Authorise(Candidat user)
         {
-            if (ModelState.IsValid)
+            using (Projet_ContextBD db = new Projet_ContextBD())
             {
-                using (Projet_ContextBD db = new Projet_ContextBD())
+                var userDetail = db.Candidats.Where(x => x.CIN == user.CIN && x.password == user.password).FirstOrDefault();
+                if (userDetail == null)
                 {
-
-                    var userDetail = db.Candidats.Where(x => x.CIN == user.CIN && x.password == user.password).FirstOrDefault();
-                    if ((userDetail == null) && (ModelState.IsValid))
-                    {
-
-                        // user.LoginErrorMsg = "Invalid UserName or Password";
-                        Response.Write("<script>alert(\'données incorrect\');</" + "script>");
-                        return View("Index", user);
-                    }
-                    else
-                    {
-                        Session["CIN"] = userDetail.CIN;
-                        Session["prenom"] = userDetail.prenom;
-                        return RedirectToAction("Next_page", "Home");
-                    }
-
+                    // user.LoginErrorMsg = "Invalid UserName or Password";
+                    return View("Index", user);
                 }
-            }else return  View("Index");
+                else
+                {
+                    Session["CIN"] = user.CIN;
+                    Session["prenom"] = user.prenom;
+                    return RedirectToAction("Edit", "Candidats");
+                }
+            }
 
         }
         public ActionResult LogOut()
@@ -69,13 +62,10 @@ namespace ProjetASPMVC1.Controllers
             return View("Index");
 
         }
-public ActionResult Next_page()//your view page
-    {
-            //Read the value
-            var username = (string)Session["prenom"];
+
+        public ActionResult Edit()//your view page
+        {
             return View();
         }
-       
     }
-    
 }

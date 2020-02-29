@@ -61,10 +61,10 @@
       <HintPath>..\packages\Carbon.Versioning.1.6.0\lib\netstandard2.0\Carbon.Versioning.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="GitHub, Version=1.20.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GitHub.1.20.0\lib\netstandard2.0\GitHub.dll</HintPath>
@@ -172,6 +172,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CandidatsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,6 +196,10 @@
     <Compile Include="Migrations\202002291331163_InitialCreate4.cs" />
     <Compile Include="Migrations\202002291331163_InitialCreate4.Designer.cs">
       <DependentUpon>202002291331163_InitialCreate4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002292142564_InitialCreate5.cs" />
+    <Compile Include="Migrations\202002292142564_InitialCreate5.Designer.cs">
+      <DependentUpon>202002292142564_InitialCreate5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -305,6 +310,7 @@
     <Content Include="Source\OwlCarousel2-2.3.4.zip" />
     <Content Include="Source\sass.zip" />
     <Content Include="Source\SlickNav-master.zip" />
+    <Content Include="Views\Home\Next_page.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,7 +324,9 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
@@ -337,6 +345,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002291331163_InitialCreate4.resx">
       <DependentUpon>202002291331163_InitialCreate4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002292142564_InitialCreate5.resx">
+      <DependentUpon>202002292142564_InitialCreate5.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -12,7 +12,7 @@ namespace ProjetASPMVC1.Models
         public Projet_ContextBD() : base("Projet_ContextBD")
         {
         }
-        public DbSet<Candidat> Etudiants { get; set; }
+        public DbSet<Candidat> Candidats { get; set; }
         public DbSet<Filiere> Filieres { get; set; }
         public DbSet<Notes> Notes { get; set; }
         public DbSet<Diplome> Diplomes { get; set; }

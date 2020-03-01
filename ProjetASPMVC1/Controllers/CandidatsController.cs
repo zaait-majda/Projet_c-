@@ -11,6 +11,7 @@ namespace ProjetASPMVC1.Controllers
 {
     public class CandidatsController : Controller
     {
+        Projet_ContextBD db = new Projet_ContextBD();
         public ActionResult Index(Candidat objUser)
         {
 
@@ -37,6 +38,28 @@ namespace ProjetASPMVC1.Controllers
                 }
             }
 
+        }
+        public ActionResult Creation()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Creation(string CIN, string CNE, string prenom, string sexe, string password, string photo, string statut, string niveau) 
+        {
+            Candidat e = new Candidat();
+            e.CIN = CIN;
+            e.CNE = CNE;
+            e.prenom = prenom;
+            e.sexe = sexe;
+            e.password = password;
+            e.photo = photo;
+            e.statut = statut;
+            e.niveau = niveau;
+            db.Candidats.Add(e);
+
+            db.SaveChanges();
+            ViewBag.msg = "Bien Ajoutee";
+            return View();
         }
         public ActionResult LogOut()
         {

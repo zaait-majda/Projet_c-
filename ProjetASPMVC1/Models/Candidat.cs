@@ -16,6 +16,7 @@ namespace ProjetASPMVC1.Models
         public String CNE { set; get; }
         public String prenom { set; get; }
         public String sexe { set; get; }
+
         [Required]
         public String password { set; get; }
         public String photo { set; get; }
@@ -32,7 +33,7 @@ namespace ProjetASPMVC1.Models
         public virtual Notes Notes { set; get; }
         [ForeignKey("Diplome")]
         public Nullable<int> id_diplome { set; get; }
-       
+
         public virtual Diplome Diplome { set; get; }
 
 

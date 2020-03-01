@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ProjetASPMVC1.Models.Candidat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+
+
+<center>
+    <form action="Edit">
+        <fieldset>
+            <legend>modifier par étudiant</legend>
+            <label>CIN :</label>
+            <input type="text" name="id" placeholder="CIN" />
+            <input type="submit" value="chercher cin" />
+
+        </fieldset>
+
+    </form>
+</center>
+
+<br />  <br />
+
+<center> <h3>Tous les étudiants</h3></center>
+<br />  <br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Diplome.nom_diplome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Filiere.nom_fil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes.id_note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sexe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.niveau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_naiss)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Diplome.nom_diplome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Filiere.nom_fil)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes.id_note)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CNE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.prenom)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sexe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.photo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.niveau)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.date_naiss)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.CIN }) |
+
+            </td>
+        </tr>
+    }
+
+</table>

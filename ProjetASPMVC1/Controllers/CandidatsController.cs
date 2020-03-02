@@ -1,4 +1,5 @@
 ﻿using ProjetASPMVC1.Models;
+using Rotativa;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,6 +13,7 @@ namespace ProjetASPMVC1.Controllers
     public class CandidatsController : Controller
     {
         Projet_ContextBD db = new Projet_ContextBD();
+        public static String id;
         public ActionResult Index(Candidat objUser)
         {
 
@@ -34,6 +36,7 @@ namespace ProjetASPMVC1.Controllers
                 {
                     Session["CIN"] = user.CIN;
                     Session["prenom"] = user.prenom;
+                    id = (string)Session["CIN"];
                     return RedirectToAction("Edit", "Candidats");
                 }
             }
@@ -90,7 +93,7 @@ namespace ProjetASPMVC1.Controllers
 
         {
             
-
+            
             Candidat candidat = db.Candidats.Find(id);
             if (candidat == null)
             {
@@ -99,6 +102,28 @@ namespace ProjetASPMVC1.Controllers
             ViewBag.id_diplome = new SelectList(db.Diplomes, "id_diplome", "nom_diplome", candidat.id_diplome);
             ViewBag.id_fil = new SelectList(db.Filieres, "id_fil", "nom_fil", candidat.id_fil);
             ViewBag.id_note = new SelectList(db.Notes, "id_note", "id_note", candidat.id_note);
+            return View(candidat);
+        }
+
+
+    
+        public ActionResult EXportPDF()
+        {
+            id = (string)Session["CIN"];
+
+            return new ActionAsPdf("fiche2")
+            { 
+            FileName = Server.MapPath("~/Content/fiche.pdf")
+            };
+            //frm
+        }
+
+        public ActionResult fiche2()
+
+        {
+            String s = CandidatsController.id;
+            Candidat candidat = db.Candidats.Find(s);
+           
             return View(candidat);
         }
     }

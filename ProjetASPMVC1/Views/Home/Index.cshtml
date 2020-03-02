@@ -1,4 +1,8 @@
-﻿@model ProjetASPMVC1.Models.Candidat
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model ProjetASPMVC1.Models.Candidat
 @{
     ViewBag.Title = "Home Page";
 }
@@ -26,23 +30,23 @@
                     </h3>
                     @using (Html.BeginForm("Authorise", "Home", FormMethod.Post))
                     {
-                    <form action="#">
-                        <div class="check-date">
-                            @Html.LabelFor(model => model.CIN)
-                            @Html.EditorFor(model => model.CIN)
-                            @Html.ValidationMessageFor(model => model.CIN)
+                        <form action="#">
+                            <div class="check-date">
+                                @Html.LabelFor(model => model.CIN)
+                                @Html.EditorFor(model => model.CIN)
+                                @Html.ValidationMessageFor(model => model.CIN)
 
-                        </div>
-                        <div class="check-date">
-                            @Html.LabelFor(model => model.password)
-                            @Html.EditorFor(model => model.password)
-                            @Html.ValidationMessageFor(model => model.password)
-                        </div>
+                            </div>
+                            <div class="check-date">
+                                @Html.LabelFor(model => model.password)
+                                @Html.EditorFor(model => model.password)
+                                @Html.ValidationMessageFor(model => model.password)
+                            </div>
 
 
-                        <button type="submit">@Html.Label(ProjetASPMVC1.Ressources.langues.Login)</button>
-                        @Html.ActionLink("inscription", "Creation", "Candidats")
-                    </form>
+                            <button type="submit">@Html.Label(ProjetASPMVC1.Ressources.langues.Login)</button>
+                            @Html.ActionLink("inscription", "Creation", "Candidats")
+                        </form>
 
                     }
                 </div>

@@ -38,6 +38,7 @@ namespace ProjetASPMVC1.Controllers
                     }
                     else
                     {
+                        CandidatsController.id = (string)Session["CIN"];
                         Session["CIN"] = userDetail.CIN;
                         Session["prenom"] = userDetail.prenom;
                         
@@ -79,8 +80,9 @@ public ActionResult Next_page()//your view page
             return View();
         }
 
+        
+       
 
-      
 
     }
     

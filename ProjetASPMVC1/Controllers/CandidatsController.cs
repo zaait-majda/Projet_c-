@@ -86,9 +86,20 @@ namespace ProjetASPMVC1.Controllers
 
         }
 
-        public ActionResult Edit()//your view page
+        public ActionResult Edit(String id)
+
         {
-            return View();
+            
+
+            Candidat candidat = db.Candidats.Find(id);
+            if (candidat == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id_diplome = new SelectList(db.Diplomes, "id_diplome", "nom_diplome", candidat.id_diplome);
+            ViewBag.id_fil = new SelectList(db.Filieres, "id_fil", "nom_fil", candidat.id_fil);
+            ViewBag.id_note = new SelectList(db.Notes, "id_note", "id_note", candidat.id_note);
+            return View(candidat);
         }
     }
 }

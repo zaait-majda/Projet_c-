@@ -6,11 +6,13 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace ProjetASPMVC1.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult Index(Candidat objUser)
         {
 
@@ -38,7 +40,8 @@ namespace ProjetASPMVC1.Controllers
                     {
                         Session["CIN"] = userDetail.CIN;
                         Session["prenom"] = userDetail.prenom;
-                        return RedirectToAction("Next_page", "Home");
+                        
+                        return RedirectToAction("Edit", new RouteValueDictionary(new { Controller="Candidats",Action="Edit",id= Session["CIN"] }));
                     }
 
                 }
@@ -75,7 +78,10 @@ public ActionResult Next_page()//your view page
             var username = (string)Session["prenom"];
             return View();
         }
-       
+
+
+      
+
     }
     
 }

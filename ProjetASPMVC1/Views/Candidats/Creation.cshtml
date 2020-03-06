@@ -5,10 +5,10 @@
 @{
     ViewBag.Title = "Creation";
 }
-<div class="row justify-content-center">
-    <div class="card col-md-5">
-        <div class="card-content p-3 pt-2">
-            <h1 class="center">Creation des comptes </h1><br />
+<div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1 bg-info">
+    <div class="booking-form">
+        <h5 style="color:cornflowerblue; text-align:center;">
+            Creation des comptes </h5><br />
             @if (ViewBag.msg != null)
             {
                 <div class="alert alert-success">
@@ -53,8 +53,7 @@
 
                 <input type="submit" name="valider" class="btn btn-primary" value="Ajouter" />
             }
-        </div>
-    </div>
+</div>
 </div>
 
 

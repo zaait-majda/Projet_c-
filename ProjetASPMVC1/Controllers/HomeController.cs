@@ -12,7 +12,7 @@ namespace ProjetASPMVC1.Controllers
 {
     public class HomeController : Controller
     {
-        
+       
         public ActionResult Index(Candidat objUser)
         {
 

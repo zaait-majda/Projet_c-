@@ -8,52 +8,58 @@
 <div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1 bg-info">
     <div class="booking-form">
         <h5 style="color:cornflowerblue; text-align:center;">
-            Creation des comptes </h5><br />
-            @if (ViewBag.msg != null)
-            {
-                <div class="alert alert-success">
-                    @ViewBag.msg
-                </div><br />
-            }
-            @using (Html.BeginForm())
-            {
-                <div class="form-group">
-                    @Html.Label("CIN", "CIN")
-                    @Html.TextBox("CIN", null, new { @class = "form-control", placeholder = "CIN" })
-                </div>
-                <div class="form-group">
-                    @Html.Label("CNE", "CNE")
-                    @Html.TextBox("CNE", null, new { @class = "form-control", placeholder = "CNE" })
-                </div>
+            Creation des comptes
+        </h5><br />
+        @if (ViewBag.msg != null)
+        {
+            <div class="alert alert-success">
+                @ViewBag.msg
+            </div><br />
+        }
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.Label("CIN", "CIN")
+                @Html.TextBox("CIN", null, new { @class = "form-control", placeholder = "CIN" })
+            </div>
+            <div class="form-group">
+                @Html.Label("CNE", "CNE")
+                @Html.TextBox("CNE", null, new { @class = "form-control", placeholder = "CNE" })
+            </div>
 
-                <div class="form-group">
-                    @Html.Label("Prenom", "Prenom")
-                    @Html.TextBox("Prenom", null, new { @class = "form-control", placeholder = "Prenom" })
-                </div>
-                <div class="form-group">
-                    @Html.Label("Password", "Password")
-                    @Html.TextBox("Password", null, new { @class = "form-control", placeholder = "Password" })
-                </div>
-                <div class="form-group">
-                    @Html.Label("Sexe", "Sexe")
-                    @Html.TextBox("Sexe", null, new { @class = "form-control", placeholder = "Sexe" })
-                </div>
-                <div class="form-group">
-                    @Html.Label("Niveau", "Niveau")
-                    @Html.TextBox("Niveau", null, new { @class = "form-control", placeholder = "Niveau" })
-                </div>
-                <div class="form-group">
-                    @Html.Label("Statut", "Statut")
-                    @Html.TextBox("Statut", null, new { @class = "form-control", placeholder = "Statut" })
-                </div>
-                <div class="form-group">
-                    @Html.Label("Photo", "Photo")
-                    <input type="file" name="Photo" value="" />
-                </div>
+            <div class="form-group">
+                @Html.Label("Prenom", "Prenom")
+                @Html.TextBox("Prenom", null, new { @class = "form-control", placeholder = "Prenom" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Password", "Password")
+                @Html.TextBox("Password", null, new { @class = "form-control", placeholder = "Password" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Sexe", "Sexe")
+                @Html.TextBox("Sexe", null, new { @class = "form-control", placeholder = "Sexe" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Niveau", "Niveau")
+                @Html.TextBox("Niveau", null, new { @class = "form-control", placeholder = "Niveau" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Statut", "Statut")
+                @Html.TextBox("Statut", null, new { @class = "form-control", placeholder = "Statut" })
+            </div>
+            <div class="form-group">
+                @Html.Label("Photo", "Photo")
+                <input type="file" name="Photo" value="" />
+            </div>
 
-                <input type="submit" name="valider" class="btn btn-primary" value="Ajouter" />
-            }
+            <input type="submit" name="valider" class="btn btn-primary" value="Ajouter" />
+        }
+    </div>
 </div>
-</div>
 
 
+@using (Html.BeginForm("EXportPDF", "Candidats", FormMethod.Post))
+{
+
+    <input type="submit" value="Imprimer la fiche" class="btn btn-default" />
+}

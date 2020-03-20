@@ -250,6 +250,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="img\about\GEEKS CLUB.jpg" />
     <Content Include="img\about\index2.jpg" />
+    <Content Include="img\ameleo.PNG" />
+    <Content Include="img\circle.jpg" />
     <Content Include="img\flag.jpg" />
     <Content Include="img\hero\hero-1.png" />
     <Content Include="img\hero\hero-2.jpg" />
@@ -257,6 +259,7 @@
     <Content Include="img\hero\unnamed.jpg" />
     <Content Include="img\index.png" />
     <Content Include="img\play.png" />
+    <Content Include="img\pngtree.jpg" />
     <Content Include="img\testimonial-logo.png" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery-3.3.1.min.js" />
@@ -323,6 +326,7 @@
     <Content Include="Views\Candidats\Creation.cshtml" />
     <Content Include="Views\Candidats\Edit.cshtml" />
     <Content Include="Views\Candidats\fiche2.cshtml" />
+    <Content Include="Views\Shared\_Contact.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

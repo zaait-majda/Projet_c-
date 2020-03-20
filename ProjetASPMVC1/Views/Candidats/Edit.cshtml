@@ -1,130 +1,189 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿
 @model ProjetASPMVC1.Models.Candidat
 
 @{
     ViewBag.Title = "Edit";
 }
+<!DOCTYPE html>
+<html lang="zxx">
 
-<div class="col-xl-4 col-lg-5 offset-xl-2 offset-lg-1 bg-info">
-    <div class="booking-form">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Sona Template">
+    <meta name="keywords" content="Sona, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ENSAS </title>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
 
-            <div class="form-horizontal">
-                <center> <h5 style="color:cornflowerblue"> modifier les informations du Candidat</h5> </center>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.CIN)
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
+    <style>
+        body {
+            background-image: url('../../img/pngtree.jpg');
+            background-size: cover;
+        }
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CNE, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CNE, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CNE, "", new { @class = "text-danger" })
+        tr {
+            border-bottom: 1px solid white;
+        }
+
+        th {
+            padding-top: 15px;
+            padding-bottom: 6px;
+            padding-left: 60px;
+            padding-right: 20px;
+        }
+
+        .tabSty {
+            margin-top: 100px;
+            border-radius: 10px;
+            background-color: white;
+            margin-left: 600px;
+        }
+        .esp {
+            margin-left: 150px;
+        }
+        .espace {
+            margin-left: 400px;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header-section">
+        <div class="top-nav bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+                            <li><i class="fa fa-envelope"></i>  ensasafi@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tn-right">
+                            <div class="top-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                            <a href="#" class="bk-btn bg-info">Ensa Safi</a>
+                            <div class="language-option">
+                                <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;border-radius:100px;" />
+                                <span>Home<i class="fa fa-angle-down"></i></span>
+                                <div class="flag-dropdown" style="width:200px;">
+                                    <ul>
+                                        <li>@Html.ActionLink("Telecharger recu", "EXportPDF", "Candidats", null, null)</li>
+                                        <li>@Html.ActionLink("English", "Change", "Home", new { LangugeAbbrevation = "en" }, null)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.prenom, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.prenom, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.sexe, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.sexe, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.sexe, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
             </div>
+        </div>
 
-            <div class="form-group">
+    </header>
+    <br /><br /><br />
+    <center> <h4>Bienvenue  @Html.DisplayFor(model => model.prenom)  dans votre espace personnelle</h4> </center>
+    <hr />
+    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
+
+    <table class="tabSty">
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.CNE, htmlAttributes: new { @class = "control-label col-md-2" })
+            </th>
+
+
+            <th class="espace">
+                @Html.DisplayFor(model => model.CNE)
+            </th>
+        </tr>
+
+
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.prenom, htmlAttributes: new { @class = "control-label col-md-2" })
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.sexe, htmlAttributes: new { @class = "control-label col-md-2" })
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.sexe, new { htmlAttributes = new { @class = "form-control" } })
+
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+
+
+        <tr>
+
+            <th>
                 @Html.LabelFor(model => model.statut, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.statut, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.statut, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.statut, new { htmlAttributes = new { @class = "form-control" } })
 
-            <div class="form-group">
+            </th>
+        </tr>
+        <tr>
+            <th>
                 @Html.LabelFor(model => model.niveau, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.niveau, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.niveau, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.niveau, new { htmlAttributes = new { @class = "form-control" } })
 
-            <div class="form-group">
+            </th>
+        </tr>
+        <tr>
+            <th>
                 @Html.LabelFor(model => model.date_naiss, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.date_naiss, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.date_naiss, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.date_naiss, new { htmlAttributes = new { @class = "form-control" } })
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.id_fil, "Filiére", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("id_fil", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_fil, "", new { @class = "text-danger" })
-                </div>
-            </div> <br /> <br />
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.id_diplome, "diplome", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("id_diplome", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_diplome, "", new { @class = "text-danger" })
-                </div>
-            </div> <br /> <br />
+            </th>
+        </tr>
 
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.id_note, "id_note", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("id_note", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_note, "", new { @class = "text-danger" })
-                </div>
-            </div> <br /> <br />
+    </table>
+    <div class="esp">
+        @Html.Partial("_Contact")
+    </div>
 
+</body>
 
+</html>
 
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Modifier" class="btn btn-default" />
-
-
-                </div>
-
-            </div>
-
-
-
-        }
-        @using (Html.BeginForm("EXportPDF", "Candidats", FormMethod.Post))
-        {
-
-            <input type="submit" value="Imprimer la fiche" class="btn btn-default" />
-        }
-
-</div></div>

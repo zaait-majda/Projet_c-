@@ -1,0 +1,261 @@
+﻿@model ProjetASPMVC1.Models.Candidat
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+
+    .form {
+        margin-top: 20px;
+        margin-left: 400px;
+        width: 600px;
+        padding: 40px;
+        border-left: 4px solid cornflowerblue;
+        border-right: 4px solid cornflowerblue;
+    }
+</style>
+
+<div class="form">
+   
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <h4 style="color:cornflowerblue;">S'il vous plaît entrer vôtres informations ici</h4>
+        <div class="form-horizontal">
+
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <p>Entrer CIN</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CIN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CIN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer CNE</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CNE, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CNE, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer votre Prenom</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.prenom, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer votre Nom</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nom, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer votre Ville</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ville, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ville, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer votre Addresse</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.addresse, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.addresse, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer votre Numero de telephone</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.tel, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.tel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer votre GSM</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.GSM, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.GSM, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer votre Type de baccalauréat</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.type_bac, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.type_bac, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer l'année de baccalauréat</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.annee_bac, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.annee_bac, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer Note de baccalauréat</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.note_bac, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.note_bac, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Mention de baccalauréat</p>
+                <div class="col-md-10">
+                    <input type="text" name="mention_bac" style="width:400px; border-radius:5px; border:1px solid gainsboro;" />
+                 
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.nationnalite, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("nationnalite", new List<SelectListItem>
+                          {
+                          new SelectListItem{Text="marocain",Value="marocain"},
+                          new SelectListItem{Text="étrangaire",Value="étrangaire"},
+
+
+                          },"selectionner  votre nationanalité")
+                </div>
+            </div>
+            <br /><br />
+            <div class="form-group">
+                <p>Sexe:</p>
+                <div class="col-md-10">
+                    Femme <input type="radio" value="femme" name="sexe" /> Homme <input type="radio" value="homme" name="sexe" />
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Confirmer votre password</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.password_conf, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.password_conf, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer votre photo</p>
+                <div class="col-md-10">
+                    <input type="file" id="photo" name="photo" style="width: 100%;" />
+                    @Html.ValidationMessageFor(model => model.photo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>Entrer votre Email</p>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <p>Votre Niveau</p>
+                <div class="col-md-10">
+                    @Html.DropDownList("niveau", new List<SelectListItem>
+                          {
+                          new SelectListItem{Text="3eme",Value="3eme"},
+                          new SelectListItem{Text="4eme",Value="4eme"},
+
+
+                          },"selectionner  votre niveau")
+                </div>
+            </div>
+            <br /><br />
+            <div class="form-group">
+                <p>Date de naissance</p>
+                <div class="col-md-10">
+                    <input type="date" name="date_naiss" style="width:400px; border-radius:5px; border:1px solid gainsboro;" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>choisissez votre filiere</p>
+                <div class="col-md-10">
+                    @Html.DropDownList("id_fil", ViewBag.f as SelectList, htmlAttributes: new { @class = "form-control"})
+                    @Html.ValidationMessageFor(model => model.id_fil, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br /><br />
+            <div class="form-group">
+                <p>Enter votre notes</p>
+                <div class="col-md-10">
+                    <table>
+                        <tr><th style="padding-bottom:50px;">@Html.TextBox("s1", "note s1", new { @type="number", @min = "0", @max = "20", @step = "0.01" })</th><th style="padding-left:100px;padding-bottom:50px;"> @Html.TextBox("s2", "note s2", new { @type = "number", @min = "0", @max = "20", @step = "0.01" })</th></tr>
+                        <tr><th style="padding-bottom:50px;">@Html.TextBox("s3", "note s3", new { @type = "number", @min = "0", @max = "20", @step = "0.01" })</th><th style="padding-left:100px;padding-bottom:50px;"> @Html.TextBox("s4", "note s4", new { @type = "number", @min = "0", @max = "20", @step = "0.01" })</th></tr>
+                        <tr><th style="padding-bottom:50px;">@Html.TextBox("s5", "note s5", new { @type = "number", @min = "0", @max = "20", @step = "0.01" })</th><th style="padding-left:100px;padding-bottom:50px;"> @Html.TextBox("s6", "note s6", new { @type = "number", @min = "0", @max = "20", @step = "0.01" })</th></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <p>choisissez votre diplome</p>
+                <div class="col-md-10">
+                    @Html.DropDownList("nom_dip", new List<SelectListItem>
+                        {
+                        new SelectListItem{Text="Licence",Value="Licence",Selected=true},
+                        new SelectListItem{Text="Licence pro",Value="Licence pro"},
+                        new SelectListItem{Text="BUT",Value="BUT"}
+
+                        },"selectionner  votre diplome")
+                </div>
+            </div>
+            <br /><br />
+            <div class="form-group">
+                <p>La ville de diplome</p>
+                <div class="col-md-10">
+                    <input type="text" name="villeDip" style="width:400px; border-radius:5px; border:1px solid gainsboro;" />
+
+                </div>
+            </div>
+            <div class="form-group">
+                <p>Entrer votre etablissement</p>
+                <div class="col-md-10">
+                    <input type="text" name="etab" style="width:400px; border-radius:5px; border:1px solid gainsboro;" />
+
+                </div>
+            </div>
+            <br /><br />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" style="border-radius:15px;background-color:gainsboro;height:40px;width:120px;" />
+                </div>
+            </div>
+        </div>
+    }
+
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

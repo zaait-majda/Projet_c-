@@ -1,0 +1,107 @@
+﻿@model ProjetASPMVC1.Models.Candidat
+@{
+    ViewBag.Title = "fiche";
+}
+<style>
+
+    .stl {
+        text-align: justify;
+        padding: 21px;
+    }
+
+    body {
+        margin: 30px;
+        border: 3px double darkblue;
+        border-radius: 15px;
+    }
+
+    .st_div {
+        margin-top: 20px;
+        width: 600px;
+        height: 1200px;
+        margin-left: 220px;
+    }
+
+    th, td {
+        padding-top: 20px;
+        padding-bottom: 20px;
+        padding-right: 20px;
+    }
+</style>
+<img src="~/img/index.png" alt="" style="width:200px;  border-radius: 15px;height:90px;">
+<span style="font-size:30px; padding-left:50px; color:cornflowerblue;">Écoles Nationales des Sciences Appliquées</span>
+<p style="margin-left:400px;">Le , @DateTime.Now.ToLongDateString()</p>
+<hr />
+<div class="st_div">
+    <h2 style="color:darkblue; margin-top:20px; margin-left:10px;">Fiche d'inscription </h2>
+    <br />
+    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:50px;" />
+    <table class="stl">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CNE)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.CNE)
+            </td>
+
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.prenom)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.prenom)
+            </td>
+
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.sexe)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.sexe)
+            </td>
+        </tr>
+
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.statut)
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.statut)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Niveau de l'étudiant :
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.niveau)
+            </td>
+        </tr>
+        <tr>
+            <th>
+                La Date de naissance:
+            </th>
+            <td>
+                @Html.DisplayFor(model => model.date_naiss)
+            </td>
+        </tr>
+        <tr>
+            <th>Le diplome de l'etudiant</th>
+
+
+            <td>@Html.DisplayFor(model => model.Diplome.nom_diplome)</td>
+
+        </tr>
+        <tr>
+            <th>
+                Filiere de l'étudiant:
+            </th>
+            <td>  @Html.DisplayFor(model => model.Filiere.nom_fil)</td>
+        </tr>
+
+    </table>
+</div>

@@ -17,6 +17,8 @@ namespace ProjetASPMVC1.Controllers
     {
         public static String id;
         private Projet_ContextBD db = new Projet_ContextBD();
+        private readonly object[] cin;
+
         public ActionResult Index(Candidat objUser)
         {
 
@@ -38,6 +40,7 @@ namespace ProjetASPMVC1.Controllers
                 else
                 {
                     Session["CIN"] = user.CIN;
+                   ViewBag.cin = user.CIN;
                     Session["prenom"] = user.prenom;
                     return RedirectToAction("Edit", "Candidats");
                 }
@@ -47,6 +50,7 @@ namespace ProjetASPMVC1.Controllers
         public ActionResult LogOut()
         {
             int userId = (int)Session["CIN"];
+           
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
@@ -202,6 +206,7 @@ namespace ProjetASPMVC1.Controllers
             cand.id_note = note.id_note;
             db.Candidats.Add(cand);
             db.SaveChanges();
+
             sendmail(cand);
 
             return RedirectToAction("Index", "Home");
@@ -211,7 +216,7 @@ namespace ProjetASPMVC1.Controllers
         public ActionResult Next_page(String id)
 
         {
-
+            ViewBag.CIN = id;
 
             Candidat candidat = db.Candidats.Find(id);
             if (candidat == null)
@@ -316,9 +321,164 @@ namespace ProjetASPMVC1.Controllers
 
         }
 
-        public ActionResult Edit()//your view page
+        public ActionResult update(String cin)
         {
-            return View();
+            
+            Candidat candidat = db.Candidats.Find(cin);
+            
+
+           ViewBag.CIN = cin;
+            return View(candidat);
         }
+
+        public ActionResult updateinfo(
+            String cin,String cne, String prenom, String nom, String ville,
+            String adresse,String numéro,String GSM,String nationalité,
+            String sexe,String email, String date_naiss,String photo)
+        {
+
+
+            Candidat candidat = db.Candidats.Find(cin);
+            candidat.CIN = cin;
+            candidat.CNE = cne;
+            candidat.prenom = prenom;
+            candidat.nom = nom;
+            candidat.ville = ville;
+            candidat.addresse = adresse;
+            candidat.tel = numéro;
+            candidat.GSM = GSM;
+            candidat.nationnalite = nationalité;
+            candidat.sexe = sexe;
+            candidat.email = email;
+            candidat.date_naiss = Convert.ToDateTime(date_naiss);
+
+            string filename = System.IO.Path.GetFileNameWithoutExtension(photo);
+            string extension = System.IO.Path.GetExtension(photo);
+            filename = filename + extension;
+
+            candidat.photo = filename;
+
+            db.SaveChanges();
+            ViewBag.messageconfirm = "modification des informations personnels avec succés";
+            ViewBag.CIN = cin;
+            return View("update", candidat);
+        }
+
+
+        public ActionResult update2(String cin)
+        {
+            
+
+            Candidat candidat = db.Candidats.Find(cin);
+            int iddip = candidat.id_diplome;
+            Diplome dip = db.Diplomes.Find(iddip);
+            ViewBag.nomdip = dip.nom_diplome;
+            ViewBag.villedip = dip.ville_diplome;
+            ViewBag.etab = dip.etablissement;
+
+
+            int idnote = candidat.id_note;
+            Notes n = db.Notes.Find(idnote);
+            ViewBag.s1 = n.s1;
+            ViewBag.s2 = n.s2;
+            ViewBag.s3 = n.s3;
+            ViewBag.s4 = n.s4;
+            ViewBag.s5 = n.s5;
+            ViewBag.s6 = n.s6;
+            ViewBag.CIN = cin;
+            return View(candidat);
+        }
+
+
+        public ActionResult updatediplome(String data,String type_bac,String annee_bac,String note_bac,
+            String mention_bac,String nom_diplome,String ville_diplome, String etablissment,
+            String niveau,String s1, String s2, String s3, String s4, String s5, String s6)
+        {
+             Candidat Candidat = db.Candidats.Find(data);
+            Candidat.type_bac = type_bac;
+            Candidat.annee_bac = annee_bac;
+            Candidat.note_bac = note_bac;
+            Candidat.mention_bac = mention_bac;
+
+      
+                Diplome dip = new Diplome();
+                dip.nom_diplome = nom_diplome;
+                dip.ville_diplome = ville_diplome;
+                dip.etablissement = etablissment;
+                db.Diplomes.Add(dip);
+                Candidat.id_diplome = dip.id_diplome;
+           
+
+            Notes n = new Notes();
+            n.s1 = Convert.ToDouble(s1);
+            n.s2 = Convert.ToDouble(s2);
+            n.s3 = Convert.ToDouble(s3);
+            n.s4 = Convert.ToDouble(s4);
+            n.s5 = Convert.ToDouble(s5);
+            n.s6 = Convert.ToDouble(s6);
+            db.Notes.Add(n);
+            db.SaveChanges();
+            int idn = n.id_note;
+            Candidat.id_note = idn;
+            db.SaveChanges();
+            ViewBag.messageconfirm = "informations sur les diplomes obtenus sont changés avec succés";
+
+            ViewBag.nomdip = nom_diplome;
+            ViewBag.villedip = ville_diplome;
+            ViewBag.etab = etablissment;
+            ViewBag.s1 = s1;
+            ViewBag.s2 = s2;
+            ViewBag.s3 = s3;
+            ViewBag.s4 = s4;
+            ViewBag.s5 = s5;
+            ViewBag.s6 = s6;
+
+            ViewBag.CIN = cin;
+
+
+
+            return View("update2", Candidat);
+
+
+
+
+        }
+
+
+        public ActionResult update3(String cin)
+        {
+
+            Candidat candidat =db.Candidats.Find(cin);
+            ViewBag.CIN = cin;
+
+            return View(candidat);
+
+        }
+
+
+        public ActionResult updatefiliere(String data,String filiere)
+        {
+
+            var query = from st in db.Filieres
+                        where st.nom_fil == filiere
+                        select st;
+
+            var f = query.FirstOrDefault<Filiere>();
+            int id_fil = f.id_fil;
+
+            Candidat candidat = db.Candidats.Find(data);
+            candidat.id_fil = id_fil;
+            db.SaveChanges();
+            ViewBag.CIN = cin;
+
+            ViewBag.messageconfirm = "modification de choix de filières avec succés";
+
+            return View("update3", candidat);
+
+
+
+
+        }
+
     }
 }

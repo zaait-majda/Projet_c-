@@ -1,4 +1,11 @@
 ﻿
+@{
+    ViewBag.Title = "update3";
+}
+
+
+
+
 @model ProjetASPMVC1.Models.Candidat
 <!DOCTYPE html>
 <html lang="zxx">
@@ -24,8 +31,6 @@
     <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="~/css/style.css" type="text/css">
     <style>
-
-
         body {
             font-family: montserrat, arial, verdana;
             background-image: url('../../img/papers.co-sj80-magic-color-purple-gradation-blur-40-wallpaper.jpg');
@@ -59,6 +64,16 @@
         .espace {
             margin-left: 400px;
             width: 300px;
+        }
+
+
+        .form {
+            margin-top: 20px;
+            margin-left: 400px;
+            width: 600px;
+            padding: 40px;
+            border-left: 4px solid cornflowerblue;
+            border-right: 4px solid cornflowerblue;
         }
     </style>
 </head>
@@ -103,100 +118,46 @@
         </div>
     </header>
     <br /><br /><br />
-    <center> <h4>Bienvenue  @Html.DisplayFor(model => model.prenom)  dans votre espace personnelle</h4> </center>
-    <hr />
-    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
-    <table class="tabSty">
-        <tr>
-            <th>
-                CNE
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.CNE)
-            </th>
-        </tr>
-        <tr>
-            <th>
-                CIN
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.CIN)
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Prenom
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Nom
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Sexe
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.sexe, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Niveau
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.niveau, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                La date de naissance
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.date_naiss, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                L'addresse
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.addresse, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Telephone
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.tel, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Diplome
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.Diplome.nom_diplome, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Filiere
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.Filiere.nom_fil, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-    </table>
-    <br /><br />
+    <center>
+        <h4> @Html.DisplayFor(model => model.prenom), veuillez modifier votre choix de filières: </h4> <br />
 
-</body>
-</html>
+        <h6 style="color:blue">@ViewBag.messageconfirm</h6>
+    </center>
+    <hr />
+
+    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
+    <form class="form" action="updatefiliere" method="post">
+
+
+        <div class="form-horizontal">
+           
+
+
+
+            <div class="form-group">
+                <select class="col-md-10" name="filiere"  required>
+                    <option value="génie info">génie info</option>
+                    <option value="gtr">gtr</option>
+                    <option value="gpmc">gpmc</option>
+                    <option value="indus">indus</option>
+                </select>
+
+            </div>
+
+            <input type="hidden" name="data" value=@ViewBag.CIN />
+
+            <br />
+
+            <div class="form-group">
+
+                <input type="submit" value="valider les modifications" class="col-md-10" style="background-color:cadetblue" required />
+
+            </div>
+        </div>
+
+    </form>
+
+
+
+
+

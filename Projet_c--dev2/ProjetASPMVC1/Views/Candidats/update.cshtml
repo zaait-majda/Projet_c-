@@ -1,4 +1,9 @@
 ﻿
+@{
+    ViewBag.Title = "update";
+}
+
+
 @model ProjetASPMVC1.Models.Candidat
 <!DOCTYPE html>
 <html lang="zxx">
@@ -24,8 +29,6 @@
     <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="~/css/style.css" type="text/css">
     <style>
-
-
         body {
             font-family: montserrat, arial, verdana;
             background-image: url('../../img/papers.co-sj80-magic-color-purple-gradation-blur-40-wallpaper.jpg');
@@ -60,6 +63,16 @@
             margin-left: 400px;
             width: 300px;
         }
+
+
+            .form {
+        margin-top: 20px;
+        margin-left: 400px;
+        width: 600px;
+        padding: 40px;
+        border-left: 4px solid cornflowerblue;
+        border-right: 4px solid cornflowerblue;
+    }
     </style>
 </head>
 <body>
@@ -103,100 +116,121 @@
         </div>
     </header>
     <br /><br /><br />
-    <center> <h4>Bienvenue  @Html.DisplayFor(model => model.prenom)  dans votre espace personnelle</h4> </center>
+    <center> <h4> @Html.DisplayFor(model => model.prenom), veuillez modifier les informations personnels </h4> <br/>
+    
+    <h6 style="color:blue">@ViewBag.messageconfirm</h6>
+    </center>
     <hr />
-    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
-    <table class="tabSty">
-        <tr>
-            <th>
-                CNE
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.CNE)
-            </th>
-        </tr>
-        <tr>
-            <th>
-                CIN
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.CIN)
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Prenom
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Nom
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Sexe
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.sexe, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Niveau
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.niveau, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                La date de naissance
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.date_naiss, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                L'addresse
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.addresse, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Telephone
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.tel, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Diplome
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.Diplome.nom_diplome, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-        <tr>
-            <th>
-                Filiere
-            </th>
-            <th class="espace">
-                @Html.DisplayFor(model => model.Filiere.nom_fil, new { htmlAttributes = new { @class = "form-control" } })
-            </th>
-        </tr>
-    </table>
-    <br /><br />
 
-</body>
-</html>
+    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
+    <form class="form" action="updateinfo" method="post">
+        
+
+        <div class="form-horizontal">
+          
+            <div class="form-group">
+
+                <input type="text" name="cin" value=@Html.DisplayFor(model => model.CIN) class="col-md-10" placeholder="entrer CIN" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" name="cne" value=@Html.DisplayFor(model => model.CNE) class="col-md-10" placeholder="entrer CNE" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" name="prenom" value=@Html.DisplayFor(model => model.prenom) class="col-md-10" placeholder="entrer votre prenom" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" name="nom" value=@Html.DisplayFor(model => model.nom) class="col-md-10" placeholder="entrer votre nom" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" name="ville" value=@Html.DisplayFor(model => model.ville) class="col-md-10" placeholder="entrer votre ville" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" name="adresse" value=@Html.DisplayFor(model => model.addresse) class="col-md-10" placeholder="entrer votre adresse" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" name="numéro" value=@Html.DisplayFor(model => model.tel) class="col-md-10" placeholder="entrer votre numéro de téléphone" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" name="GSM" value=@Html.DisplayFor(model => model.GSM) class="col-md-10" placeholder="entrer votre GSM" required />
+
+            </div>
+
+            <div class="form-group">
+                <select class="col-md-10" name="nationalité"  value=@Html.DisplayFor(model => model.sexe) required>
+                    <option value="féminin">Marocain</option>
+                    <option value="masculin">étrangére</option>
+                </select>
+
+            </div>
+
+
+
+            <div class="form-group">
+                
+                    <div class="col-md-10">
+                        <center>
+                            Femme <input type="radio"  value="femme" name="sexe"  /> Homme <input type="radio" value="homme" name="sexe" required />
+                        </center>
+                    </div>
+                
+            </div>
+
+
+            <div class="form-group">
+
+                <input type="text" name="email" value=@Html.DisplayFor(model => model.email) class="col-md-10" placeholder="entrer votre email" required />
+
+            </div>
+
+            <div class="form-group">
+
+                <input type="text" name="date_naiss" value=@Html.DisplayFor(model => model.date_naiss) class="col-md-10" placeholder="jj/mm/aa" required />
+
+            </div> 
+            <br/>
+              
+            <div class="form-group">
+
+                <center> <input type="file" name="photo" class="col-md-10" /> </center>
+
+            </div>
+            <br />
+
+            <div class="form-group">
+
+                <input type="submit" value="valider les modifications" class="col-md-10" style="background-color:cadetblue" required />
+
+            </div>
+        </div>
+
+    </form>
+
+
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+

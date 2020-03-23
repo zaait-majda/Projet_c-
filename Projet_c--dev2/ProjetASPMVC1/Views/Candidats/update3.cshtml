@@ -135,13 +135,11 @@
 
 
             <div class="form-group">
-                <select class="col-md-10" name="filiere"  required>
-                    <option value="génie info">génie info</option>
-                    <option value="gtr">gtr</option>
-                    <option value="gpmc">gpmc</option>
-                    <option value="indus">indus</option>
-                </select>
-
+                <p>choisissez votre filiere</p>
+                <div class="col-md-10">
+                    @Html.DropDownList("id_fil", ViewBag.f as SelectList, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.id_fil, "", new { @class = "text-danger" })
+                </div>
             </div>
 
             <input type="hidden" name="data" value=@ViewBag.CIN />

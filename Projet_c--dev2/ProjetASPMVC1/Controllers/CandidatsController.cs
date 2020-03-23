@@ -321,13 +321,12 @@ namespace ProjetASPMVC1.Controllers
 
         }
 
-        public ActionResult update(String cin)
+        public ActionResult update(String cin, String msg)
         {
             
             Candidat candidat = db.Candidats.Find(cin);
-            
-
-           ViewBag.CIN = cin;
+            ViewBag.CIN = cin;
+            ViewBag.messageconfirm = msg;
             return View(candidat);
         }
 
@@ -348,26 +347,33 @@ namespace ProjetASPMVC1.Controllers
             candidat.tel = numéro;
             candidat.GSM = GSM;
             candidat.nationnalite = nationalité;
-            candidat.sexe = sexe;
             candidat.email = email;
             candidat.date_naiss = Convert.ToDateTime(date_naiss);
-
+           
+            candidat.sexe = sexe;
             string filename = System.IO.Path.GetFileNameWithoutExtension(photo);
             string extension = System.IO.Path.GetExtension(photo);
-            filename = filename + extension;
+           filename = filename + extension;
+           candidat.photo = filename;
+           db.SaveChanges();
+          
+           ViewBag.CIN = cin;
+           String msg= "modification des informations personnels avec succés";
 
-            candidat.photo = filename;
+            return RedirectToAction("update", new { cin = cin, msg=msg });
+            
+            
+           
 
-            db.SaveChanges();
-            ViewBag.messageconfirm = "modification des informations personnels avec succés";
-            ViewBag.CIN = cin;
-            return View("update", candidat);
+            
+           
         }
 
 
-        public ActionResult update2(String cin)
+        public ActionResult update2(String cin,String msg)
         {
-            
+
+            ViewBag.messageconfirm = msg;
 
             Candidat candidat = db.Candidats.Find(cin);
             int iddip = candidat.id_diplome;
@@ -375,6 +381,7 @@ namespace ProjetASPMVC1.Controllers
             ViewBag.nomdip = dip.nom_diplome;
             ViewBag.villedip = dip.ville_diplome;
             ViewBag.etab = dip.etablissement;
+            
 
 
             int idnote = candidat.id_note;
@@ -399,45 +406,32 @@ namespace ProjetASPMVC1.Controllers
             Candidat.annee_bac = annee_bac;
             Candidat.note_bac = note_bac;
             Candidat.mention_bac = mention_bac;
+            Candidat.niveau = niveau;
+            db.SaveChanges();
 
-      
-                Diplome dip = new Diplome();
-                dip.nom_diplome = nom_diplome;
-                dip.ville_diplome = ville_diplome;
-                dip.etablissement = etablissment;
-                db.Diplomes.Add(dip);
-                Candidat.id_diplome = dip.id_diplome;
-           
+            int iddip = Candidat.id_diplome;
+            Diplome dip = db.Diplomes.Find(iddip);
+            dip.nom_diplome = nom_diplome;
+            dip.ville_diplome = ville_diplome;
+            dip.etablissement = etablissment;
 
-            Notes n = new Notes();
+            db.SaveChanges();
+
+            int idnote = Candidat.id_note;
+            Notes n = db.Notes.Find(idnote);
             n.s1 = Convert.ToDouble(s1);
             n.s2 = Convert.ToDouble(s2);
             n.s3 = Convert.ToDouble(s3);
             n.s4 = Convert.ToDouble(s4);
             n.s5 = Convert.ToDouble(s5);
             n.s6 = Convert.ToDouble(s6);
-            db.Notes.Add(n);
             db.SaveChanges();
-            int idn = n.id_note;
-            Candidat.id_note = idn;
-            db.SaveChanges();
-            ViewBag.messageconfirm = "informations sur les diplomes obtenus sont changés avec succés";
+            String id=data;
+            ViewBag.CIN = id;
 
-            ViewBag.nomdip = nom_diplome;
-            ViewBag.villedip = ville_diplome;
-            ViewBag.etab = etablissment;
-            ViewBag.s1 = s1;
-            ViewBag.s2 = s2;
-            ViewBag.s3 = s3;
-            ViewBag.s4 = s4;
-            ViewBag.s5 = s5;
-            ViewBag.s6 = s6;
+            String msg = "informations sur les diplomes obtenus sont changés avec succés";
 
-            ViewBag.CIN = cin;
-
-
-
-            return View("update2", Candidat);
+            return RedirectToAction("update2", new { cin= id,msg=msg });
 
 
 
@@ -445,35 +439,32 @@ namespace ProjetASPMVC1.Controllers
         }
 
 
-        public ActionResult update3(String cin)
+        public ActionResult update3(String cin, String msg)
         {
 
             Candidat candidat =db.Candidats.Find(cin);
             ViewBag.CIN = cin;
+            ViewBag.messageconfirm = msg;
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
 
             return View(candidat);
 
         }
 
 
-        public ActionResult updatefiliere(String data,String filiere)
+        public ActionResult updatefiliere(String data,String id_fil)
         {
 
-            var query = from st in db.Filieres
-                        where st.nom_fil == filiere
-                        select st;
-
-            var f = query.FirstOrDefault<Filiere>();
-            int id_fil = f.id_fil;
+            
 
             Candidat candidat = db.Candidats.Find(data);
-            candidat.id_fil = id_fil;
+            candidat.id_fil = Convert.ToInt32(id_fil);
             db.SaveChanges();
-            ViewBag.CIN = cin;
 
-            ViewBag.messageconfirm = "modification de choix de filières avec succés";
+           String msg= "modification de choix de filières avec succés";
+            String id = data;
 
-            return View("update3", candidat);
+            return RedirectToAction("update3", new { cin = id, msg = msg });
 
 
 

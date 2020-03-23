@@ -444,7 +444,6 @@
     <Content Include="vendor\bootstrap\css\bootstrap.min.css.map" />
     <Content Include="Views\Candidats\update.cshtml" />
     <Content Include="Views\Candidats\update2.cshtml" />
-    <Content Include="Views\Candidats\updatediplome.cshtml" />
     <Content Include="Views\Candidats\update3.cshtml" />
   </ItemGroup>
   <ItemGroup>

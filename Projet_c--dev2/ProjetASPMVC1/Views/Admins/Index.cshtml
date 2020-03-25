@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml ";
 }
 
-
+@section Msg{ <p style="color:white;">+ @ViewBag.Msg</p>}
 <div class="row">
     <div class="col-xl-3 col-md-6">
         <div class="card bg-primary text-white mb-4">
@@ -39,7 +39,7 @@
         </div>
     </div>
 
-   
+
 
     <div class="col-xl-3 col-md-6">
         <div class="card bg-danger text-white mb-4">

@@ -13,6 +13,7 @@ namespace ProjetASPMVC1.Controllers
 {
     public class HomeController : Controller
     {
+        private Projet_ContextBD db = new Projet_ContextBD();
         public ActionResult Index(Candidat objUser)
         {
 
@@ -85,6 +86,18 @@ namespace ProjetASPMVC1.Controllers
             //Read the value
             var username = (string)Session["prenom"];
             return View();
+        }
+
+        public ActionResult SendMessage(string nom, string message)
+        {
+            BoitMessage msg = new BoitMessage();
+            msg.Nom = nom;
+            msg.message = message;
+            msg.vue = 0;
+            db.message.Add(msg);
+            db.SaveChanges();
+            Response.Write("<script>alert(\'Le message bien envoyer\');</" + "script>");
+            return View("Contact");
         }
 
     }

@@ -57,7 +57,16 @@ namespace ProjetASPMVC1.Controllers
 
                         nbIns++;
                     }
+                    int msgnonVue = 0;
+                    foreach (var msg in db.message.ToList())
+                    {
+                        if (msg.vue.Equals(0))
+                        {
+                            msgnonVue++;
+                        }
 
+                    }
+                    ViewBag.Msg = Convert.ToString(msgnonVue);
                     ViewBag.niv3 = Convert.ToString(nb3eme);
                     ViewBag.niv4 = Convert.ToString(nb4eme);
                     ViewBag.ut = Convert.ToString(nbIns.ToString());
@@ -168,6 +177,7 @@ namespace ProjetASPMVC1.Controllers
             int nb3eme = 0;
             int nb4eme = 10;
             int nbIns = 0;
+            int msgnonVue = 0;
             foreach (var cand in db.Candidats.ToArray())
             {
                 if (cand.niveau.Equals("4eme"))
@@ -181,21 +191,49 @@ namespace ProjetASPMVC1.Controllers
 
                 nbIns++;
             }
+            
+            foreach(var msg in db.message.ToList())
+            {
+                if (msg.vue.Equals(0))
+                {
+                    msgnonVue++;
+                }
 
+            }
+            ViewBag.Msg = Convert.ToString(msgnonVue);
             ViewBag.niv3 = Convert.ToString(nb3eme);
             ViewBag.niv4 = Convert.ToString(nb4eme);
             ViewBag.ut = Convert.ToString(nbIns.ToString());
             return View();
         }
-
+    
         public ActionResult Convoquer()
         {
+            int msgnonVue = 0;
+            foreach (var msg in db.message.ToList())
+            {
+                if (msg.vue.Equals(0))
+                {
+                    msgnonVue++;
+                }
 
+            }
+            ViewBag.Msg = Convert.ToString(msgnonVue);
             return View();
         }
 
         public ActionResult Convoquer4eme()
         {
+            int msgnonVue = 0;
+            foreach (var msg in db.message.ToList())
+            {
+                if (msg.vue.Equals(0))
+                {
+                    msgnonVue++;
+                }
+
+            }
+            ViewBag.Msg = Convert.ToString(msgnonVue);
 
             return View();
         }
@@ -267,6 +305,7 @@ namespace ProjetASPMVC1.Controllers
 
         }
 
+     
         public ActionResult LogOut()
         {
             Session.Clear();

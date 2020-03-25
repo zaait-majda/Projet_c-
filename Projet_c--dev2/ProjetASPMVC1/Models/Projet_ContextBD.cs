@@ -17,5 +17,6 @@ namespace ProjetASPMVC1.Models
         public DbSet<Notes> Notes { get; set; }
         public DbSet<Diplome> Diplomes { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<BoitMessage> message { get; set; }
     }
 }

@@ -1,0 +1,189 @@
+﻿@model IEnumerable<ProjetASPMVC1.Models.Candidat>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Diplome.nom_diplome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Filiere.nom_fil)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes.id_note)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.prenom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ville)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.addresse)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tel)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GSM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type_bac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.annee_bac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.note_bac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.mention_bac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.n_dossier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nationnalite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.sexe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cont_sup)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cont_ajout)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.password_conf)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.statut)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.niveau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_naiss)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Diplome.nom_diplome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Filiere.nom_fil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Notes.id_note)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CNE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.prenom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ville)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.addresse)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tel)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GSM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type_bac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.annee_bac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.note_bac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.mention_bac)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.n_dossier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nationnalite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.sexe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cont_sup)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cont_ajout)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.password_conf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.photo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailConfirmed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.statut)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.niveau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_naiss)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CIN }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CIN }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CIN })
+        </td>
+    </tr>
+}
+
+</table>

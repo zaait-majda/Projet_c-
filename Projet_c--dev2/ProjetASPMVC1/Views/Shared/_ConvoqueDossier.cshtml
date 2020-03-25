@@ -39,16 +39,22 @@
             margin-left: 10px;
         }
 
-        .espace {
-            margin-left: 100px;
-            width: 300px;
+        .form {
+            background-color: white;
+            margin-top: 20px;
+            margin-left: 460px;
+            width: 600px;
+            padding: 40px;
+            border-left: 4px solid cornflowerblue;
+            border-right: 4px solid cornflowerblue;
         }
     </style>
 </head>
 <body>
+    <p style="margin-left:400px; color:red">@ViewBag.msgE</p>
     <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
-    <table class="tabSty">
-        <tr style="border:1px solid white;">
+    <table class="form">
+        <tr style="border:1px solid black;">
             <th>
                 Matricule:
             </th>
@@ -146,6 +152,110 @@
         </tr>
     </table>
     <br /><br />
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Profile de l'etudiant</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                Matricule:
+                            </th>
+                            <th>
+                                CNE
+                            </th>
+                            <th>
+                                CIN
+                            </th>
+                            <th>
+                                Prenom
+                            </th>
+                            <th>
+                                Nom
+                            </th>
+                            <th>
+                                Sexe
+                            </th>
+                            <th>
+                                Niveau
+                            </th>
+                            <th>
+                                La date de naissance
+                            </th>
+                            <th>
+                                L'addresse
+                            </th>
+                            <th>
+                                Telephone
+                            </th>
+                            <th>
+                                Diplome
+                            </th>
+                            <th>
+                                Filiere
+                            </th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayFor(model => model.n_dossier)
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayFor(model => model.CNE)
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayFor(model => model.CIN)
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+
+
+                            <th>
+                                @Html.DisplayFor(model => model.sexe, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+
+
+                            <th >
+                                @Html.DisplayFor(model => model.niveau, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+                            <th>
+                                @Html.DisplayFor(model => model.date_naiss, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+                            <th>
+                                @Html.DisplayFor(model => model.addresse, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+
+                            <th>
+                                @Html.DisplayFor(model => model.tel, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+
+                            <th>
+                                @Html.DisplayFor(model => model.Diplome.nom_diplome, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+                            <th>
+
+                                @Html.DisplayFor(model => model.Filiere.nom_fil, new { htmlAttributes = new { @class = "form-control" } })
+                            </th>
+                        </tr>
+                </table>
+
+             </div>
+            </div>
+         </div>
 
 </body>
 </html>

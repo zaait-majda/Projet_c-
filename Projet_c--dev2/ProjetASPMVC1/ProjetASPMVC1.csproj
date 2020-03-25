@@ -192,6 +192,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\BoitMessagesController.cs" />
+    <Compile Include="Controllers\Candidats1Controller.cs" />
     <Compile Include="Controllers\CandidatsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -523,6 +524,11 @@
     <Content Include="Views\Candidats\Home.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\BoitMessages\Index.cshtml" />
+    <Content Include="Views\Candidats1\Create.cshtml" />
+    <Content Include="Views\Candidats1\Delete.cshtml" />
+    <Content Include="Views\Candidats1\Details.cshtml" />
+    <Content Include="Views\Candidats1\Edit.cshtml" />
+    <Content Include="Views\Candidats1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

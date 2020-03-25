@@ -184,7 +184,7 @@ namespace ProjetASPMVC1.Controllers
             cand.annee_bac = annee_bac;
             cand.note_bac = note_bac;
             cand.mention_bac = mention_bac;
-            cand.n_dossier = "";
+            cand.n_dossier = "0";
 
             cand.nationnalite = nationnalite;
             cand.sexe = sexe;

@@ -249,7 +249,7 @@ namespace ProjetASPMVC1.Controllers
             Candidat et = db.Candidats.Find(CIN);
             if (et != null && et.niveau.Equals("3eme"))
             {
-                if (et.n_dossier.Equals(""))
+                if (et.n_dossier.Equals("0") )
                 {
                     Random rnd = new Random();
 
@@ -261,11 +261,13 @@ namespace ProjetASPMVC1.Controllers
                 }
                 else
                 {
+                    ViewBag.msgE = "Numero de dossier déja attribué  " + et.n_dossier;
                     Response.Write("<script>alert(\'Erreur le Candidat déja convoquer CIN non valide !!!!!\');</" + "script>");
-                    return PartialView("_ConvoqueDossierErr", et);
+
+                    return PartialView("_ConvoqueDossier", et);
                 }
             }
-            Response.Write("<script>alert(\'ce candidat en 4eme année  attention!!!!!\');</" + "script>");
+            Response.Write("<script>alert(\'ce candidat n'existe pas en 3eme annee  attention!!!!!\');</" + "script>");
             return PartialView("_ConvoqueDossierErr", et);
 
 
@@ -283,23 +285,25 @@ namespace ProjetASPMVC1.Controllers
             Candidat et = db.Candidats.Find(CIN);
             if (et != null && et.niveau.Equals("4eme"))
             {
-                if (et.n_dossier.Equals(""))
+                if (et.n_dossier.Equals("0"))
                 {
                     Random rnd = new Random();
 
                     rnd.Next(1, 100);
                     et.n_dossier = "M" + Convert.ToString(et.CNE) + "end";
                     db.SaveChanges();
+                    
                     return PartialView("_ConvoqueDossier", et);
 
                 }
                 else
                 {
+                    ViewBag.msgE = "Numero de dossier déja attribué  " + et.n_dossier;
                     Response.Write("<script>alert(\'Erreur le Candidat déja convoquer CIN non valide !!!!!\');</" + "script>");
-                    return PartialView("_ConvoqueDossierErr", et);
+                    return PartialView("_ConvoqueDossier", et);
                 }
             }
-            Response.Write("<script>alert(\'ce candidat en 3eme année attention !!!!!\');</" + "script>");
+            Response.Write("<script>alert(\'ce candidat n'existe pas en 4 eme annee!!!!!\');</" + "script>");
             return PartialView("_ConvoqueDossierErr", et);
 
 

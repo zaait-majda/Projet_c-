@@ -85,6 +85,19 @@ namespace ProjetASPMVC1.Controllers
 
 
         }
+        /*
+         * Partie Deliberation
+         */
+        public ActionResult Deliberation3eme()
+        {
+            return View();
+        }
+        public ActionResult Deliberation4eme()
+        {
+            return View();
+        }
+
+
 
         // chart 4eme
         public ActionResult MyChartNiveau4()

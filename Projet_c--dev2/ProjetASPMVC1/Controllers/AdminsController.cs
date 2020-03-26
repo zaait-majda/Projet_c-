@@ -9,7 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ClosedXML.Excel;
-
+using Newtonsoft.Json;
 using ProjetASPMVC1.Models;
 
 namespace ProjetASPMVC1.Controllers
@@ -363,7 +363,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-
+                                            db.Candidats.Find(etu).convocu = true;
                                             list.Add(etu);
                                         }
 
@@ -416,7 +416,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-
+                                            db.Candidats.Find(etu).convocu = true;
                                             list.Add(etu);
                                         }
 
@@ -511,7 +511,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-
+                                            db.Candidats.Find(etu).convocu = true;
                                             list.Add(etu);
                                         }
 
@@ -564,7 +564,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-
+                                            db.Candidats.Find(etu).convocu = true;
                                             list.Add(etu);
                                         }
 
@@ -612,6 +612,82 @@ namespace ProjetASPMVC1.Controllers
                     return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Results4eme.xlsx");
                 }
             }
+        }
+        public ActionResult getChartForPreselction()
+        {
+            //for 4 annnee
+            List<DataPoint> dataPoints = new List<DataPoint>();
+            var info = new SortedList<string, int>();
+            var indus = new SortedList<string, int>();
+            var gpmc = new SortedList<string, int>();
+            var gtr = new SortedList<string, int>();
+         
+            var query = (from candidat in db.Candidats
+                              join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
+                              join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
+                              where candidat.convocu == false && candidat.niveau.Equals("3eme")
+                              select new
+                              {
+                                  nomFiliere = filiere.nom_fil,
+                                  nomDiplome = diplome.nom_diplome,
+
+                              }).ToList();
+
+            foreach (var candidat in query)
+            {
+
+                if (candidat.nomFiliere.Equals("informatique"))
+                {
+                    if (info.ContainsKey(candidat.nomDiplome)) {
+                        info[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        info.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("industriel"))
+                {
+                    if (indus.ContainsKey(candidat.nomDiplome))
+                    {
+                        indus[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        indus.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("telecome"))
+                {
+                    if (gtr.ContainsKey(candidat.nomDiplome))
+                    {
+                        gtr[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gtr.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else 
+                {
+                    if (gpmc.ContainsKey(candidat.nomDiplome))
+                    {
+                        gpmc[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gpmc.Add(candidat.nomDiplome, 1);
+                    }
+                }
+            }
+        foreach(var i in info)
+            {
+                dataPoints.Add(new DataPoint(i.Key, i.Value));
+            }
+            
+            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+
+            return View("StatistiqueView");
         }
 
 

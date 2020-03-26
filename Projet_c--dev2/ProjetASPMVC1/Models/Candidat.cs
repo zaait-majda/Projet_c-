@@ -65,6 +65,7 @@ namespace ProjetASPMVC1.Models
         public String email { set; get; }
         public virtual bool EmailConfirmed { get; set; }
         public String statut { set; get; }
+        public Boolean convocu { set; get; }
         [Required]
         public String niveau { set; get; }
         [Required]

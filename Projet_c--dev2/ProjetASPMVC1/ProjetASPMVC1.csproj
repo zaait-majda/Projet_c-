@@ -127,6 +127,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
     </Reference>
@@ -223,10 +224,15 @@
     <Compile Include="Migrations\202003250407268_InitialCreate.Designer.cs">
       <DependentUpon>202003250407268_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003261008132_addingAttribut.cs" />
+    <Compile Include="Migrations\202003261008132_addingAttribut.Designer.cs">
+      <DependentUpon>202003261008132_addingAttribut.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BoitMessage.cs" />
     <Compile Include="Models\Candidat.cs" />
+    <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\Diplome.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\Notes.cs" />
@@ -538,6 +544,7 @@
     <Content Include="Views\Admins\preselectionCalcule.cshtml" />
     <Content Include="Views\Admins\preselection4eme.cshtml" />
     <Content Include="Views\Admins\preselectionCalcule4eme.cshtml" />
+    <Content Include="Views\Admins\StatistiqueView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -558,6 +565,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003250407268_InitialCreate.resx">
       <DependentUpon>202003250407268_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003261008132_addingAttribut.resx">
+      <DependentUpon>202003261008132_addingAttribut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -177,7 +177,7 @@ namespace ProjetASPMVC1.Controllers
         public ActionResult Index(string id)
         {
             int nb3eme = 0;
-            int nb4eme = 10;
+            int nb4eme = 0;
             int nbIns = 0;
             int msgnonVue = 0;
             foreach (var cand in db.Candidats.ToArray())
@@ -251,7 +251,7 @@ namespace ProjetASPMVC1.Controllers
             Candidat et = db.Candidats.Find(CIN);
             if (et != null && et.niveau.Equals("3eme"))
             {
-                if (et.n_dossier.Equals("0") )
+                if (et.n_dossier.Equals("0") || et.n_dossier.Equals(null))
                 {
                     Random rnd = new Random();
 
@@ -287,7 +287,7 @@ namespace ProjetASPMVC1.Controllers
             Candidat et = db.Candidats.Find(CIN);
             if (et != null && et.niveau.Equals("4eme"))
             {
-                if (et.n_dossier.Equals("0"))
+                if (et.n_dossier.Equals("0") || et.n_dossier.Equals(null))
                 {
                     Random rnd = new Random();
 

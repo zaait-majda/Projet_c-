@@ -19,9 +19,12 @@
     <div style="margin-left:-228px;">
 
         @Ajax.BeginForm("ConvoqueDossier4eme", "Admins", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div2", InsertionMode = InsertionMode.Replace, })
-
-        @Html.TextBox("CIN", null)
-        <input type="submit" value="Convoquer" style="border-radius:12px; background-color:cornflowerblue; color:white;" />
+        
+        <table class="m-auto "><tr><th>   <input type="text" name="CIN" class="form-control w-100 m-auto " /></th>
+                   <th> <input type="submit" value="Valider" class="btn btn-info" /></th></tr></table>
+    
+       
+        
 
 
         @{Html.EndForm();}

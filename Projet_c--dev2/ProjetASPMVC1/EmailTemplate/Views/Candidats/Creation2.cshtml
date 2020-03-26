@@ -1,0 +1,420 @@
+﻿
+@model ProjetASPMVC1.Models.Candidat
+<html>
+<head>
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="description" content="Sona Template">
+    <meta name="keywords" content="Sona, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ENSAS </title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cabin:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="~/css/flaticon.css" type="text/css">
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="~/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="~/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="~/css/style.css" type="text/css">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height:200%;
+            /*Image only BG fallback*/
+            background: url('http://thecodeplayer.com/uploads/media/gs.png');
+            /*background = gradient + image pattern combo*/
+            background: linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)), url('http://thecodeplayer.com/uploads/media/gs.png');
+        }
+
+        body {
+            font-family: montserrat, arial, verdana;
+            background-image: url('../../img/papers.co-sj80-magic-color-purple-gradation-blur-40-wallpaper.jpg');
+           
+            height: 100%;
+            background-size: cover;
+        }
+        /*form styles*/
+        #msform {
+            width: 400px;
+            margin: 50px auto;
+            text-align: center;
+            position: relative;
+        }
+
+            #msform fieldset {
+                background: white;
+                border: 0 none;
+                border-radius: 3px;
+                box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+                padding: 20px 30px;
+                box-sizing: border-box;
+                width: 80%;
+                margin: 0 10%;
+                /*stacking fieldsets above each other*/
+                position: absolute;
+            }
+                /*Hide all except first fieldset*/
+                #msform fieldset:not(:first-of-type) {
+                    display: none;
+                }
+            /*inputs*/
+            #msform input, #msform textarea {
+                padding: 15px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                margin-bottom: 10px;
+                width: 100%;
+                box-sizing: border-box;
+                font-family: montserrat;
+                color: #2C3E50;
+                font-size: 13px;
+            }
+            /*buttons*/
+            #msform .action-button {
+                width: 100px;
+                background: #27AE60;
+                font-weight: bold;
+                color: white;
+                border: 0 none;
+                border-radius: 1px;
+                cursor: pointer;
+                padding: 10px 5px;
+                margin: 10px 5px;
+            }
+
+                #msform .action-button:hover, #msform .action-button:focus {
+                    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+                }
+        /*headings*/
+        .fs-title {
+            font-size: 15px;
+            text-transform: uppercase;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .fs-subtitle {
+            font-weight: normal;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        /*progressbar*/
+        #progressbar {
+            margin-bottom: 30px;
+            overflow: hidden;
+            /*CSS counters to number the steps*/
+            counter-reset: step;
+        }
+
+            #progressbar li {
+                list-style-type: none;
+                color: white;
+                text-transform: uppercase;
+                font-size: 9px;
+                width: 33.33%;
+                float: left;
+                position: relative;
+            }
+
+                #progressbar li:before {
+                    content: counter(step);
+                    counter-increment: step;
+                    width: 20px;
+                    line-height: 20px;
+                    display: block;
+                    font-size: 10px;
+                    color: #333;
+                    background: white;
+                    border-radius: 3px;
+                    margin: 0 auto 5px auto;
+                }
+                /*progressbar connectors*/
+                #progressbar li:after {
+                    content: '';
+                    width: 100%;
+                    height: 2px;
+                    background: white;
+                    position: absolute;
+                    left: -50%;
+                    top: 9px;
+                    z-index: -1; /*put it behind the numbers*/
+                }
+
+                #progressbar li:first-child:after {
+                    /*connector not needed before the first step*/
+                    content: none;
+                }
+                /*marking active/completed steps green*/
+                /*The number of the step and the connector before it = green*/
+                #progressbar li.active:before, #progressbar li.active:after {
+                    background: dodgerblue;
+                    color: white;
+                }
+    </style>
+    <title>jQuery Multi-Step Form Example</title>
+</head>
+<body>
+    <header class="header-section">
+        <div class="top-nav bg-white">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <ul class="tn-left">
+                            <li><i class="fa fa-phone"></i> (12) 345 67890</li>
+                            <li><i class="fa fa-envelope"></i>  ensasafi@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="tn-right">
+                            <div class="top-social">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-tripadvisor"></i></a>
+                                <a href="#"><i class="fa fa-instagram"></i></a>
+                            </div>
+                            <a href="#" class="bk-btn bg-info">Ensa Safi</a>
+                            <div class="language-option">
+                                <img src="~/img/flag.jpg" alt="">
+                                <span>EN <i class="fa fa-angle-down"></i></span>
+                                <div class="flag-dropdown">
+                                    <ul>
+                                        <li>@Html.ActionLink("France", "Change", "Home", new { LangugeAbbrevation = "fr" }, null)</li>
+                                        <li>@Html.ActionLink("English", "Change", "Home", new { LangugeAbbrevation = "en" }, null)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="menu-item">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-2">
+                        <div class="logo">
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </header>
+    <h4 style="color:gray;" align="center">S'il vous plaît entrer vôtres informations ici</h4>
+    <!-- multistep form -->
+
+    @using (Html.BeginForm())
+    {
+        <div id="msform">
+            <!-- progressbar -->
+            <ul id="progressbar">
+                <li class="active" style="color:gray;">Etape 1</li>
+                <li style="color:gray;">Etape 2</li>
+                <li style="color:gray;">Etape 3</li>
+            </ul>
+            <!-- fieldsets -->
+            <fieldset>
+                <h2 class="fs-title">Creer votre compte</h2>
+                <h3 class="fs-subtitle">Etape 1</h3>
+                <input type="text" name="CIN" placeholder="CIN" />
+                <input type="text" name="CNE" placeholder="CNE" />
+                <input type="text" name="prenom" placeholder="prenom" />
+                <input type="text" name="nom" placeholder="nom" />
+                <input type="text" name="ville" placeholder="Ville" />
+                <input type="text" name="addresse" placeholder="addresse" />
+                <input type="email" name="email" placeholder="Email" />
+                <select name="nationnalite" style="width:260px;height:50px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                    <option>selectionner  votre nationanalité</option>
+                    <option value="marocain">marocain</option>
+                    <option value="étrangaire">étrangaire</option>
+                </select>
+                <span>Femme <input type="radio" value="femme" name="sexe" /> Homme <input type="radio" value="homme" name="sexe" /></span>
+
+
+                <input type="button" name="next" class="next action-button bg-info" value="Next" />
+            </fieldset>
+            <fieldset>
+                <h2 class="fs-title">Suite de l'inscription</h2>
+                <h3 class="fs-subtitle">Etape 2</h3>
+                <input type="password" name="password" placeholder="Password" />
+                <input type="password" name="password_conf" placeholder="Confirmer le Password" />
+                <input type="file" name="photo" placeholder="photo" />
+                <input type="text" name="tel" placeholder="Telephone" />
+                <input type="text" name="GSM" placeholder="GSM" />
+                <input type="text" name="type_bac" placeholder="Type de baccalauréat" />
+                <input type="text" name="annee_bac" placeholder="Année de baccalauréat" />
+                <input type="text" name="note_bac" placeholder="Note  de baccalauréat" />
+                <input type="text" name="mention_bac" placeholder="Mention de baccalauréat" />
+                <input type="button" name="previous" class="previous action-button bg-info" value="Previous" />
+                <input type="button" name="next" class="next action-button bg-info" value="Next" />
+            </fieldset>
+
+            <fieldset>
+                <h2 class="fs-title">Suite l'inscription</h2>
+                <h3 class="fs-subtitle">Etape 3</h3>
+
+                <select name="niveau" style="width:260px;height:50px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                    <option>selectionner  votre niveaau</option>
+                    <option value="3eme">3emme</option>
+                    <option value="4eme">4eme</option>
+                </select>
+                <input type="date" name="date_naiss" placeholder="Date de naissance" />
+                @Html.DropDownList("id_fil", ViewBag.f as SelectList, htmlAttributes: new { @class = "form-control" })
+                <input type="text" name="s1" placeholder="Note  de s1" style="margin-top:20px;" />
+                <input type="text" name="s2" placeholder="Note  de s2" />
+                <input type="text" name="s3" placeholder="Note  de s3" />
+                <input type="text" name="s4" placeholder="Note  de s4" />
+                <input type="text" name="s5" placeholder="Note  de s5" />
+                <input type="text" name="s6" placeholder="Note  de s6" />
+                <select name="nom_dip" style="width:260px;height:50px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                    <option>selectionner  votre diplome</option>
+                    <option value="Licence">Licence</option>
+                    <option value="Licence pro">Licence pro</option>
+                    <option value="BUT">BUT</option>
+                    <option value="DUT">DUT</option>
+                </select>
+                <input type="text" name="villeDip" placeholder="Ville de Diplome" />
+                <input type="text" name="etab" placeholder="Etablissement" />
+
+                <input type="button" name="previous" class="previous action-button bg-info" value="Previous" />
+                <input type="submit" name="submit" style="background-color:cornflowerblue;opacity:08; color:white;" value="Valider" />
+
+            </fieldset>
+        </div>
+
+    }
+
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <!-- jQuery easing plugin -->
+
+    <script src="~/Scripts/jquery.easing.min.js" type="text/javascript"></script>
+    <script>
+        $(function () {
+
+            //jQuery time
+            var current_fs, next_fs, previous_fs; //fieldsets
+            var left, opacity, scale; //fieldset properties which we will animate
+            var animating; //flag to prevent quick multi-click glitches
+
+            $(".next").click(function () {
+                if (animating) return false;
+                animating = true;
+
+                current_fs = $(this).parent();
+                next_fs = $(this).parent().next();
+
+                //activate next step on progressbar using the index of next_fs
+                $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+
+                //show the next fieldset
+                next_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale current_fs down to 80%
+                        scale = 1 - (1 - now) * 0.2;
+                        //2. bring next_fs from the right(50%)
+                        left = (now * 50) + "%";
+                        //3. increase opacity of next_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        current_fs.css({ 'transform': 'scale(' + scale + ')' });
+                        next_fs.css({ 'left': left, 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        current_fs.hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+            });
+
+            $(".previous").click(function () {
+                if (animating) return false;
+                animating = true;
+
+                current_fs = $(this).parent();
+                previous_fs = $(this).parent().prev();
+
+                //de-activate current step on progressbar
+                $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+
+                //show the previous fieldset
+                previous_fs.show();
+                //hide the current fieldset with style
+                current_fs.animate({ opacity: 0 }, {
+                    step: function (now, mx) {
+                        //as the opacity of current_fs reduces to 0 - stored in "now"
+                        //1. scale previous_fs from 80% to 100%
+                        scale = 0.8 + (1 - now) * 0.2;
+                        //2. take current_fs to the right(50%) - from 0%
+                        left = ((1 - now) * 50) + "%";
+                        //3. increase opacity of previous_fs to 1 as it moves in
+                        opacity = 1 - now;
+                        current_fs.css({ 'left': left });
+                        previous_fs.css({ 'transform': 'scale(' + scale + ')', 'opacity': opacity });
+                    },
+                    duration: 800,
+                    complete: function () {
+                        current_fs.hide();
+                        animating = false;
+                    },
+                    //this comes from the custom easing plugin
+                    easing: 'easeInOutBack'
+                });
+            });
+
+            $(".submit").click(function () {
+                return false;
+            })
+
+        });
+    </script>
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function () {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

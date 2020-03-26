@@ -1,0 +1,151 @@
+﻿
+@model ProjetASPMVC1.Models.Candidat
+<!DOCTYPE html>
+<html >
+<head>
+
+    <style>
+
+
+        body {
+            font-family: montserrat, arial, verdana;
+            background-image: url('../../img/papers.co-sj80-magic-color-purple-gradation-blur-40-wallpaper.jpg');
+            height: 150%;
+            background-size: cover;
+        }
+
+        tr {
+            border-bottom: 1px solid black;
+        }
+
+        th {
+            padding-top: 15px;
+            padding-bottom: 6px;
+            padding-left: 60px;
+            padding-right: 20px;
+        }
+
+        .tabSty {
+            padding: 80px;
+            margin-top: 100px;
+            border-radius: 10px;
+            background-color:black;
+            color:white;
+            opacity:0.7;
+            margin-left: 300px;
+        }
+
+        .esp {
+            margin-left: 10px;
+        }
+
+        .espace {
+            margin-left: 100px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
+    <table class="tabSty">
+        <tr style="border:1px solid white;">
+            <th>
+                Matricule:
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.n_dossier)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                CNE
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.CNE)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                CIN
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.CIN)
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Prenom
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.prenom, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Nom
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.nom, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Sexe
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.sexe, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Niveau
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.niveau, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+        <tr>
+            <th>
+                La date de naissance
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.date_naiss, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+        <tr>
+            <th>
+                L'addresse
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.addresse, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Telephone
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.tel, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Diplome
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.Diplome.nom_diplome, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Filiere
+            </th>
+            <th class="espace">
+                @Html.DisplayFor(model => model.Filiere.nom_fil, new { htmlAttributes = new { @class = "form-control" } })
+            </th>
+        </tr>
+    </table>
+    <br /><br />
+
+</body>
+</html>

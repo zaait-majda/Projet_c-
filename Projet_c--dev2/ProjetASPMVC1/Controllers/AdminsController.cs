@@ -21,27 +21,48 @@ namespace ProjetASPMVC1.Controllers
         }
 
         [HttpPost]
-        public ActionResult Authorise(Admin admin)
+        public ActionResult Authorise(string login, string password)
         {
             //if (ModelState.IsValid)
             //    {
             using (Projet_ContextBD db = new Projet_ContextBD())
             {
 
-                var userDetail = db.Admins.Where(x => x.Login == admin.Login && x.password == admin.password).FirstOrDefault();
+                var userDetail = db.Admins.Where(x => x.Login == login && x.password == password).FirstOrDefault();
                 if (userDetail == null)
                 {
 
                     // user.LoginErrorMsg = "Invalid UserName or Password";
                     Response.Write("<script>alert(\'données incorrect\');</" + "script>");
-                    return View("Index", admin);
+                    return View("LoginAdmin");
                 }
                 else
                 {
 
                     Session["login"] = userDetail.Login;
                     Session["password"] = userDetail.password;
-                    return RedirectToAction("Next_page", new RouteValueDictionary(new {Action = "Index", id = Session["login"] }));
+                    int nb3eme = 0;
+                    int nb4eme = 0;
+                    int nbIns = 0;
+                    foreach (var cand in db.Candidats.ToArray())
+                    {
+                        if (cand.niveau.Equals("4eme"))
+                        {
+                            nb4eme++;
+                        }
+                        else if (cand.niveau.Equals("3eme"))
+                        {
+                            nb3eme++;
+                        }
+
+                        nbIns++;
+                    }
+
+                    ViewBag.niv3 = Convert.ToString(nb3eme);
+                    ViewBag.niv4 = Convert.ToString(nb4eme);
+                    ViewBag.ut = Convert.ToString(nbIns.ToString());
+
+                    return View("Index");
 
                 }
 
@@ -50,119 +71,158 @@ namespace ProjetASPMVC1.Controllers
 
 
 
+
+
         }
 
-
-
-            // GET: Admins
-            public ActionResult Index(string id)
+        // chart 4eme
+        public ActionResult MyChartNiveau4()
         {
-            ViewBag.login = id;
-            return View(db.Admins.ToList());
-        }
 
-        // GET: Admins/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            var x = from p in db.Filieres select p.nom_fil;
+            var x2 = from p in db.Filieres select p;
+            var y = from p in db.Candidats select p;
+
+            List<int> cmpt = new List<int>();
+            List<string> fil = new List<string>();
+
+
+
+
+            foreach (var t2 in x2)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                int c = 0;
+                foreach (var t in y)
+                {
+
+                    if (t2.id_fil == t.id_fil && t.niveau.Equals("4eme"))
+                    {
+
+                        c++;
+                    }
+
+                }
+
+
+                cmpt.Add(c);
             }
-            Admin admin = db.Admins.Find(id);
-            if (admin == null)
+
+            foreach (var t2 in x)
             {
-                return HttpNotFound();
+
+                fil.Add(t2.ToString());
+
             }
-            return View(admin);
+
+            new System.Web.Helpers.Chart(width: 800, height: 200).AddTitle("Nombre des Candidats de 4eme année par filiere").AddSeries(chartType: "Column", xValue: fil, yValues: cmpt).Write("png");
+
+            return null;
+        }
+        //chart de 3eme année
+
+        public ActionResult MyChartNiveau3()
+        {
+
+            var x = from p in db.Filieres select p.nom_fil;
+            var x2 = from p in db.Filieres select p;
+            var y = from p in db.Candidats select p;
+
+            List<int> cmpt = new List<int>();
+            List<string> fil = new List<string>();
+
+
+
+
+            foreach (var t2 in x2)
+            {
+                int c = 0;
+                foreach (var t in y)
+                {
+
+                    if (t2.id_fil == t.id_fil && t.niveau.Equals("3eme"))
+                    {
+
+                        c++;
+                    }
+
+                }
+
+
+                cmpt.Add(c);
+            }
+
+            foreach (var t2 in x)
+            {
+
+                fil.Add(t2.ToString());
+
+            }
+
+            new System.Web.Helpers.Chart(width: 800, height: 200).AddTitle("Nombre des Candidats de 3eme année par filiere").AddSeries(chartType: "Column", xValue: fil, yValues: cmpt).Write("png");
+            return null;
         }
 
-        // GET: Admins/Create
-        public ActionResult Create()
+        // GET: Admins
+        public ActionResult Index(string id)
         {
+            int nb3eme = 0;
+            int nb4eme = 10;
+            int nbIns = 0;
+            foreach (var cand in db.Candidats.ToArray())
+            {
+                if (cand.niveau.Equals("4eme"))
+                {
+                    nb4eme++;
+                }
+                else if (cand.niveau.Equals("3eme"))
+                {
+                    nb3eme++;
+                }
+
+                nbIns++;
+            }
+
+            ViewBag.niv3 = Convert.ToString(nb3eme);
+            ViewBag.niv4 = Convert.ToString(nb4eme);
+            ViewBag.ut = Convert.ToString(nbIns.ToString());
             return View();
         }
 
-        // POST: Admins/Create
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
+        public ActionResult Convoquer()
+        {
+
+            return View();
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,Login,password")] Admin admin)
+        public PartialViewResult ConvoqueDossier(string CIN)
         {
-            if (ModelState.IsValid)
+
+            Candidat et = db.Candidats.Find(CIN);
+
+            if (et.n_dossier.Equals(""))
             {
-                db.Admins.Add(admin);
+                Random rnd = new Random();
+
+                rnd.Next(1, 100);
+                et.n_dossier = "M" + Convert.ToString(et.CNE) + "end";
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return PartialView("_ConvoqueDossier", et);
+
+            }
+            else
+            {
+                Response.Write("<script>alert(\'Erreur le Candidat déja convoquer CIN non valide !!!!!\');</" + "script>");
+                return PartialView("_ConvoqueDossierErr", et);
             }
 
-            return View(admin);
+
         }
-
-        // GET: Admins/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult LogOut()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Admin admin = db.Admins.Find(id);
-            if (admin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(admin);
-        }
+            Session.Clear();
 
-        // POST: Admins/Edit/5
-        // Afin de déjouer les attaques par sur-validation, activez les propriétés spécifiques que vous voulez lier. Pour 
-        // plus de détails, voir  https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,Login,password")] Admin admin)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(admin).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(admin);
-        }
-
-        // GET: Admins/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Admin admin = db.Admins.Find(id);
-            if (admin == null)
-            {
-                return HttpNotFound();
-            }
-            return View(admin);
-        }
-
-        // POST: Admins/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Admin admin = db.Admins.Find(id);
-            db.Admins.Remove(admin);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

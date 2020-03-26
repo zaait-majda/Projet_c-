@@ -29,8 +29,13 @@ namespace ProjetASPMVC1.Controllers
             return View(msgs);
         }
 
-      
+        public ActionResult Index2()
+        {
+         
+            return View(db.message.ToList());
+        }
 
+      
 
         public ActionResult Edit(int? id)
         {
@@ -53,8 +58,23 @@ namespace ProjetASPMVC1.Controllers
             return RedirectToAction("Index",msgs);
         }
 
-   
 
-    
+        public ActionResult delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            BoitMessage boitMessage = db.message.Find(id);
+            db.message.Remove(boitMessage);
+         
+            db.SaveChanges();
+        
+            return RedirectToAction("Index2", db.message.ToList());
+        }
+
+
+
+
     }
 }

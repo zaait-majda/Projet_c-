@@ -1,0 +1,115 @@
+﻿@model ProjetASPMVC1.Models.Diplome
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml ";
+}
+<html>
+
+<head>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+</head>
+<body>
+    <div style="margin-left:300px;margin-top:-65px; ">
+        @Ajax.BeginForm("preselectionCalcule", "Admins", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div2", InsertionMode = InsertionMode.Replace, })
+        <br />
+        <div></div>
+        <p style="color:lightseagreen;">
+            @Html.Label("Filiere   :")
+            @Html.DropDownList("id_fil", ViewBag.f as SelectList, htmlAttributes: new { @class = "btn btn-secondary dropdown-toggle  " })
+        </p>
+       
+           
+ 
+        <p style="color:lightseagreen;">
+            @Html.Label("Diplome :")
+            <select name="nom_dip" style="width:260px;height:40px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                <option>selectionner  votre diplome</option>
+                <option value="Licence">Licence</option>
+                <option value="Licence pro">Licence pro</option>
+                <option value="DUT">DUT</option>
+                <option value="BTS">BTS</option>
+            </select>
+        </p>
+         
+    
+            <h3 style="color:lightseagreen;">@Html.Label("Les coifficients des notes :") </h3>
+            <table>
+                <tr>
+                    <th>
+                        @Html.Label("baccal:")     <select name="bac" style="width:260px;height:40px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                            <option>_</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </th>
+                    <th>
+                        @Html.Label("Note 1:")     <select name="n1" style="width:260px;height:40px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                            <option>_</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.Label("Note 2:")     <select name="n2" style="width:260px;height:40px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                            <option>_</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </th>
+                    <th>
+                        @Html.Label("Note 3:")     <select name="n3" style="width:260px;height:40px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                            <option>_</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.Label("Note 4:")     <select name="n4" style="width:260px;height:40px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                            <option>_</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </th>
+                    <th>
+                        @Html.Label("Note 5:")     <select name="n5" style="width:260px;height:40px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                            <option>_</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        @Html.Label("Note 6:")     <select name="n6" style="width:260px;height:40px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
+                            <option>_</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select><br />
+                    </th>
+                    <th></th>
+                </tr>
+            </table>
+
+
+
+            <div style="margin-left:200px;">
+                @Html.Label("note seuil:")  @Html.TextBox("seuil", null) <br />
+                @Html.Label("note joker:")  @Html.TextBox("joker")<br />
+            </div>
+
+
+            <input type="submit" value="lancer la preselection pour la 3eme année" style="border-radius:12px; height:40px; background-color:cornflowerblue; color:white; margin-left:200px;" />
+            @{Html.EndForm();}
+        <br />
+    </div>
+    <div id="div2"></div>
+</body>
+</html>

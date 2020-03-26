@@ -199,13 +199,13 @@ namespace ProjetASPMVC1.Controllers
         {
 
             Candidat et = db.Candidats.Find(CIN);
-
+            
             if (et.n_dossier.Equals(""))
             {
                 Random rnd = new Random();
-
-                rnd.Next(1, 100);
-                et.n_dossier = "M" + Convert.ToString(et.CNE) + "end";
+              
+                rnd.Next(1,100);
+                et.n_dossier ="M"+ Convert.ToString(et.CNE) + "end";
                 db.SaveChanges();
                 return PartialView("_ConvoqueDossier", et);
 
@@ -216,13 +216,54 @@ namespace ProjetASPMVC1.Controllers
                 return PartialView("_ConvoqueDossierErr", et);
             }
 
-
+           
         }
         public ActionResult LogOut()
         {
             Session.Clear();
+           
+            return RedirectToAction("Index","Home");
+        }
 
-            return RedirectToAction("Index", "Home");
+
+        public ActionResult correction(String niveau,String idfil,String msg)
+        {
+            int id = Convert.ToInt32(idfil);
+            var candidats = db.Candidats.Include(c => c.Diplome).Include(c => c.Filiere).Include(c => c.Notes);
+            candidats = candidats.Where(c => c.niveau == niveau && c.id_fil == id);
+            ViewBag.msg = msg;
+            return View(candidats.ToList());
+           
+        }
+
+        public ActionResult correction2()
+        {
+
+            var Notes1 = Request["item.Notes.notemath"].ToString().Split(',');
+            var Notes2 = Request["item.Notes.notespec"].ToString().Split(',');
+            var CINS = Request["item.CIN"].ToString().Split(',');
+            String d;
+
+            for (int i = 0; i < CINS.Length; i++)
+            {
+                d = CINS[i].ToString();
+                Candidat cand = db.Candidats.Find(d);
+                int idnote = cand.id_note;
+                Notes n = db.Notes.Find(idnote);
+                n.notemath= Double.Parse(Notes1[i]);
+                n.notespec = Double.Parse(Notes2[i]);
+                n.note_concours = (n.notemath + n.notespec) / 2;
+                db.SaveChanges();
+
+            }
+            String cin = CINS[0];
+            Candidat c = db.Candidats.Find(cin);
+            String niveau = c.niveau;
+            String idfil = c.id_fil.ToString();
+            String msg = "affectation des notes du concours avec succés";
+
+
+            return RedirectToAction("correction", new { niveau = niveau, idfil=idfil,msg=msg });
         }
     }
 }

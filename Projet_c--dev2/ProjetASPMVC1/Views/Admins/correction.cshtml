@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "correction";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@model IEnumerable<ProjetASPMVC1.Models.Candidat>
+
+<style>
+    table {
+        width: 100px;
+        padding-left: 50%;
+        border: medium solid #6495ed;
+        border-collapse: collapse;
+    }
+
+    th {
+        font-family: monospace;
+        border: thin solid #6495ed;
+        background-color: #D0E3FA;
+        background-image: url(sky.jpg);
+    }
+
+    td {
+        font-family: sans-serif;
+        border: thin solid #6495ed;
+        text-align: center;
+        background-color: #ffffff;
+    }
+
+    caption {
+        font-family: sans-serif;
+    }
+
+    h2 {
+        color: darkslateblue;
+    }
+
+    h4 {
+        color: dodgerblue;
+    }
+
+    #submit {
+        color: white;
+        font-size: 20px;
+        width: 200px;
+        height: 30px;
+        border: none;
+        margin: 0;
+        padding: 0;
+        background: darkslateblue;
+    }
+</style>
+
+<center>
+
+    <h2>Gestion de correction des concours:</h2> <br />
+    <h4>  @ViewBag.msg </h4>
+
+    @using (Html.BeginForm("correction2", "Admins", FormMethod.Post, new { id = "myform" }))
+    {
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.n_dossier)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.CIN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.prenom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Diplome.nom_diplome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Filiere.nom_fil)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes.notemath)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.Notes.notespec)
+                </th>
+
+
+
+                <th>
+                    Signature
+                </th>
+
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.n_dossier)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CIN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.prenom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nom)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Diplome.nom_diplome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Filiere.nom_fil)
+                    </td>
+
+                    <td>
+                        @Html.EditorFor(modelItem => item.Notes.notemath)
+                        @Html.HiddenFor(modelItem => item.CIN)
+
+                    </td>
+
+                    <td>
+                        @Html.EditorFor(modelItem => item.Notes.notespec)
+
+
+                    </td>
+
+
+                    <td></td>
+                </tr>
+            }
+
+
+        </table><br />  <br />
+        <input type="submit" value="Valider la correction" class="btn btn-default" id="submit" />
+    }
+</center>

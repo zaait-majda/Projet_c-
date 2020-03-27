@@ -1,6 +1,8 @@
 ﻿@model ProjetASPMVC1.Models.Candidat
 
 @{
+    /**/
+
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <!-- Header End -->
@@ -58,8 +60,6 @@
         </div>
     </div>
 </section>
-<!-- Hero Section End -->
-<!-- About Us Section Begin -->
 <section class="aboutus-section spad">
     <div class="container">
         <div class="row">
@@ -83,10 +83,11 @@
                 <div class="about-pic">
                     <div class="row">
                         <div class="col-sm-6">
-                            <img src="~/img/about/GEEKS CLUB.jpg" alt="" style="height:250px;margin-top:200px; border-radius:15px;">
+                            <img src="~/img/5.jpg" style="height:250px;margin-top:200px; " />
+
                         </div>
                         <div class="col-sm-6">
-                            <img src="~/img/about/index2.jpg" alt="" style="height:250px;margin-top:200px;border-radius:15px;">
+                            <img src="~/img/2.jpg" style="height:250px;margin-top:200px;" />
                         </div>
                     </div>
                 </div>
@@ -94,88 +95,201 @@
         </div>
     </div>
 </section>
-<section class="ftco-section ftco-no-pt ftco-no-pb">
+
+<!-- About Us Section End -->
+<!-- Services Section End -->
+<section class="services-section spad">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
-                <div class="media block-6 d-block text-center pt-md-4">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="fa fa-calendar"></span>
-                    </div>
-                    <div class="media-body p-2 mt-3">
-                        <h3 class="heading">Calendrier</h3>
-                        <p>Le calendrier annuel des semaines des études à l'ensa safi ainsi que les jours des vacances pour l'année 2019-2020.</p>
-                    </div>
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Notre activités</span>
+                    <h2>Notre Services</h2>
                 </div>
             </div>
-            <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
-                <div class="media block-6 d-block text-center pt-md-4">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="fa fa-calendar-check-o"></span>
-                    </div>
-                    <div class="media-body p-2 mt-3">
-                        <h3 class="heading">Emploi du temps</h3>
-                        <p>Les emplois du temps actualisés du cycle préparatoire et ingénieur sont consultable sous cette rubrique du site.</p>
-                    </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-047-calendar"></i>
+                    <h4>Calendrier</h4>
+                    <p>Le calendrier annuel des semaines des études à l'ensa safi ainsi que les jours des vacances pour l'année 2019-2020.</p>
                 </div>
             </div>
-            <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
-                <div class="media block-6 d-block text-center pt-md-4">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="icon-book"></span>
-                    </div>
-                    <div class="media-body p-2 mt-3">
-                        <h3 class="heading">Cours en ligne</h3>
-                        <p>Déposés par les responsables des modules, vous pouvez trouvez aussi des séries de TD et des examens.</p>
-                    </div>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-010-newspaper"></i>
+                    <h4>Emploi du temps</h4>
+
+                    <p>Les emplois du temps actualisés du cycle préparatoire et ingénieur sont consultable sous cette rubrique du site.</p>
+
                 </div>
             </div>
-            <div class="col-md-3 d-flex services align-self-stretch p-4 py-md-5 ftco-animate">
-                <div class="media block-6 d-block text-center pt-md-4">
-                    <div class="icon d-flex justify-content-center align-items-center">
-                        <span class="flaticon-home"></span>
-                    </div>
-                    <div class="media-body p-2 mt-3">
-                        <h3 class="heading">Visite virtuelle</h3>
-                        <p>On vous propose une visite virtuelle pour des locaux de notre école.</p>
+            <div class="col-lg-4 col-sm-6">
+                <div class="service-item">
+                    <i class="flaticon-019-television"></i>
+                    <h4>Cours en ligne</h4>
+
+                    <p>Déposés par les responsables des modules, vous pouvez trouvez aussi des séries de TD et des examens.</p>
+
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+
+                    <div class="row no-gutters">
+                        <div class="col-md-12 col-lg-4 services-2 p-4 py-5 d-flex ftco-animate">
+                            <div class="py-3 d-flex">
+                                <div class="icon">
+                                    <span class="flaticon-engineer"></span>
+                                </div>
+                                <div class="text">
+                                    <h3> Etudier à l'ENSA </h3>
+                                    <p class="mb-0"> > Départements <br /> > Cycle préparatoires <br /> > Cycle d'ingénieur <br /> > Formation continue</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4 services-2 p-4 py-5 d-flex ftco-animate">
+                            <div class="py-3 d-flex">
+                                <div class="icon">
+                                    <span class="flaticon-engineer-1"></span>
+                                </div>
+                                <div class="text">
+                                    <h3>Recherche Scientifique</h3>
+                                    <p class="mb-0">Notre Ecole participe activement à la recherche scientifique grace à ses structures de recherche.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-4 services-2 p-4 py-5 d-flex ftco-animate">
+                            <div class="py-3 d-flex">
+                                <div class="icon">
+                                    <span class="flaticon-engineer-2"></span>
+                                </div>
+                                <div class="text">
+                                    <h3>Activités de rayonnement</h3>
+                                    <p class="mb-0">L'élève ingénieur de L'ENSA Safi est toujours en position d'acquérir des valeurs comme l'ouverture et l'excellence.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row no-gutters">
-            <div class="col-md-12 col-lg-4 services-2 p-4 py-5 d-flex ftco-animate">
-                <div class="py-3 d-flex">
-                    <div class="icon">
-                        <span class="flaticon-engineer"></span>
-                    </div>
-                    <div class="text">
-                        <h3> Etudier à l'ENSA </h3>
-                        <p class="mb-0"> > Départements <br /> > Cycle préparatoires <br /> > Cycle d'ingénieur <br /> > Formation continue</p>
-                    </div>
+</section>
+
+<section class="testimonial-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Avis Ensas</span>
+                    <h2>Avis aux étudiants et personnels</h2>
                 </div>
             </div>
-            <div class="col-md-12 col-lg-4 services-2 p-4 py-5 d-flex ftco-animate">
-                <div class="py-3 d-flex">
-                    <div class="icon">
-                        <span class="flaticon-engineer-1"></span>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="testimonial-slider owl-carousel">
+                    <div class="ts-item">
+                        <p>
+                       
+                        </p>
+                        <div class="ti-author">
+                            <div class="rating">
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star-half_alt"></i>
+                            </div>
+                           
+                        </div>
+                      
                     </div>
-                    <div class="text">
-                        <h3>Recherche Scientifique</h3>
-                        <p class="mb-0">Notre Ecole participe activement à la recherche scientifique grace à ses structures de recherche.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-4 services-2 p-4 py-5 d-flex ftco-animate">
-                <div class="py-3 d-flex">
-                    <div class="icon">
-                        <span class="flaticon-engineer-2"></span>
-                    </div>
-                    <div class="text">
-                        <h3>Activités de rayonnement</h3>
-                        <p class="mb-0">L'élève ingénieur de L'ENSA Safi est toujours en position d'acquérir des valeurs comme l'ouverture et l'excellence.</p>
+                    <div class="ts-item">
+                        Un communiqué ministériel sollicite la communauté universitaire: étudiants, corps professoral et administratifs des mesures d'hygiène à prendre, vous trouverez ICI les mesures d'hygiène vivement recommandées.
+                        
+                        <div class="ti-author">
+                            <div class="rating">
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star"></i>
+                                <i class="icon_star-half_alt"></i>
+                            </div>
+                            <h5> - Ensa Safi</h5>
+                        </div>
+                     
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</section> <br /> <br />
+</section>
+<!-- Testimonial Section End -->
+<!-- Blog Section Begin -->
+<section class="blog-section spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+
+                    <span>ENSAS</span>
+                    <h2>Notre blog et événement</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="blog-item set-bg" data-setbg="/img/6.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">ENSAS</span>
+                        <h4><a href="#">Résultats du concours de recrutement</a></h4>
+                        <div class="b-time"><i class="icon_clock_alt"></i> 16/07/2020</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog-item set-bg" data-setbg="/img/images/blog-4.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">ENSAS</span>
+                        <h4><a href="#">Demande de transfert d'un autre établissement vers l'ENSA Safi</a></h4>
+                        <div class="b-time"><i class="icon_clock_alt"></i> 07/07/ 2019</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog-item set-bg" data-setbg="/img/images/blog-3.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">ENSAS  </span>
+                        <h4><a href="#">Demande de transfert de l'ENSA Safi vers un autre établissement</a></h4>
+                        <div class="b-time"><i class="icon_clock_alt"></i> 21th April, 2019</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="blog-item small-size set-bg" data-setbg="/img/images/blog-2.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">ENSASA</span>
+                        <h4><a href="#">
+                               Retrait du baccalauréat
+
+                         </a></h4>
+                        <div class="b-time"><i class="icon_clock_alt"></i> 08th April, 2019</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog-item small-size set-bg" data-setbg="/img/images/blog-6.jpg">
+                    <div class="bi-text">
+                        <span class="b-tag">ENSAS</span>
+                        <h4><a href="#">Cours En ligne</a></h4>
+                        <div class="b-time"><i class="icon_clock_alt"></i> 12th April, 2019</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

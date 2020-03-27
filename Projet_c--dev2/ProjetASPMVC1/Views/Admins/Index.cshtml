@@ -52,8 +52,24 @@
     </div>
 </div>
 <table style="margin-left:150px;">
-    <tr style="font-size:10px;"><th style="color:blue;">Nombre des Candidats par filiere pour 3eme année</th><th style="color:green;padding-left:20px;">Nombre des Candidats par filiere pour 4eme année</th></tr>
-    <tr style="padding-left:20px;"><th><img src="@Url.Action("MyChartNiveau3")" style="height:200px; width:500px;border:2px solid blue;" /></th><th style="padding-left:20px;"> <img src="@Url.Action("MyChartNiveau4")" style="height:200px; width:500px;border:2px solid green; " alt="4eme année" /></th></tr>
+ <tr style="padding-left:20px;"><th>
+
+<div class="card-header" style="color:blue;"><i class="fas fa-chart-bar"></i>  Nombre des Candidats par filiere pour 3eme année</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <img src="@Url.Action("MyChartNiveau3")" style="height:200px; width:500px;border:2px solid blue;" />
+            </div></div>
+
+
+</th>
+  <th style="padding-left:20px;">
+      <div class="card-header" style="color:green;"><i class="fas fa-chart-bar"></i> Nombre des Candidats par filiere pour 4eme année</div>
+               <div class="card-body">
+                           <div class="table-responsive">
+                                            <img src="@Url.Action("MyChartNiveau4")" style="height:200px; width:500px;border:2px solid green; " alt="4eme année" />
+
+                               </div></div>
+                                </th></tr>
 </table>
 
 

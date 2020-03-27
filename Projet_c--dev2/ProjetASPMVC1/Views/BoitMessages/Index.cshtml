@@ -11,11 +11,11 @@
     ViewBag.Title = "Index";
 }
 <table class="table">
-    <tr>
-        <th style=" color:darkcyan;">
+    <tr style=" color:blue;">
+        <th >
             @Html.DisplayNameFor(model => model.Nom)
         </th>
-        <th style=" color:darkcyan;">
+        <th >
             Messages
         </th>
 
@@ -28,7 +28,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Nom)
             </td>
-            <td>
+            <td class="bg-light">
                 @Html.DisplayFor(modelItem => item.message)
             </td>
 

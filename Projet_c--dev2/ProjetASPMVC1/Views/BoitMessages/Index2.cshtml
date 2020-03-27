@@ -11,11 +11,11 @@
     ViewBag.Title = "Index";
 }
 <table class="table">
-    <tr>
-        <th style=" color:darkcyan;">
+    <tr  style=" color:blue;">
+        <th >
             @Html.DisplayNameFor(model => model.Nom)
         </th>
-        <th style=" color:darkcyan;">
+        <th >
             Messages
         </th>
 
@@ -25,10 +25,10 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
+            <td >
                 @Html.DisplayFor(modelItem => item.Nom)
             </td>
-            <td>
+            <td class="bg-light" >
                 @Html.DisplayFor(modelItem => item.message)
             </td>
 

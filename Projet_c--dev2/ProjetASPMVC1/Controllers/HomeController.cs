@@ -21,6 +21,19 @@ namespace ProjetASPMVC1.Controllers
 
 
         }
+
+        public ActionResult Index2(Candidat objUser)
+        {
+
+            return View();
+
+
+        }
+
+
+
+
+
         [HttpPost]
         public ActionResult Authorise(Candidat user)
         {

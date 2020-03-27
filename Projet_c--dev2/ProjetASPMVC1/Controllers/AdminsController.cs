@@ -343,7 +343,7 @@ namespace ProjetASPMVC1.Controllers
             Session["n6"] = n6;
             Session["bac"] = bac;
             Session["seuil"] = seuil;
-
+            Session["id_fil3"] = id_fil;
             foreach (var etu in db.Candidats.ToList().Where(p => p.niveau == "3eme"))
             {
                 double? somme = 0.0;
@@ -379,6 +379,8 @@ namespace ProjetASPMVC1.Controllers
             return View(list);
 
         }
+
+      
         //fnt pour la selection de preselection 'excel' 3eme annee
         public IList<Candidat> preselectionCalculeget(int id_fil, string nom_dip, double n1, int n2, int n3, int n4, int n5, int n6, int bac, double seuil)
         {
@@ -492,7 +494,7 @@ namespace ProjetASPMVC1.Controllers
             Session["n6"] = n6;
             Session["bac"] = bac;
             Session["seuil"] = seuil;
-
+            Session["id_fil4"] = id_fil;
             foreach (var etu in db.Candidats.ToList().Where(p => p.niveau == "4eme"))
             {
                 double? somme = 0.0;
@@ -528,7 +530,7 @@ namespace ProjetASPMVC1.Controllers
             return View(list);
 
         }
-        //fnt pour la selection de preselection 'excel' 3eme annee
+        //fnt pour la selection de preselection 'excel' 4eme annee
         public IList<Candidat> preselectionCalculeget4eme(int id_fil, string nom_dip, double n1, int n2, int n3, int n4, int n5, int n6, int bac, double seuil)
         {
 
@@ -546,6 +548,8 @@ namespace ProjetASPMVC1.Controllers
             Session["bac"] = bac;
             Session["seuil"] = seuil;
 
+
+            
             foreach (var etu in db.Candidats.Where(p => p.niveau == "4eme"))
             {
                 double? somme = 0.0;
@@ -615,8 +619,37 @@ namespace ProjetASPMVC1.Controllers
             }
         }
 
+        public ActionResult AfficheConvoque3()
+        {
+            List<Candidat> conv = new List<Candidat>();
+            foreach(var v in db.Candidats.ToList())
+            {
 
+                if(v.id_fil==Convert.ToInt32(Session["id_fil3"]) && v.n_dossier != "0" && v.niveau.Equals("3eme"))
+                {
+                    conv.Add(v);
+                }
+            }
+            Filiere f = db.Filieres.Find(Convert.ToInt32(Session["id_fil3"]));
+            ViewBag.fil = f.nom_fil;
+            return View(conv);
+        }
 
+        public ActionResult AfficheConvoque4()
+        {
+            List<Candidat> conv = new List<Candidat>();
+            foreach (var v in db.Candidats.ToList())
+            {
+
+                if (v.id_fil == Convert.ToInt32(Session["id_fil4"]) && v.n_dossier != "0" && v.niveau.Equals("4eme"))
+                {
+                    conv.Add(v);
+                }
+            }
+            Filiere f = db.Filieres.Find(Convert.ToInt32(Session["id_fil4"]));
+            ViewBag.fil4 = f.nom_fil;
+            return View(conv);
+        }
         public ActionResult LogOut()
         {
             Session.Clear();

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ProjetASPMVC1.Models.Candidat>
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml ";
+}
+
+<div class="card mb-4">
+    <h3 style="color:cornflowerblue; margin-left:400px;">Liste des convoqués au d'acées </h3>
+    <h3 style="color:cornflowerblue; margin-left:400px;">en 4eme année @ViewBag.fil4  </h3>
+    <div class="card-header"><i class="fas fa-table mr-1"></i></div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered  " id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr class=" table-primary">
+                        <th>
+                            @Html.DisplayNameFor(model => model.CIN)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.prenom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.nom)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.n_dossier)
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CIN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.prenom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nom)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.n_dossier)
+                            </td>
+
+
+                        </tr>
+
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+

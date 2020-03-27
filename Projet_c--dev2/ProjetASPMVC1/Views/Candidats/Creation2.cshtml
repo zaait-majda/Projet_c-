@@ -171,8 +171,8 @@
     <title>jQuery Multi-Step Form Example</title>
 </head>
 <body>
-    <header class="header-section">
-        <div class="top-nav bg-white">
+    <header class="header-section" style="background-color:white;">
+        <div class="top-nav">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6">
@@ -186,7 +186,7 @@
                             <div class="top-social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
-                       
+
                             </div>
                             <a href="#" class="bk-btn bg-info">Ensa Safi</a>
                             <div class="language-option">
@@ -209,15 +209,32 @@
                 <div class="row">
                     <div class="col-lg-2">
                         <div class="logo">
-
+                            <a href="./index.html">
+                                <img src="~/img/index.png" alt="">
+                            </a>
                         </div>
                     </div>
+                    <div class="col-lg-10">
+                        <div class="nav-menu">
+                            <nav class="mainmenu">
+                                <ul>
+                                    <li>@Html.ActionLink(ProjetASPMVC1.Ressources.langues.Home, "Index", "Home")</li>
 
+                                    <li>@Html.ActionLink(ProjetASPMVC1.Ressources.langues.Contact, "Contact", "Home")</li>
+                                    <li>@Html.ActionLink(ProjetASPMVC1.Ressources.langues.Registration, "Creation2", "Candidats")</li>
+                                    <li>@Html.ActionLink("Espace d'admin", "LoginAdmin", "Admins")</li>
+                                </ul>
+                            </nav>
+                            <div class="nav-right search-switch">
+                                <i class="icon_search"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
     </header>
+
     <h4 style="color:gray;" align="center">S'il vous plaît entrer vôtres informations ici</h4>
     <!-- multistep form -->
 

@@ -254,6 +254,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\canvasjs.min.js" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\css2\ajax-loader.gif" />
     <Content Include="css\css2\animate.css" />
@@ -545,6 +546,7 @@
     <Content Include="Views\Admins\preselection4eme.cshtml" />
     <Content Include="Views\Admins\preselectionCalcule4eme.cshtml" />
     <Content Include="Views\Admins\StatistiqueView.cshtml" />
+    <Content Include="Views\Admins\Statistique.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

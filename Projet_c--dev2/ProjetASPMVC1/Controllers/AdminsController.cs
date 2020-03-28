@@ -613,10 +613,14 @@ namespace ProjetASPMVC1.Controllers
                 }
             }
         }
-        public ActionResult getChartForPreselction()
+        public ActionResult getChartForPreselction3annee()
         {
             //for 4 annnee
-            List<DataPoint> dataPoints = new List<DataPoint>();
+            List<DataPoint> dataPointsForInfo = new List<DataPoint>();
+            List<DataPoint> dataPointsForIndus = new List<DataPoint>();
+            List<DataPoint> dataPointsForGpmc = new List<DataPoint>();
+            List<DataPoint> dataPointsForGtr = new List<DataPoint>();
+
             var info = new SortedList<string, int>();
             var indus = new SortedList<string, int>();
             var gpmc = new SortedList<string, int>();
@@ -682,14 +686,125 @@ namespace ProjetASPMVC1.Controllers
             }
         foreach(var i in info)
             {
-                dataPoints.Add(new DataPoint(i.Key, i.Value));
+                dataPointsForInfo.Add(new DataPoint(i.Key, i.Value));
             }
-            
-            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+        foreach (var i in indus)
+            {
+                dataPointsForIndus.Add(new DataPoint(i.Key, i.Value));
+            }
+        foreach (var i in gpmc)
+            {
+                dataPointsForGpmc.Add(new DataPoint(i.Key, i.Value));
+            }
+        foreach (var i in gtr)
+            {
+                dataPointsForGtr.Add(new DataPoint(i.Key, i.Value));
+            }
 
+            ViewBag.dataPointsForInfo = JsonConvert.SerializeObject(dataPointsForInfo);
+            ViewBag.dataPointsForIndus = JsonConvert.SerializeObject(dataPointsForIndus);
+            ViewBag.dataPointsForGpmc = JsonConvert.SerializeObject(dataPointsForGpmc);
+            ViewBag.dataPointsForGtr = JsonConvert.SerializeObject(dataPointsForGtr);
             return View("StatistiqueView");
         }
+        //chart for 4 anneee
 
+
+        public ActionResult getChartForPreselction4annee()
+        {
+            //for 4 annnee
+            List<DataPoint> dataPointsForInfo = new List<DataPoint>();
+            List<DataPoint> dataPointsForIndus = new List<DataPoint>();
+            List<DataPoint> dataPointsForGpmc = new List<DataPoint>();
+            List<DataPoint> dataPointsForGtr = new List<DataPoint>();
+
+            var info = new SortedList<string, int>();
+            var indus = new SortedList<string, int>();
+            var gpmc = new SortedList<string, int>();
+            var gtr = new SortedList<string, int>();
+
+            var query = (from candidat in db.Candidats
+                         join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
+                         join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
+                         where candidat.convocu == false && candidat.niveau.Equals("4eme")
+                         select new
+                         {
+                             nomFiliere = filiere.nom_fil,
+                             nomDiplome = diplome.nom_diplome,
+
+                         }).ToList();
+
+            foreach (var candidat in query)
+            {
+
+                if (candidat.nomFiliere.Equals("informatique"))
+                {
+                    if (info.ContainsKey(candidat.nomDiplome))
+                    {
+                        info[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        info.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("industriel"))
+                {
+                    if (indus.ContainsKey(candidat.nomDiplome))
+                    {
+                        indus[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        indus.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("telecome"))
+                {
+                    if (gtr.ContainsKey(candidat.nomDiplome))
+                    {
+                        gtr[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gtr.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else
+                {
+                    if (gpmc.ContainsKey(candidat.nomDiplome))
+                    {
+                        gpmc[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gpmc.Add(candidat.nomDiplome, 1);
+                    }
+                }
+            }
+            foreach (var i in info)
+            {
+                dataPointsForInfo.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in indus)
+            {
+                dataPointsForIndus.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gpmc)
+            {
+                dataPointsForGpmc.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gtr)
+            {
+                dataPointsForGtr.Add(new DataPoint(i.Key, i.Value));
+            }
+
+            ViewBag.dataPointsForInfo = JsonConvert.SerializeObject(dataPointsForInfo);
+            ViewBag.dataPointsForIndus = JsonConvert.SerializeObject(dataPointsForIndus);
+            ViewBag.dataPointsForGpmc = JsonConvert.SerializeObject(dataPointsForGpmc);
+            ViewBag.dataPointsForGtr = JsonConvert.SerializeObject(dataPointsForGtr);
+            return View("Statistique");
+        }
 
 
         public ActionResult LogOut()

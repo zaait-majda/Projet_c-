@@ -7,20 +7,21 @@
 
 <center>
     <h4>Résultat Délibération</h4>
+
 </center>
 @if (ViewBag.error != "")
 {
     <center>
         <div class="alert alert-danger" role="alert">
-            This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+           Vous n'avez aucun candidat préselectioné <a href="#" class="alert-link">Cliquer ici</a>. pour revenir au page de preselection.
         </div>
     </center>
 }
 else
 {
     <center>
-        <div class="alert alert-primary" role="alert">
-            This is a danger alert with <a href="#" class="alert-link">an example link</a>. Give it a click if you like.
+        <div class="alert alert-info" role="alert">
+           <p>@ViewBag.admis candidats sont admis </p>
         </div>
     </center>
     <table class="table">

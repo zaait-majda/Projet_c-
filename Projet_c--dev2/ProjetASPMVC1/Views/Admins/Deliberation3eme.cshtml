@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<ProjetASPMVC1.Models.Candidat>
+
 @{
 
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml ";
@@ -10,7 +11,7 @@
     <h4>Délibération après concours</h4>
     <p> 4éme Année</p>
 
-    @using (Html.BeginForm("deleberationResult3eme", "Admins", FormMethod.Post))
+    @using (Html.BeginForm("ResultatDelib3eme", "Admins", FormMethod.Post))
     {
 
         <div class="form-group d-flex d-sm-flex justify-content-sm-center align-items-sm-end">

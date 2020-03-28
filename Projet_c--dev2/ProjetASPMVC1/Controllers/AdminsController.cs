@@ -101,31 +101,64 @@ namespace ProjetASPMVC1.Controllers
             return View();
         }
         
-        public ActionResult deleberationResult3eme(int id_fil,int coeff_math,int coeff_specialite,int nbr_places,int list_att,int note_min,int choix1, int choix2, int choix3)
+        public ActionResult ResultatDelib3eme(int id_fil,int coeff_math,int coeff_specialite,int nbr_places,int list_att,int note_min,int choix1, int choix2, int choix3)
         {
-           
+           // List<Candidat> admis_principal = null;
+           // List<Candidat> admis_att = null;
             List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p=>p.statut== "preselectione").Where(p => p.id_fil == id_fil
             ).ToList();
-            if (!(candidats.Count() == 0))
+             if (candidats.Count() != 0)
             {
-                foreach(var cand in candidats)
-                {
-                    cand.Notes.note_concours = (double)cand.Notes.math * coeff_math+ (double)cand.Notes.specialite*coeff_specialite;
-                }
-                candidats.AsQueryable().OrderBy(p => p.Notes.note_concours);
+               foreach(var cand in candidats)
+                 {
+                     cand.Notes.note_concours = ((double)cand.Notes.math * coeff_math+ (double)cand.Notes.specialite*coeff_specialite)/(coeff_math+coeff_specialite);
+                     db.SaveChanges();
+                 }
+                 switch (choix1)
+                 {
+                     case 1:
+                         candidats=candidats.AsQueryable().OrderByDescending(p => p.Notes.note_concours).ToList();
+                         break;
+                     case 2:
+                        candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.math).ToList();
+                         break;
+                     case 3:
+                        candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.specialite).ToList();
+                         break;
 
-               /* candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "preselectione").Where(p => p.id_fil == id_fil
-            ).OrderBy(p => p.Notes.note_concours).Take(nbr_places).ToList();*/
+                     default:
+                         break;
+                 };
+                
 
+                /*  for (int i = 0; i < nbr_places; i++)
+                  {
+                      var cand = candidats.ElementAt(i);
+                      cand.statut = "ADMIS_PR";
+                      admis_principal.Add(cand);
 
+                  }
+                  for (int i = nbr_places; i < list_att+nbr_places; i++)
+                  {
+                      var cand = candidats.ElementAt(i);
+                      cand.statut = "ADMIS_Att";
+                      admis_att.Add(cand);
+
+                  }
+                  ViewBag.admisPR = admis_principal;
+                  ViewBag.admisAtt = admis_att;*/
+                ViewBag.error = "";
+                return View(candidats);
             }
             else
             {
                 ViewBag.error = "empty";
+                return View();
             }
-            
-            
-            return View("ResultatDelib3eme");
+
+        
+
+
         }
         public ActionResult deleberationResult4eme()
         {
@@ -468,7 +501,8 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-                                            etu.statut = "preselectione";
+                                            
+                                            
                                             list.Add(etu);
                                         }
 
@@ -480,7 +514,7 @@ namespace ProjetASPMVC1.Controllers
 
                 }
             }
-
+         
             return list.ToList();
 
         }

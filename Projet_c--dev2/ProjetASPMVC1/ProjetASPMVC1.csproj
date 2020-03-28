@@ -242,6 +242,10 @@
     <Compile Include="Migrations\202003262148524_InitialCreate5.Designer.cs">
       <DependentUpon>202003262148524_InitialCreate5.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003281144191_InitialCreate6.cs" />
+    <Compile Include="Migrations\202003281144191_InitialCreate6.Designer.cs">
+      <DependentUpon>202003281144191_InitialCreate6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BoitMessage.cs" />
@@ -556,6 +560,7 @@
     <Content Include="Views\BoitMessages\Index2.cshtml" />
     <Content Include="Views\Admins\Deliberation3eme.cshtml" />
     <Content Include="Views\Admins\Deliberation4eme.cshtml" />
+    <Content Include="Views\Admins\test.cshtml" />
     <Content Include="Views\Admins\ResultatDelib3eme.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -592,6 +597,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003262148524_InitialCreate5.resx">
       <DependentUpon>202003262148524_InitialCreate5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003281144191_InitialCreate6.resx">
+      <DependentUpon>202003281144191_InitialCreate6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

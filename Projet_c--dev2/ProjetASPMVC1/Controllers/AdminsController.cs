@@ -90,14 +90,53 @@ namespace ProjetASPMVC1.Controllers
          */
         public ActionResult Deliberation3eme()
         {
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
             return View();
         }
         public ActionResult Deliberation4eme()
         {
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
             return View();
         }
+        
+        public ActionResult deleberationResult3eme(int id_fil,int coeff_math,int coeff_specialite,int nbr_places,int list_att,int note_min,int choix1, int choix2, int choix3)
+        {
+           
+            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p=>p.statut== "preselectione").Where(p => p.id_fil == id_fil
+            ).ToList();
+            if (!(candidats.Count() == 0))
+            {
+                foreach(var cand in candidats)
+                {
+                    cand.Notes.note_concours = (double)cand.Notes.math * coeff_math+ (double)cand.Notes.specialite*coeff_specialite;
+                }
+                candidats.AsQueryable().OrderBy(p => p.Notes.note_concours);
+
+               /* candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "preselectione").Where(p => p.id_fil == id_fil
+            ).OrderBy(p => p.Notes.note_concours).Take(nbr_places).ToList();*/
 
 
+            }
+            else
+            {
+                ViewBag.error = "empty";
+            }
+            
+            
+            return View("ResultatDelib3eme");
+        }
+        public ActionResult deleberationResult4eme()
+        {
+
+
+            return View("test");
+        }
+
+        /*
+        * Partie Deliberation__END
+        */
 
         // chart 4eme
         public ActionResult MyChartNiveau4()
@@ -429,7 +468,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-
+                                            etu.statut = "preselectione";
                                             list.Add(etu);
                                         }
 

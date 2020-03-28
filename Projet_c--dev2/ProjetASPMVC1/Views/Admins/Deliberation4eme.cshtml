@@ -4,5 +4,70 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml ";
 }
 
-<h2>Deliberation4eme</h2>
+    <link href="~/css/DelibationStyle.css" rel="stylesheet" />
+    <div>
+        <h4>Délibération après concours</h4>
+        <p> 4éme Année</p>
+        <form>
 
+            <div class="form-group d-flex d-sm-flex justify-content-sm-center align-items-sm-end">
+                <div><label class="justify-content-start" id="fil">Filière :&nbsp;</label></div>
+                <div>@Html.DropDownList("id_fil", ViewBag.f as SelectList, htmlAttributes: new { @class = "btn btn-secondary dropdown-toggle  " })</div>
+            </div>
+            <div class="form-group d-sm-flex justify-content-sm-center align-items-sm-end">
+                <label>Coefficients des notes :</label>
+
+                <div><label>Math :</label><input class="form-control" type="number"></div>
+
+                <div><label>Specialite :</label><input class="form-control" type="number"></div>
+
+            </div>
+            <div class="form-group d-sm-flex justify-content-sm-center align-items-sm-end">
+                <label>Nombre des places :</label>
+
+                <div><input class="form-control" type="number"></div>
+
+            </div>
+            <div class="form-group d-sm-flex justify-content-sm-center align-items-sm-end ">
+
+                <label>Liste d'attent :</label>
+
+                <div class="listattent"><input class="form-control" type="number"></div>
+
+            </div>
+            <div class="form-group d-sm-flex justify-content-sm-center align-items-sm-start">
+
+                <label>Note Minimal :</label>
+
+                <div class="listattent"><input class="form-control" type="number"></div>
+
+            </div>
+            <div class="form-group d-sm-flex justify-content-sm-center ">
+
+                <label class="classement">Classement Par :</label>
+
+                <div class="listattent">
+                    <select class="form-control">
+                    <optgroup label="This is a group">
+                        <option value="1" selected>Note globale</option>
+                        <option value="2">Note Mathematiques</option>
+                        <option value="3">Note du bac</option></optgroup>
+                    </select>
+                    <select class="form-control">
+                    <optgroup label="This is a group">
+                        <option value="1" >Note globale</option>
+                        <option value="2" selected>Note Mathematiques</option>
+                        <option value="3">Note du bac</option>
+                        </optgroup>
+                    </select>
+                    <select class="form-control">
+                        <optgroup label="This is a group">
+                            <option value="1" >Note globale</option>
+                            <option value="2">Note Mathematiques</option>
+                            <option value="3" selected>Note du bac</option>
+                        </optgroup>
+                    </select><button class="btn btn-primary afficherliste" type="button">Afficher la liste&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>

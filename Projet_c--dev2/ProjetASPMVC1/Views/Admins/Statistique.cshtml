@@ -1,0 +1,107 @@
+﻿
+@{
+    ViewBag.Title = "Statistique";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<html>
+<head>
+    <script>
+window.onload = function () {
+
+    var chart1 = new CanvasJS.Chart("chartContainerForInfo", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "statistique des condidats en 3 eme annee genie informatique"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForInfo)
+	}]
+});
+
+
+
+        //chart for industriel students
+        var chart2 = new CanvasJS.Chart("chartContainerForIndus", {
+            animationEnabled: true,
+
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "statistique des condidats en 4 eme annee genie industriel"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForIndus)
+	}]
+});
+
+
+    //for gtr
+
+    var chart3 = new CanvasJS.Chart("chartContainerForGtr", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "statistique des condidats en 4 eme annee genie telecome et reseau"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForGtr)
+	}]
+});
+
+
+    //for gpmc
+    var chart4 = new CanvasJS.Chart("chartContainerForGpmc", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "statistique des condidats en 4 eme annee genie des procede et ceramique"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForGpmc)
+	}]
+});
+    chart1.render();
+    chart2.render();
+    chart3.render();
+    chart4.render();
+}
+    </script>
+</head>
+<body>
+    <h2>statistique des convocu du 4 annees</h2>
+    <div class="container">
+        <div class="row">
+            <div id="chartContainerForInfo" style="height:300px;width:40%;"></div>
+            <div id="chartContainerForIndus" style="height:300px;width:40%;margin-left:20px"></div>
+        </div>
+
+        <div class="row">
+            <div id="chartContainerForGpmc" style="height:300px;width:40%;margin-top:20px"></div>
+            <div id="chartContainerForGtr" style="height:300px;width:40%;margin-top:20px;margin-left:20px"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="~/Content/canvasjs.min.js"></script>
+</body>
+</html>

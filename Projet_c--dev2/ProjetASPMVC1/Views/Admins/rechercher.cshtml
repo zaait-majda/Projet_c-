@@ -22,12 +22,12 @@
         <tr>
             <th>
 
-              Par filiere  @Html.DropDownListFor(x => x.id_fil, ViewBag.f as SelectList, "Selectionner un filiere", new { id = "Fil" })
+                <i class="fas fa-search"></i> Par filiere  @Html.DropDownListFor(x => x.id_fil, ViewBag.f as SelectList, "Selectionner un filiere", new { id = "Fil" })
             </th>
             <th style="padding-left:50px;">
 
-                
-                Par diplome <select name="nom_diplome" id="nom_dip">
+
+                <i class="fas fa-search"></i>  Par diplome <select name="nom_diplome" id="nom_dip">
 
                     <option value="Licence">Licence</option>
                     <option value="Licence pro">Licence pro</option>
@@ -36,8 +36,8 @@
                 </select>
             </th>
             <th style="padding-left:50px;">
-               Par matricule @Html.DropDownList("n_dossier", ViewBag.m as SelectList, "Selectionner Matricule", new { id = "nd" })
-                
+                <i class="fas fa-search"></i>  Par matricule @Html.DropDownList("n_dossier", ViewBag.m as SelectList, "Selectionner Matricule", new { id = "nd" })
+
             </th>
 
         </tr>
@@ -68,7 +68,15 @@
                         <th>
                             Matricule
                         </th>
-
+                        <th>
+                            Addresse
+                        </th>
+                        <th>
+                            Telephone
+                        </th>
+                        <th>
+                            Sexe
+                        </th>
                     </tr>
                 </thead>
 
@@ -95,7 +103,7 @@
                     $("#contenu").empty();
 
                     $.each(data, function (index, ligne) {
-                        $("#contenu").append("<tr ><td><input type='submit'  class='btn btn-danger' value=" + ligne.CIN + "  name='CIN'>|<i class='fa fa-trash'></i></td> <td> " + ligne.CIN + "</td><td>" + ligne.prenom + "</td><td>" + ligne.nom + "</td><td>" + ligne.n_dossier + "</td></tr>"
+                        $("#contenu").append("<tr ><td><input type='submit'  class='btn btn-danger' value=" + ligne.CIN + "  name='CIN'>|<i class='fa fa-trash'></i></td> <td> " + ligne.CIN + "</td><td>" + ligne.prenom + "</td><td>" + ligne.nom + "</td><td>" + ligne.n_dossier + "</td><td>" + ligne.addresse + "</td><td>" + ligne.tel + "</td><td>" + ligne.sexe + "</td><tr>"
 
 
 
@@ -119,9 +127,9 @@
                     $("#contenu").empty();
 
                     $.each(data, function (index, ligne) {
-                      $("#contenu").append("<tr ><td><input type='submit'  class='btn btn-danger' value=" + ligne.CIN + "  name='CIN'>|<i class='fa fa-trash'></i></td> <td> " + ligne.CIN + "</td><td>" + ligne.prenom + "</td><td>" + ligne.nom + "</td><td>" + ligne.n_dossier + "</td></tr>"
+                        $("#contenu").append("<tr ><td><input type='submit'  class='btn btn-danger' value=" + ligne.CIN + "  name='CIN'>|<i class='fa fa-trash'></i></td> <td> " + ligne.CIN + "</td><td>" + ligne.prenom + "</td><td>" + ligne.nom + "</td><td>" + ligne.n_dossier + "</td><td>" + ligne.addresse + "</td><td>" + ligne.tel + "</td><td>" + ligne.sexe + "</td><tr>"
 
-                    
+
 
 
 
@@ -142,7 +150,7 @@
                     $("#contenu").empty();
 
                     $.each(data, function (index, ligne) {
-                        $("#contenu").append("<tr ><td><input type='submit'  class='btn btn-danger' value=" + ligne.CIN + "  name='CIN'>|<i class='fa fa-trash'></i></td> <td> " + ligne.CIN + "</td><td>" + ligne.prenom + "</td><td>" + ligne.nom + "</td><td>" + ligne.n_dossier + "</td></tr>"
+                        $("#contenu").append("<tr ><td><input type='submit'  class='btn btn-danger' value=" + ligne.CIN + "  name='CIN'>|<i class='fa fa-trash'></i></td> <td> " + ligne.CIN + "</td><td>" + ligne.prenom + "</td><td>" + ligne.nom + "</td><td>" + ligne.n_dossier + "</td><td>" + ligne.addresse + "</td><td>" + ligne.tel + "</td><td>" + ligne.sexe + "</td><tr>"
 
 
 

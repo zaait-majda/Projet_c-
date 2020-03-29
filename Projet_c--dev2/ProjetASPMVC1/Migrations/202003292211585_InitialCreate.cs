@@ -133,6 +133,8 @@ namespace ProjetASPMVC1.Migrations
                         s4 = c.Double(nullable: false),
                         s5 = c.Double(),
                         s6 = c.Double(),
+                        notemath = c.Double(nullable: false),
+                        notespec = c.Double(nullable: false),
                         note_concours = c.Double(),
                     })
                 .PrimaryKey(t => t.id_note);

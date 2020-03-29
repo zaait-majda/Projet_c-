@@ -1,9 +1,4 @@
 ﻿
-@{
-    ViewBag.Title = "update3";
-}
-
-
 @model ProjetASPMVC1.Models.Candidat
 <!DOCTYPE html>
 <html lang="zxx">
@@ -30,6 +25,8 @@
     <link rel="stylesheet" href="~/css/style.css" type="text/css">
     <style>
 
+
+
         body {
             font-family: montserrat, arial, verdana;
             background-image: url('../../img/papers.co-sj80-magic-color-purple-gradation-blur-40-wallpaper.jpg');
@@ -37,10 +34,38 @@
             background-size: cover;
         }
 
+        th {
+            padding-top: 15px;
+            padding-bottom: 6px;
+            padding-left: 60px;
+            padding-right: 20px;
+        }
+
+        .tabSty {
+            padding: 80px;
+            margin-top: 100px;
+            border-radius: 10px;
+            background-color: white;
+            margin-left: 600px;
+        }
+
+        .esp {
+            margin-left: 150px;
+        }
+
+        .espace {
+            margin-left: 400px;
+            width: 300px;
+        }
+
+        tr {
+            border-bottom: 1px solid gainsboro;
+        }
 
         .form {
-            margin-top: 120px;
-            margin-left: 450px;
+            background-color: white;
+            margin-top: 20px;
+            margin-left: 460px;
             width: 600px;
             padding: 40px;
             border-left: 4px solid cornflowerblue;
@@ -64,10 +89,11 @@
                             <div class="top-social">
                                 <a href="#"><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
+
                             </div>
                             <a href="#" class="bk-btn bg-info">Ensa Safi</a>
                             <div class="language-option">
-                                <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;border-radius:100px;" />
+                                <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;border-radius:100px; " />
                                 <span>Home<i class="fa fa-angle-down"></i></span>
                                 <div class="flag-dropdown" style="width:200px;">
                                     <ul>
@@ -78,6 +104,7 @@
                                         <li>@Html.ActionLink("choix de filière", "update3", "Candidats", new { cin = ViewBag.CIN }, htmlAttributes: null)</li>
                                         <li>@Html.ActionLink("Télécharger les epreuvres", "Telecharger", "Candidats")</li>
                                         <li>@Html.ActionLink("Supprimer compte", "deleteCompte", "Candidats")</li>
+
                                         <li>@Html.ActionLink("Déconnexion", "LogOut", "Home")</li>
                                     </ul>
                                 </div>
@@ -89,30 +116,9 @@
         </div>
     </header>
     <br /><br /><br />
-    <center >
-        <h4 style="color:cornflowerblue;"> @Html.DisplayFor(model => model.prenom), veuillez modifier votre choix de filières: </h4> <br />
-        <h6 style="color:blue">@ViewBag.messageconfirm</h6>
-    </center>
-    <hr />
-    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="width:150px;height:150px; margin-left:100px; float:left;margin-top:100px;" />
-    <form class="form" action="updatefiliere" method="post">
-
-        <div class="form-horizontal">
-
-
-            <div class="form-group">
-                <p>choisissez votre filiere</p>
-                <div class="col-md-10">
-                    @Html.DropDownList("id_fil", ViewBag.f as SelectList, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.id_fil, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <input type="hidden" name="data" value=@ViewBag.CIN />
-            <br />
-            <div class="form-group">
-                <input type="submit" value="valider les modifications" class="col-md-10" style="background-color:cadetblue" required />
-            </div>
-        </div>
-    </form>
-
-
+    @using (Html.BeginForm("deleteCompteConfirm", "Candidats", FormMethod.Post))
+    {
+        <div style="margin-left:400px;"><input type="submit" class="btn btn-danger" value="Supprimer votre compte" /></div>
+    }
+</body>
+</html>

@@ -51,6 +51,8 @@ namespace ProjetASPMVC1.Controllers
         {
             int userId = (int)Session["CIN"];
 
+
+
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
@@ -512,5 +514,24 @@ namespace ProjetASPMVC1.Controllers
         {
             return View();
         }
+        public ActionResult deleteCompte()
+        {
+
+         
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult deleteCompteConfirm()
+        {
+
+            Candidat can = db.Candidats.Find(Session["CIN"]);
+            db.Candidats.Remove(can);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
     }
 }

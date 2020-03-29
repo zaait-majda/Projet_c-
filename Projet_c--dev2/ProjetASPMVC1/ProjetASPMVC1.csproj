@@ -688,6 +688,7 @@
     <Content Include="Views\Admins\rechercher4eme.cshtml" />
     <Content Include="Views\Admins\rechercherCorbeil4eme.cshtml" />
     <Content Include="Views\Admins\correction.cshtml" />
+    <Content Include="Views\Candidats\deleteCompte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

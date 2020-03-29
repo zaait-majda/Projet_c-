@@ -92,7 +92,7 @@
                             </div>
                             <a href="#" class="bk-btn bg-info">Ensa Safi</a>
                             <div class="language-option">
-                                <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;border-radius:100px;" />
+                                <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;border-radius:100px; " />
                                 <span>Home<i class="fa fa-angle-down"></i></span>
                                 <div class="flag-dropdown" style="width:200px;">
                                     <ul>
@@ -102,6 +102,8 @@
                                         <li>@Html.ActionLink("Diplomes obtenus", "update2", "Candidats", new { cin = ViewBag.CIN }, htmlAttributes: null)</li>
                                         <li>@Html.ActionLink("choix de filière", "update3", "Candidats", new { cin = ViewBag.CIN }, htmlAttributes: null)</li>
                                         <li>@Html.ActionLink("Télécharger les epreuvres", "Telecharger", "Candidats")</li>
+                                        <li>@Html.ActionLink("Supprimer compte", "deleteCompte", "Candidats")</li>
+
                                         <li>@Html.ActionLink("Déconnexion", "LogOut", "Home")</li>
                                     </ul>
                                 </div>
@@ -115,7 +117,7 @@
     <br /><br /><br />
     <center > <h4 style="color:cornflowerblue;">Bienvenue  @Html.DisplayFor(model => model.prenom)  dans votre espace personnelle</h4> </center>
     <hr />
-    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
+    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;width:150px;height:150px;" />
     <table class="form">
         <tr>
             <th>

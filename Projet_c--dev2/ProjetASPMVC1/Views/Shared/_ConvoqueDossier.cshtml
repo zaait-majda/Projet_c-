@@ -9,13 +9,13 @@
 
         body {
             font-family: montserrat, arial, verdana;
-            background-image: url('../../img/papers.co-sj80-magic-color-purple-gradation-blur-40-wallpaper.jpg');
+            background-color: gainsboro;
             height: 150%;
             background-size: cover;
         }
 
         tr {
-            border-bottom: 1px solid black;
+            border-bottom: 1px solid gainsboro;
         }
 
         th {
@@ -42,7 +42,7 @@
         .form {
             background-color: white;
             margin-top: 20px;
-            margin-left: 460px;
+            margin-left: 300px;
             width: 600px;
             padding: 40px;
             border-left: 4px solid cornflowerblue;
@@ -51,12 +51,13 @@
     </style>
 </head>
 <body>
+    <br /><br />
     <p style="margin-left:400px; color:red">@ViewBag.msgE</p>
-    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
+  
     <table class="form">
-        <tr style="border:1px solid black;">
+        <tr style="border:1px solid cornflowerblue;">
             <th>
-                Matricule:
+                <img src='~/img/@Html.DisplayFor(model => model.photo)' style="width:50px;height:50px;" /> Matricule:
             </th>
             <th class="espace">
                 @Html.DisplayFor(model => model.n_dossier)
@@ -151,12 +152,12 @@
             </th>
         </tr>
     </table>
-    <br /><br />
+    <br /><br /> <br /><br />
     <div class="card mb-4">
-        <div class="card-header"><i class="fas fa-table mr-1"></i>Profile de l'etudiant</div>
+        <div class="card-header">Profile de l'etudiant</div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered   table-primary" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>
@@ -229,7 +230,7 @@
                             </th>
 
 
-                            <th >
+                            <th>
                                 @Html.DisplayFor(model => model.niveau, new { htmlAttributes = new { @class = "form-control" } })
                             </th>
                             <th>
@@ -253,9 +254,9 @@
                         </tr>
                 </table>
 
-             </div>
             </div>
-         </div>
+        </div>
+    </div>
 
 </body>
 </html>

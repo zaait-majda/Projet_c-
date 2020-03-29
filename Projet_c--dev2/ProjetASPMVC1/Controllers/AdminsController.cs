@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using ClosedXML.Excel;
-
 using ProjetASPMVC1.Models;
 
 namespace ProjetASPMVC1.Controllers
@@ -178,7 +177,7 @@ namespace ProjetASPMVC1.Controllers
         public ActionResult Index(string id)
         {
             int nb3eme = 0;
-            int nb4eme = 10;
+            int nb4eme = 0;
             int nbIns = 0;
             int msgnonVue = 0;
             foreach (var cand in db.Candidats.ToArray())
@@ -194,8 +193,8 @@ namespace ProjetASPMVC1.Controllers
 
                 nbIns++;
             }
-            
-            foreach(var msg in db.message.ToList())
+
+            foreach (var msg in db.message.ToList())
             {
                 if (msg.vue.Equals(0))
                 {
@@ -209,7 +208,7 @@ namespace ProjetASPMVC1.Controllers
             ViewBag.ut = Convert.ToString(nbIns.ToString());
             return View();
         }
-    
+
         public ActionResult Convoquer()
         {
             int msgnonVue = 0;
@@ -248,11 +247,10 @@ namespace ProjetASPMVC1.Controllers
         [HttpPost]
         public PartialViewResult ConvoqueDossier(string CIN)
         {
-
             Candidat et = db.Candidats.Find(CIN);
-            if (et != null && et.niveau.Equals("3eme"))
+            if (et != null)
             {
-                if (String.IsNullOrEmpty(et.n_dossier))
+                if (et.n_dossier.Equals("0") && et.niveau.Equals("3eme"))
                 {
                     Random rnd = new Random();
 
@@ -264,55 +262,59 @@ namespace ProjetASPMVC1.Controllers
                 }
                 else
                 {
-                    ViewBag.msgE = "Numero de dossier déja attribué  " + et.n_dossier;
-                    Response.Write("<script>alert(\'Erreur le Candidat déja convoquer CIN non valide !!!!!\');</" + "script>");
-
-                    return PartialView("_ConvoqueDossier", et);
+                    Response.Write("<script>alert(\'Erreur le Candidat déja convoquer !!!!!\');</" + "script>");
+                    return PartialView("_ConvoqueDossierdeja", et);
                 }
             }
-            Response.Write("<script>alert(\'ce candidat n'existe pas en 3eme annee  attention!!!!!\');</" + "script>");
-            return PartialView("_ConvoqueDossierErr", et);
+            else
+            {
+                Response.Write("<script>alert(\' CIN non valide !!!!!\');</" + "script>");
+                return PartialView("_ConvoqueDossierErr", et);
+            }
+
+
+
 
 
         }
-   
 
 
 
-       // enregitrer candidat 4eme annnée
 
-       [HttpPost]
+        // enregitrer candidat 4eme annnée
+
+        [HttpPost]
         public PartialViewResult ConvoqueDossier4eme(string CIN)
         {
 
             Candidat et = db.Candidats.Find(CIN);
-            if (et != null && et.niveau.Equals("4eme"))
+            if (et != null)
             {
-                if (et.n_dossier.Equals("0"))
+                if (et.n_dossier.Equals("0") && et.niveau.Equals("4eme"))
                 {
                     Random rnd = new Random();
 
                     rnd.Next(1, 100);
                     et.n_dossier = "M" + Convert.ToString(et.CNE) + "end";
                     db.SaveChanges();
-                    
                     return PartialView("_ConvoqueDossier", et);
 
                 }
                 else
                 {
-                    ViewBag.msgE = "Numero de dossier déja attribué  " + et.n_dossier;
-                    Response.Write("<script>alert(\'Erreur le Candidat déja convoquer CIN non valide !!!!!\');</" + "script>");
-                    return PartialView("_ConvoqueDossier", et);
+                    Response.Write("<script>alert(\'Erreur le Candidat déja convoquer !!!!!\');</" + "script>");
+                    return PartialView("_ConvoqueDossierdeja", et);
                 }
             }
-            Response.Write("<script>alert(\'ce candidat n'existe pas en 4 eme annee!!!!!\');</" + "script>");
-            return PartialView("_ConvoqueDossierErr", et);
-
+            else
+            {
+                Response.Write("<script>alert(\' CIN non valide !!!!!\');</" + "script>");
+                return PartialView("_ConvoqueDossierErr", et);
+            }
 
         }
 
-        public ActionResult preselection()
+            public ActionResult preselection()
         {
             ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
 
@@ -466,13 +468,14 @@ namespace ProjetASPMVC1.Controllers
             }
         }
         /////////////////////4 eme /////////////////////////////////////////
-        public ActionResult preselection4eme() { 
-        ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+        public ActionResult preselection4eme()
+        {
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
 
-        ViewBag.d = new SelectList(db.Diplomes, "id_diplome", "nom_diplome");
+            ViewBag.d = new SelectList(db.Diplomes, "id_diplome", "nom_diplome");
 
-   return View();
- }
+            return View();
+        }
 
         [HttpPost]
         public ActionResult preselectionCalcule4eme(int id_fil, string nom_dip, double n1, int n2, int n3, int n4, int n5, int n6, int bac, double seuil)
@@ -622,6 +625,7 @@ namespace ProjetASPMVC1.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
         public ActionResult correction(String niveau, String idfil, String msg)
         {
             int id = Convert.ToInt32(idfil);
@@ -661,6 +665,7 @@ namespace ProjetASPMVC1.Controllers
 
             return RedirectToAction("correction", new { niveau = niveau, idfil = idfil, msg = msg });
         }
-    }
-}
+    } }
 
+
+ 

@@ -294,7 +294,7 @@ namespace ProjetASPMVC1.Controllers
             using (var ddb = new Projet_ContextBD())
             {
                 Candidat Data = ddb.Candidats.Where(x => x.CIN == regId).FirstOrDefault();
-                Data.EmailConfirmed = true;
+                Data.EmailConfirmed =true;
 
                 db.SaveChanges();
                 var msg = "Your Email Is Verified!";

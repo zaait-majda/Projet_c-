@@ -23,14 +23,10 @@ namespace ProjetASPMVC1.Models
         public double s3 { set; get; }
         [Required]
         public double s4 { set; get; }
-       
-       
         public double? s5 { set; get; }
-       
-      
-        public double? s6 { set; get; }
-        public double notemath = 0;
-        public double notespec = 0;
+       public double? s6 { set; get; }
+        public double? notemath { set; get; }
+        public double? notespec { set; get; }
         public double? note_concours { set; get; }
         public virtual ICollection<Candidat> Candidats { set; get; }
     }

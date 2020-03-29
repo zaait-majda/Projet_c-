@@ -1,1 +1,1 @@
-vous trouverez dans cette branche la partie de l'espace étudiant complète et l'espace admin avec la partie registration et la partie préselection 
+vous trouverez dans cette branche la partie de l'espace étudiant complète et l'espace admin jusqusqu'a la partie registration et preselection

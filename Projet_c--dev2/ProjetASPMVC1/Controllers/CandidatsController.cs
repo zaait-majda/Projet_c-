@@ -204,6 +204,7 @@ namespace ProjetASPMVC1.Controllers
             db.SaveChanges();
             cand.id_diplome = dip.id_diplome;
             cand.id_note = note.id_note;
+            cand.nom_dip = dip.nom_diplome;
             db.Candidats.Add(cand);
             db.SaveChanges();
 
@@ -416,6 +417,7 @@ namespace ProjetASPMVC1.Controllers
             Candidat.note_bac = note_bac;
             Candidat.mention_bac = mention_bac;
             Candidat.niveau = niveau;
+            Candidat.nom_dip= nom_diplome;
             db.SaveChanges();
 
             int iddip = Candidat.id_diplome;
@@ -425,6 +427,8 @@ namespace ProjetASPMVC1.Controllers
             dip.etablissement = etablissment;
 
             db.SaveChanges();
+
+
 
             int idnote = Candidat.id_note;
             Notes n = db.Notes.Find(idnote);

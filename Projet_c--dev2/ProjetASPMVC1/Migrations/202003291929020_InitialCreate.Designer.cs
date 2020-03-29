@@ -7,13 +7,13 @@ namespace ProjetASPMVC1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class addingConvocuAttribut : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(addingConvocuAttribut));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003281819036_addingConvocuAttribut"; }
+            get { return "202003291929020_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

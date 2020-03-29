@@ -73,7 +73,7 @@ namespace ProjetASPMVC1.Controllers
                     ViewBag.niv3 = Convert.ToString(nb3eme);
                     ViewBag.niv4 = Convert.ToString(nb4eme);
                     ViewBag.ut = Convert.ToString(nbIns.ToString());
-
+                    ViewBag.sup = Convert.ToString(db.corbeils.Count());
                     return View("Index");
 
                 }
@@ -194,8 +194,8 @@ namespace ProjetASPMVC1.Controllers
 
                 nbIns++;
             }
-            
-            foreach(var msg in db.message.ToList())
+
+            foreach (var msg in db.message.ToList())
             {
                 if (msg.vue.Equals(0))
                 {
@@ -207,9 +207,10 @@ namespace ProjetASPMVC1.Controllers
             ViewBag.niv3 = Convert.ToString(nb3eme);
             ViewBag.niv4 = Convert.ToString(nb4eme);
             ViewBag.ut = Convert.ToString(nbIns.ToString());
+            ViewBag.sup = Convert.ToString(db.corbeils.Count());
             return View();
         }
-    
+
         public ActionResult Convoquer()
         {
             int msgnonVue = 0;
@@ -275,13 +276,13 @@ namespace ProjetASPMVC1.Controllers
 
 
         }
-   
 
 
 
-       // enregitrer candidat 4eme annnée
 
-       [HttpPost]
+        // enregitrer candidat 4eme annnée
+
+        [HttpPost]
         public PartialViewResult ConvoqueDossier4eme(string CIN)
         {
 
@@ -295,7 +296,7 @@ namespace ProjetASPMVC1.Controllers
                     rnd.Next(1, 100);
                     et.n_dossier = "M" + Convert.ToString(et.CNE) + "end";
                     db.SaveChanges();
-                    
+
                     return PartialView("_ConvoqueDossier", et);
 
                 }
@@ -364,7 +365,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-                                            db.Candidats.Find(etu).convocu = true;
+
                                             list.Add(etu);
                                         }
 
@@ -381,7 +382,7 @@ namespace ProjetASPMVC1.Controllers
 
         }
 
-      
+
         //fnt pour la selection de preselection 'excel' 3eme annee
         public IList<Candidat> preselectionCalculeget(int id_fil, string nom_dip, double n1, int n2, int n3, int n4, int n5, int n6, int bac, double seuil)
         {
@@ -419,7 +420,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-                                            db.Candidats.Find(etu).convocu = true;
+
                                             list.Add(etu);
                                         }
 
@@ -515,7 +516,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-                                            db.Candidats.Find(etu).convocu = true;
+
                                             list.Add(etu);
                                         }
 
@@ -550,7 +551,7 @@ namespace ProjetASPMVC1.Controllers
             Session["seuil"] = seuil;
 
 
-            
+
             foreach (var etu in db.Candidats.Where(p => p.niveau == "4eme"))
             {
                 double? somme = 0.0;
@@ -570,7 +571,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-                                            db.Candidats.Find(etu).convocu = true;
+
                                             list.Add(etu);
                                         }
 
@@ -623,10 +624,10 @@ namespace ProjetASPMVC1.Controllers
         public ActionResult AfficheConvoque3()
         {
             List<Candidat> conv = new List<Candidat>();
-            foreach(var v in db.Candidats.ToList())
+            foreach (var v in db.Candidats.ToList())
             {
 
-                if(v.id_fil==Convert.ToInt32(Session["id_fil3"]) && v.n_dossier != "0" && v.niveau.Equals("3eme"))
+                if (v.id_fil == Convert.ToInt32(Session["id_fil3"]) && v.n_dossier != "0" && v.niveau.Equals("3eme"))
                 {
                     conv.Add(v);
                 }
@@ -651,6 +652,13 @@ namespace ProjetASPMVC1.Controllers
             ViewBag.fil4 = f.nom_fil;
             return View(conv);
         }
+        public ActionResult LogOut()
+        {
+            Session.Clear();
+
+            return RedirectToAction("Index", "Home");
+        }
+
         public ActionResult getChartForPreselction3annee()
         {
             //for 4 annnee
@@ -845,11 +853,388 @@ namespace ProjetASPMVC1.Controllers
             return View("Statistique");
         }
 
-        public ActionResult LogOut()
-        {
-            Session.Clear();
 
-            return RedirectToAction("Index", "Home");
+
+        public ActionResult rechercher()
+        {
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            ViewBag.d = new SelectList(db.Diplomes, "id_diplome", "nom_diplome");
+
+
+            ViewBag.m = new SelectList(db.Candidats, "n_dossier", "n_dossier");
+            return View();
         }
+
+
+        public ActionResult delete(string CIN)
+        {
+            Candidat can = db.Candidats.Find(CIN);
+            int id = can.id_fil;
+            corbeil cor = new corbeil();
+            cor.CNE = can.CNE;
+            cor.CIN = can.CIN;
+            cor.prenom = can.prenom;
+            cor.nom = can.nom;
+            cor.ville = can.ville;
+            cor.addresse = can.addresse;
+            cor.nom_dip = can.nom_dip;
+            cor.GSM = can.GSM;
+            cor.type_bac = can.type_bac;
+            cor.annee_bac = can.annee_bac;
+            cor.note_bac = can.note_bac;
+            cor.mention_bac = can.mention_bac;
+            cor.n_dossier = can.n_dossier;
+
+            cor.nationnalite = can.nationnalite;
+            cor.sexe = can.sexe;
+            cor.cont_sup = can.cont_sup;
+
+            cor.cont_ajout = can.cont_ajout;
+            cor.password = can.password;
+            cor.password_conf = can.password_conf;
+            cor.photo = can.photo;
+            cor.email = can.email;
+            cor.statut = can.statut;
+
+
+            cor.niveau = can.niveau;
+            cor.date_naiss = can.date_naiss;
+            cor.id_fil = id;
+            cor.id_diplome = can.id_diplome;
+            cor.id_note = can.id_note;
+            db.corbeils.Add(cor);
+            db.SaveChanges();
+            db.Candidats.Remove(can);
+            db.SaveChanges();
+
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            ViewBag.d = new SelectList(db.Diplomes, "nom_diplome", "nom_diplome");
+
+
+            ViewBag.m = new SelectList(db.Candidats, "n_dossier", "n_dossier");
+            return View("rechercher");
+        }
+
+
+        public ActionResult DeleteCor(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            corbeil corb = db.corbeils.Find(id);
+            db.corbeils.Remove(corb);
+
+            db.SaveChanges();
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            ViewBag.d = new SelectList(db.Diplomes, "nom_diplome", "nom_diplome");
+
+
+            ViewBag.m = new SelectList(db.Candidats, "n_dossier", "n_dossier");
+            return View("rechercherCorbeil", db.corbeils.ToList());
+        }
+
+
+        public ActionResult rechercherCorbeil()
+        {
+
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            ViewBag.d = new SelectList(db.Diplomes, "nom_diplome", "nom_diplome");
+
+
+            ViewBag.m = new SelectList(db.Candidats, "n_dossier", "n_dossier");
+            return View();
+        }
+
+
+        public JsonResult GetEtudiantByIdMatricule(string n_dossier)
+        {
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.Candidats.Where(p => p.n_dossier == n_dossier && p.niveau.Equals("3eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetEtudiantByIdDip(string nom_diplome)
+        {
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.Candidats.Where(p => p.nom_dip == nom_diplome && p.niveau.Equals("3eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetEtudiantById(int id_fil)
+        {
+
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.Candidats.Where(p => p.id_fil == id_fil && p.niveau.Equals("3eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+        //dans corbeil
+
+
+        public JsonResult GetEtudiantByIdMatriculeCor(string n_dossier)
+        {
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.corbeils.Where(p => p.n_dossier == n_dossier && p.niveau.Equals("3eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetEtudiantByIdDipCor(string nom_diplome)
+        {
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.corbeils.Where(p => p.nom_dip == nom_diplome && p.niveau.Equals("3eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
+        public JsonResult GetEtudiantByIdCor(int id_fil)
+        {
+
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.corbeils.Where(p => p.id_fil == id_fil && p.niveau.Equals("3eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        /// <summary>
+        /// /////////////////////////////////////pour 4eme annee////////////////////////////////////
+        /// </summary>
+        /// <returns></returns>
+        /// 
+
+
+        public ActionResult rechercher4eme()
+        {
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            ViewBag.d = new SelectList(db.Diplomes, "id_diplome", "nom_diplome");
+
+
+            ViewBag.m = new SelectList(db.Candidats, "n_dossier", "n_dossier");
+            return View();
+        }
+
+
+        public ActionResult delete4eme(string CIN)
+        {
+            Candidat can = db.Candidats.Find(CIN);
+            int id = can.id_fil;
+            corbeil cor = new corbeil();
+            cor.CNE = can.CNE;
+            cor.CIN = can.CIN;
+            cor.prenom = can.prenom;
+            cor.nom = can.nom;
+            cor.ville = can.ville;
+            cor.addresse = can.addresse;
+            cor.nom_dip = can.nom_dip;
+            cor.GSM = can.GSM;
+            cor.type_bac = can.type_bac;
+            cor.annee_bac = can.annee_bac;
+            cor.note_bac = can.note_bac;
+            cor.mention_bac = can.mention_bac;
+            cor.n_dossier = can.n_dossier;
+
+            cor.nationnalite = can.nationnalite;
+            cor.sexe = can.sexe;
+            cor.cont_sup = can.cont_sup;
+
+            cor.cont_ajout = can.cont_ajout;
+            cor.password = can.password;
+            cor.password_conf = can.password_conf;
+            cor.photo = can.photo;
+            cor.email = can.email;
+            cor.statut = can.statut;
+
+
+            cor.niveau = can.niveau;
+            cor.date_naiss = can.date_naiss;
+            cor.id_fil = id;
+            cor.id_diplome = can.id_diplome;
+            cor.id_note = can.id_note;
+            db.corbeils.Add(cor);
+            db.SaveChanges();
+            db.Candidats.Remove(can);
+            db.SaveChanges();
+
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            ViewBag.d = new SelectList(db.Diplomes, "nom_diplome", "nom_diplome");
+
+
+            ViewBag.m = new SelectList(db.Candidats, "n_dossier", "n_dossier");
+            return View("rechercher4eme");
+        }
+
+
+        public ActionResult DeleteCor4eme(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            corbeil corb = db.corbeils.Find(id);
+            db.corbeils.Remove(corb);
+
+            db.SaveChanges();
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            ViewBag.d = new SelectList(db.Diplomes, "nom_diplome", "nom_diplome");
+
+
+            ViewBag.m = new SelectList(db.Candidats, "n_dossier", "n_dossier");
+            return View("rechercherCorbeil4eme", db.corbeils.ToList());
+        }
+
+
+        public ActionResult rechercherCorbeil4eme()
+        {
+
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            ViewBag.d = new SelectList(db.Diplomes, "nom_diplome", "nom_diplome");
+
+
+            ViewBag.m = new SelectList(db.Candidats, "n_dossier", "n_dossier");
+            return View();
+        }
+
+
+
+
+
+
+
+
+        public JsonResult GetEtudiantByIdMatricule4eme(string n_dossier)
+        {
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.Candidats.Where(p => p.n_dossier == n_dossier && p.niveau.Equals("4eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetEtudiantByIdDip4eme(string nom_diplome)
+        {
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.Candidats.Where(p => p.nom_dip == nom_diplome && p.niveau.Equals("4eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetEtudiantById4eme(int id_fil)
+        {
+
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.Candidats.Where(p => p.id_fil == id_fil && p.niveau.Equals("4eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+        //dans corbeil
+
+
+        public JsonResult GetEtudiantByIdMatriculeCor4eme(string n_dossier)
+        {
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.corbeils.Where(p => p.n_dossier == n_dossier && p.niveau.Equals("4eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult GetEtudiantByIdDipCor4eme(string nom_diplome)
+        {
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.corbeils.Where(p => p.nom_dip == nom_diplome && p.niveau.Equals("4eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        public JsonResult GetEtudiantByIdCor4eme(int id_fil)
+        {
+
+
+
+            db.Configuration.ProxyCreationEnabled = false;
+
+            return Json(db.corbeils.Where(p => p.id_fil == id_fil && p.niveau.Equals("4eme")), JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult correction(String niveau, String idfil, String msg)
+        {
+            int id = Convert.ToInt32(idfil);
+            var candidats = db.Candidats.Include(c => c.Diplome).Include(c => c.Filiere).Include(c => c.Notes);
+            candidats = candidats.Where(c => c.niveau == niveau && c.id_fil == id);
+            ViewBag.msg = msg;
+            return View(candidats.ToList());
+
+        }
+
+        public ActionResult correction2()
+        {
+
+            var Notes1 = Request["item.Notes.notemath"].ToString().Split(',');
+            var Notes2 = Request["item.Notes.notespec"].ToString().Split(',');
+            var CINS = Request["item.CIN"].ToString().Split(',');
+            String d;
+
+            for (int i = 0; i < CINS.Length; i++)
+            {
+                d = CINS[i].ToString();
+                Candidat cand = db.Candidats.Find(d);
+                int idnote = cand.id_note;
+                Notes n = db.Notes.Find(idnote);
+                n.notemath = Double.Parse(Notes1[i]);
+                n.notespec = Double.Parse(Notes2[i]);
+                n.note_concours = (n.notemath + n.notespec) / 2;
+                db.SaveChanges();
+
+            }
+            String cin = CINS[0];
+            Candidat c = db.Candidats.Find(cin);
+            String niveau = c.niveau;
+            String idfil = c.id_fil.ToString();
+            String msg = "affectation des notes du concours avec succés";
+
+
+            return RedirectToAction("correction", new { niveau = niveau, idfil = idfil, msg = msg });
+        }
+
+
+
     }
-}
+    }

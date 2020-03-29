@@ -216,38 +216,24 @@
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\BoitMessagesController.cs" />
     <Compile Include="Controllers\CandidatsController.cs" />
+    <Compile Include="Controllers\corbeilsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003221518217_InitialCreate.cs" />
-    <Compile Include="Migrations\202003221518217_InitialCreate.Designer.cs">
-      <DependentUpon>202003221518217_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202003291929020_InitialCreate.cs" />
+    <Compile Include="Migrations\202003291929020_InitialCreate.Designer.cs">
+      <DependentUpon>202003291929020_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003242318252_InitialCreate1.cs" />
-    <Compile Include="Migrations\202003242318252_InitialCreate1.Designer.cs">
-      <DependentUpon>202003242318252_InitialCreate1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003242320575_InitialCreate2.cs" />
-    <Compile Include="Migrations\202003242320575_InitialCreate2.Designer.cs">
-      <DependentUpon>202003242320575_InitialCreate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003242328556_InitialCreate3.cs" />
-    <Compile Include="Migrations\202003242328556_InitialCreate3.Designer.cs">
-      <DependentUpon>202003242328556_InitialCreate3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003242336057_InitialCreate4.cs" />
-    <Compile Include="Migrations\202003242336057_InitialCreate4.Designer.cs">
-      <DependentUpon>202003242336057_InitialCreate4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003281819036_addingConvocuAttribut.cs" />
-    <Compile Include="Migrations\202003281819036_addingConvocuAttribut.Designer.cs">
-      <DependentUpon>202003281819036_addingConvocuAttribut.cs</DependentUpon>
+    <Compile Include="Migrations\202003292014083_InitialCreate2.cs" />
+    <Compile Include="Migrations\202003292014083_InitialCreate2.Designer.cs">
+      <DependentUpon>202003292014083_InitialCreate2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BoitMessage.cs" />
     <Compile Include="Models\Candidat.cs" />
+    <Compile Include="Models\corbeil.cs" />
     <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\Diplome.cs" />
     <Compile Include="Models\Filiere.cs" />
@@ -700,6 +686,12 @@
     <Content Include="Views\Admins\AfficheConvoque4.cshtml" />
     <Content Include="Views\Admins\Statistique.cshtml" />
     <Content Include="Views\Admins\StatistiqueView.cshtml" />
+    <Content Include="Views\Admins\rechercher.cshtml" />
+    <Content Include="Views\Admins\rechercherCorbeil.cshtml" />
+    <Content Include="Views\Admins\DeleteCor.cshtml" />
+    <Content Include="Views\Admins\rechercher4eme.cshtml" />
+    <Content Include="Views\Admins\rechercherCorbeil4eme.cshtml" />
+    <Content Include="Views\Admins\correction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -718,23 +710,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003221518217_InitialCreate.resx">
-      <DependentUpon>202003221518217_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003291929020_InitialCreate.resx">
+      <DependentUpon>202003291929020_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003242318252_InitialCreate1.resx">
-      <DependentUpon>202003242318252_InitialCreate1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003242320575_InitialCreate2.resx">
-      <DependentUpon>202003242320575_InitialCreate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003242328556_InitialCreate3.resx">
-      <DependentUpon>202003242328556_InitialCreate3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003242336057_InitialCreate4.resx">
-      <DependentUpon>202003242336057_InitialCreate4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003281819036_addingConvocuAttribut.resx">
-      <DependentUpon>202003281819036_addingConvocuAttribut.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003292014083_InitialCreate2.resx">
+      <DependentUpon>202003292014083_InitialCreate2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

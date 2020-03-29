@@ -44,11 +44,13 @@ namespace ProjetASPMVC1.Migrations
                         email = c.String(nullable: false),
                         EmailConfirmed = c.Boolean(nullable: false),
                         statut = c.String(),
+                        convocu = c.Boolean(nullable: false),
                         niveau = c.String(nullable: false),
                         date_naiss = c.DateTime(nullable: false),
                         id_fil = c.Int(nullable: false),
                         id_note = c.Int(nullable: false),
                         id_diplome = c.Int(nullable: false),
+                        nom_dip = c.String(),
                     })
                 .PrimaryKey(t => t.CIN)
                 .ForeignKey("dbo.Diplomes", t => t.id_diplome, cascadeDelete: true)
@@ -68,6 +70,48 @@ namespace ProjetASPMVC1.Migrations
                         etablissement = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.id_diplome);
+            
+            CreateTable(
+                "dbo.corbeils",
+                c => new
+                    {
+                        CIN = c.String(nullable: false, maxLength: 128),
+                        CNE = c.String(),
+                        prenom = c.String(),
+                        nom = c.String(),
+                        ville = c.String(),
+                        addresse = c.String(),
+                        GSM = c.String(),
+                        type_bac = c.String(),
+                        annee_bac = c.String(),
+                        note_bac = c.String(),
+                        mention_bac = c.String(),
+                        n_dossier = c.String(),
+                        nationnalite = c.String(),
+                        sexe = c.String(),
+                        cont_sup = c.Int(nullable: false),
+                        cont_ajout = c.Int(nullable: false),
+                        password = c.String(),
+                        password_conf = c.String(),
+                        photo = c.String(),
+                        email = c.String(),
+                        EmailConfirmed = c.Boolean(nullable: false),
+                        statut = c.String(),
+                        convocu = c.Boolean(nullable: false),
+                        niveau = c.String(),
+                        date_naiss = c.DateTime(nullable: false),
+                        id_fil = c.Int(nullable: false),
+                        id_note = c.Int(nullable: false),
+                        id_diplome = c.Int(nullable: false),
+                        nom_dip = c.String(),
+                    })
+                .PrimaryKey(t => t.CIN)
+                .ForeignKey("dbo.Diplomes", t => t.id_diplome, cascadeDelete: true)
+                .ForeignKey("dbo.Filieres", t => t.id_fil, cascadeDelete: true)
+                .ForeignKey("dbo.Notes", t => t.id_note, cascadeDelete: true)
+                .Index(t => t.id_fil)
+                .Index(t => t.id_note)
+                .Index(t => t.id_diplome);
             
             CreateTable(
                 "dbo.Filieres",
@@ -93,6 +137,17 @@ namespace ProjetASPMVC1.Migrations
                     })
                 .PrimaryKey(t => t.id_note);
             
+            CreateTable(
+                "dbo.BoitMessages",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        Nom = c.String(),
+                        message = c.String(),
+                        vue = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
         }
         
         public override void Down()
@@ -100,11 +155,19 @@ namespace ProjetASPMVC1.Migrations
             DropForeignKey("dbo.Candidats", "id_note", "dbo.Notes");
             DropForeignKey("dbo.Candidats", "id_fil", "dbo.Filieres");
             DropForeignKey("dbo.Candidats", "id_diplome", "dbo.Diplomes");
+            DropForeignKey("dbo.corbeils", "id_note", "dbo.Notes");
+            DropForeignKey("dbo.corbeils", "id_fil", "dbo.Filieres");
+            DropForeignKey("dbo.corbeils", "id_diplome", "dbo.Diplomes");
+            DropIndex("dbo.corbeils", new[] { "id_diplome" });
+            DropIndex("dbo.corbeils", new[] { "id_note" });
+            DropIndex("dbo.corbeils", new[] { "id_fil" });
             DropIndex("dbo.Candidats", new[] { "id_diplome" });
             DropIndex("dbo.Candidats", new[] { "id_note" });
             DropIndex("dbo.Candidats", new[] { "id_fil" });
+            DropTable("dbo.BoitMessages");
             DropTable("dbo.Notes");
             DropTable("dbo.Filieres");
+            DropTable("dbo.corbeils");
             DropTable("dbo.Diplomes");
             DropTable("dbo.Candidats");
             DropTable("dbo.Admins");

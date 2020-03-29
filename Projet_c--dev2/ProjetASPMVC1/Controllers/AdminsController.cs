@@ -366,6 +366,10 @@ namespace ProjetASPMVC1.Controllers
                                         if (somme >= seuil)
                                         {
 
+                                            db.Candidats.Find(etu.CIN).convocu = true;
+                                            db.Candidats.Find(etu.CIN).statut = "pres";
+                                            db.SaveChanges();
+
                                             list.Add(etu);
                                         }
 
@@ -420,7 +424,9 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-
+                                            db.Candidats.Find(etu.CIN).convocu = true;
+                                            db.Candidats.Find(etu.CIN).statut = "pres";
+                                            db.SaveChanges();
                                             list.Add(etu);
                                         }
 
@@ -516,7 +522,9 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-
+                                            db.Candidats.Find(etu.CIN).convocu = true;
+                                            db.Candidats.Find(etu.CIN).statut = "pres";
+                                            db.SaveChanges();
                                             list.Add(etu);
                                         }
 
@@ -571,7 +579,9 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-
+                                            db.Candidats.Find(etu.CIN).convocu = true;
+                                            db.Candidats.Find(etu.CIN).statut = "pres";
+                                            db.SaveChanges();
                                             list.Add(etu);
                                         }
 
@@ -627,7 +637,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var v in db.Candidats.ToList())
             {
 
-                if (v.id_fil == Convert.ToInt32(Session["id_fil3"]) && v.n_dossier != "0" && v.niveau.Equals("3eme"))
+                if (v.id_fil == Convert.ToInt32(Session["id_fil3"]) && v.convocu==true && v.niveau.Equals("3eme"))
                 {
                     conv.Add(v);
                 }
@@ -643,7 +653,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var v in db.Candidats.ToList())
             {
 
-                if (v.id_fil == Convert.ToInt32(Session["id_fil4"]) && v.n_dossier != "0" && v.niveau.Equals("4eme"))
+                if (v.id_fil == Convert.ToInt32(Session["id_fil4"]) && v.convocu == true && v.niveau.Equals("4eme"))
                 {
                     conv.Add(v);
                 }

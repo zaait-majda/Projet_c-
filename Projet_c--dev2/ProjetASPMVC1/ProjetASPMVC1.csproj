@@ -237,6 +237,10 @@
     <Compile Include="Migrations\202003292245569_InitialCreate7.Designer.cs">
       <DependentUpon>202003292245569_InitialCreate7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003301400424_InitialCreate1.cs" />
+    <Compile Include="Migrations\202003301400424_InitialCreate1.Designer.cs">
+      <DependentUpon>202003301400424_InitialCreate1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BoitMessage.cs" />
@@ -739,6 +743,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003292245569_InitialCreate7.resx">
       <DependentUpon>202003292245569_InitialCreate7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003301400424_InitialCreate1.resx">
+      <DependentUpon>202003301400424_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

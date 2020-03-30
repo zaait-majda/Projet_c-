@@ -86,6 +86,369 @@ namespace ProjetASPMVC1.Controllers
 
 
         }
+        /*
+         *
+         *Partie Deliberation
+         * 
+         */
+        public ActionResult Deliberation3eme()
+        {
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            return View();
+        }
+        public ActionResult Deliberation4eme()
+        {
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+
+            return View();
+        }
+        public List<Candidat> sortCandidat(List<Candidat> cd, int choix)
+        {
+            for (int i = 0; i < cd.Count - 1; i++)
+            {
+                int index = i;
+                for (int j = i + 1; j < cd.Count; j++)
+                {
+                    if (cd[j].Notes.note_concours == cd[index].Notes.note_concours)
+                    {
+                        //Tester sur le choix de deuxième critere
+                        if (choix == 2)
+                        {
+                            if (cd[j].Notes.notemath > cd[index].Notes.notemath)
+                            {
+                                index = j;
+                                break;
+                            }
+                            if(cd[j].Notes.notemath == cd[index].Notes.notemath)
+                            {
+                                if (Int32.Parse(cd[j].note_bac) > Int32.Parse(cd[index].note_bac))
+                                {
+                                    index = j;
+                                    break;
+                                }
+                            }
+                          
+                        }
+                        //Tester sur le choix de troisième critere
+                        if (choix == 3)
+                        {
+                            if (Int32.Parse(cd[j].note_bac) > Int32.Parse(cd[index].note_bac))
+                            {
+                                index = j;
+                                  break;
+                            }
+                            if (Int32.Parse(cd[j].note_bac) == Int32.Parse(cd[index].note_bac))
+                            {
+                                if (cd[j].Notes.notemath > cd[index].Notes.notemath)
+                                {
+                                    index = j;
+                                    break;
+                                }
+                            }
+                        }
+
+                    }
+                }
+                //echange
+                //candidat avec critere de valeur plus grand <=> celui le plus petit
+                var HighetCand = cd[index];
+                cd[index] = cd[i];
+                cd[i] = HighetCand;
+             
+            }
+            return cd;
+        }
+
+
+        public ActionResult ResultatDelib3eme(int id_fil,int coeff_math,int coeff_specialite,int nbr_places,int list_att,int note_min,int choix1, int choix2, int choix3)
+        {
+             List<Candidat> admis_principal = new List<Candidat>();
+             List<Candidat> admis_att = new List<Candidat>();
+            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p=>p.statut== "pres").Where(p => p.id_fil == id_fil
+            ).ToList();
+             if (candidats.Count() != 0)
+            {
+               foreach(var cand in candidats)
+                 {
+                     cand.Notes.note_concours = ((double)cand.Notes.notemath * coeff_math+ (double)cand.Notes.notespec*coeff_specialite)/(coeff_math+coeff_specialite);
+                     db.SaveChanges();
+                 }
+                candidats = candidats.AsQueryable().Where(p => p.Notes.note_concours > note_min).ToList();
+                //1eme critere à choisir
+                 switch (choix1)
+                 {
+                     case 1:
+                         candidats=candidats.AsQueryable().OrderByDescending(p => p.Notes.note_concours).ToList();
+                         break;
+                     case 2:
+                        candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.notemath).ToList();
+                         break;
+                     case 3:
+                        candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.notespec).ToList();
+                         break;
+
+                     default:
+                         break;
+                 };
+                //
+                candidats = sortCandidat(candidats, choix2);
+                Session["candidatsDelib"] = candidats;
+
+             
+
+                 for (int i = 0; i < nbr_places; i++)
+                  {
+                    Candidat cand = null;
+                    try
+                    {
+                        cand = candidats.ElementAt(i);
+                       
+
+                    }
+                    catch (System.ArgumentOutOfRangeException e)  
+                    {
+                        break;
+                    }
+                    
+                    admis_principal.Add(cand);
+                      cand.statut = "ADMIS_PR";
+                      db.SaveChanges();
+
+                }
+                  for (int i = nbr_places; i < list_att+nbr_places; i++)
+                  {
+                    Candidat cand = null;
+                    try
+                    {
+                        cand = candidats.ElementAt(i);
+
+
+                    }
+                    catch (System.ArgumentOutOfRangeException e) 
+                    {
+                        break;
+                    }
+                    admis_att.Add(cand);
+                      cand.statut = "ADMIS_Att";
+                       db.SaveChanges();
+
+                }
+                Session["admispr"] = admis_principal;
+                Session["admisatt"] = admis_att;
+                ViewBag.annee = candidats.ElementAt(0).niveau;
+                ViewBag.id_fil = id_fil;
+                ViewBag.Filiere = db.Filieres.Find(id_fil).nom_fil;
+                ViewBag.att = admis_att.Count;
+                ViewBag.attratio = (int)(((double)admis_att.Count/ (double)candidats.Count)*100);
+                ViewBag.principal = admis_principal.Count;
+                ViewBag.principalratio = (int)(((double)admis_principal.Count / (double)candidats.Count) * 100);
+                ViewBag.total = candidats.Count;
+                ViewBag.coefMath = coeff_math;
+                ViewBag.coefspec = coeff_specialite;
+                ViewBag.noteMin = note_min;
+                ViewBag.error = "";
+                return View("ResultatDeliberation", candidats);
+            }
+            else
+            {
+                ViewBag.error = "empty";
+                return View("ResultatDeliberation");
+            }
+
+        
+
+
+        }
+        
+        public ActionResult candidatNonConforme(string cin)
+        {
+            List<Candidat>  candidats = (List < Candidat > )Session["candidatsDelib"];
+            Candidat candidat = null;
+            foreach(var cnd in candidats)
+            {
+               if(cnd.CIN == cin)
+                {
+                    var admis = db.Candidats.Find(cin);
+                    admis.statut = "NON_Conforme";
+                    db.SaveChanges();
+                    candidat = cnd;
+                    break;
+                }
+            }
+            List<Candidat> admis_principal = (List<Candidat>)Session["admispr"];
+            List<Candidat> admis_att = (List<Candidat>)Session["admisatt"];
+            admis_att.Remove(candidat);
+            admis_principal.Remove(candidat);
+            ViewBag.error = "";
+            candidats.Remove(candidat);
+            return View("ResultatDeliberation", candidats);
+        }
+        public ActionResult ListAdmis3emeDelib()
+        {
+            List<Candidat> admisprincipal = (List<Candidat>)Session["admispr"];
+            ViewBag.filiere = admisprincipal.ElementAt(0).Filiere.nom_fil;
+            ViewBag.annee = admisprincipal.ElementAt(0).niveau;
+            ViewBag.admisPR = admisprincipal;
+            ViewBag.admisATT = (List<Candidat>)Session["admisatt"];
+            
+            return View("ListAdmisDelib");
+        }
+        public ActionResult ListAdmission3eme()
+        {
+            ViewBag.list = "";
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ListAdmission3emeResult(int? id_fil)
+        {
+            ViewBag.list = "list";
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+            ViewBag.filiere= db.Filieres.Find(id_fil).nom_fil;
+            ViewBag.admisPR = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "ADMIS_PR").Where(p => p.id_fil == id_fil
+            ).ToList();
+            ViewBag.admisATT = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "ADMIS_Att").Where(p => p.id_fil == id_fil
+           ).ToList();
+            return View("ListAdmission3eme");
+        }
+        public ActionResult deleberationResult4eme()
+        {
+
+            return View();
+        }
+        public ActionResult ResultatDelib4eme(int id_fil, int coeff_math, int coeff_specialite, int nbr_places, int list_att, int note_min, int choix1, int choix2, int choix3)
+        {
+            List<Candidat> admis_principal = new List<Candidat>();
+            List<Candidat> admis_att = new List<Candidat>();
+            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "pres").Where(p => p.id_fil == id_fil
+            ).ToList();
+            if (candidats.Count() != 0)
+            {
+                foreach (var cand in candidats)
+                {
+                    cand.Notes.note_concours = ((double)cand.Notes.notemath * coeff_math + (double)cand.Notes.notespec * coeff_specialite) / (coeff_math + coeff_specialite);
+                    db.SaveChanges();
+                }
+                candidats = candidats.AsQueryable().Where(p => p.Notes.note_concours > note_min).ToList();
+                switch (choix1)
+                {
+                    case 1:
+                        candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.note_concours).ToList();
+                        break;
+                    case 2:
+                        candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.notemath).ToList();
+                        break;
+                    case 3:
+                        candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.notespec).ToList();
+                        break;
+
+                    default:
+                        break;
+                };
+
+                candidats = sortCandidat(candidats, choix2);
+                Session["candidatsDelib"] = candidats;
+
+
+                for (int i = 0; i < nbr_places; i++)
+                {
+                    Candidat cand = null;
+                    try
+                    {
+                        cand = candidats.ElementAt(i);
+
+
+                    }
+                    catch (System.ArgumentOutOfRangeException e)
+                    {
+                        break;
+                    }
+
+                    admis_principal.Add(cand);
+                    cand.statut = "ADMIS_PR";
+                    db.SaveChanges();
+
+                }
+                for (int i = nbr_places; i < list_att + nbr_places; i++)
+                {
+                    Candidat cand = null;
+                    try
+                    {
+                        cand = candidats.ElementAt(i);
+                    }
+                    catch (System.ArgumentOutOfRangeException e) 
+                    {
+                        break;
+                    }
+                    admis_att.Add(cand);
+                    cand.statut = "ADMIS_Att";
+                    db.SaveChanges();
+
+                }
+                Session["admispr"] = admis_principal;
+                Session["admisatt"] = admis_att;
+                ViewBag.id_fil = id_fil;
+                ViewBag.Filiere = db.Filieres.Find(id_fil).nom_fil;
+                ViewBag.att = admis_att.Count;
+                ViewBag.attratio = (int)(((double)admis_att.Count / (double)candidats.Count) * 100);
+                ViewBag.principal = admis_principal.Count;
+                ViewBag.principalratio = (int)(((double)admis_principal.Count / (double)candidats.Count) * 100);
+                ViewBag.total = candidats.Count;
+                ViewBag.coefMath = coeff_math;
+                ViewBag.coefspec = coeff_specialite;
+                ViewBag.noteMin = note_min;
+                ViewBag.error = "";
+                return View("ResultatDeliberation",candidats);
+            }
+            else
+            {
+                ViewBag.error = "empty";
+                return View("ResultatDeliberation");
+            }
+
+
+
+
+        }
+
+        public ActionResult ListAdmis4emeDelib()
+        {
+            List<Candidat> admisprincipal = (List<Candidat>)Session["admispr"];
+            ViewBag.filiere = admisprincipal.ElementAt(0).Filiere.nom_fil;
+            ViewBag.annee = admisprincipal.ElementAt(0).niveau;
+            ViewBag.admisPR = admisprincipal;
+            ViewBag.admisATT = (List<Candidat>)Session["admisatt"];
+
+            return View("ListAdmisDelib");
+
+        }
+        public ActionResult ListAdmission4eme()
+        {
+            ViewBag.list = "";
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ListAdmission4emeResult(int? id_fil)
+        {
+            ViewBag.list = "list";
+            ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+            ViewBag.filiere = db.Filieres.Find(id_fil).nom_fil;
+            ViewBag.admisPR = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "ADMIS_PR").Where(p => p.id_fil == id_fil
+            ).ToList();
+            ViewBag.admisATT = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "ADMIS_Att").Where(p => p.id_fil == id_fil
+           ).ToList();
+            return View("ListAdmission4eme");
+        }
+
+
+
+
+        /*
+        *
+        * Partie Deliberation__END
+        */
 
         // chart 4eme
         public ActionResult MyChartNiveau4()
@@ -438,7 +801,7 @@ namespace ProjetASPMVC1.Controllers
 
                 }
             }
-
+         
             return list.ToList();
 
         }

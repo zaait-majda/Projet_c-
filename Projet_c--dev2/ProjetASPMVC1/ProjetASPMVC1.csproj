@@ -225,6 +225,18 @@
     <Compile Include="Migrations\202003292211585_InitialCreate.Designer.cs">
       <DependentUpon>202003292211585_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003262148524_InitialCreate5.cs" />
+    <Compile Include="Migrations\202003262148524_InitialCreate5.Designer.cs">
+      <DependentUpon>202003262148524_InitialCreate5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003281144191_InitialCreate6.cs" />
+    <Compile Include="Migrations\202003281144191_InitialCreate6.Designer.cs">
+      <DependentUpon>202003281144191_InitialCreate6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003292245569_InitialCreate7.cs" />
+    <Compile Include="Migrations\202003292245569_InitialCreate7.Designer.cs">
+      <DependentUpon>202003292245569_InitialCreate7.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BoitMessage.cs" />
@@ -262,6 +274,7 @@
     <Content Include="css\css2\owl.carousel.min.css" />
     <Content Include="css\css2\owl.theme.default.min.css" />
     <Content Include="css\css2\style.css" />
+    <Content Include="css\DelibationStyle.css" />
     <Content Include="css\elegant-icons.css" />
     <Content Include="css\flaticon.css" />
     <Content Include="css\font-awesome.min.css" />
@@ -689,6 +702,14 @@
     <Content Include="Views\Admins\rechercherCorbeil4eme.cshtml" />
     <Content Include="Views\Admins\correction.cshtml" />
     <Content Include="Views\Candidats\deleteCompte.cshtml" />
+    <Content Include="Views\Admins\Deliberation3eme.cshtml" />
+    <Content Include="Views\Admins\Deliberation4eme.cshtml" />
+    <Content Include="Views\Admins\test.cshtml" />
+    <Content Include="Views\Admins\ResultatDeliberation.cshtml" />
+    <Content Include="Views\Admins\ListAdmisDelib.cshtml" />
+    <Content Include="Views\Admins\ListAdmission3eme.cshtml" />
+    <Content Include="Views\Admins\ListAdmissionResult.cshtml" />
+    <Content Include="Views\Admins\ListAdmission4eme.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -709,6 +730,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202003292211585_InitialCreate.resx">
       <DependentUpon>202003292211585_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003262148524_InitialCreate5.resx">
+      <DependentUpon>202003262148524_InitialCreate5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003281144191_InitialCreate6.resx">
+      <DependentUpon>202003281144191_InitialCreate6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003292245569_InitialCreate7.resx">
+      <DependentUpon>202003292245569_InitialCreate7.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

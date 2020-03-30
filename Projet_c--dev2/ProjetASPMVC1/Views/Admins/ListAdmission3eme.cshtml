@@ -1,0 +1,32 @@
+﻿
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml ";
+}
+
+
+@using (Html.BeginForm("ListAdmission3emeResult", "Admins", FormMethod.Post))
+{
+    <center>
+        <h4>Concours d'accès en 3éme Année</h4>
+        <div class="form-group d-flex d-sm-flex justify-content-sm-center align-items-sm-end">
+            <div><label class="justify-content-start" id="fil">Filière :&nbsp;</label></div>
+            <div>@Html.DropDownList("id_fil", ViewBag.f as SelectList, htmlAttributes: new { @class = "btn btn-secondary dropdown-toggle  " })</div>
+        </div>
+
+        <br>
+        <div  class="form-group d-flex d-sm-flex justify-content-sm-center align-items-sm-end">
+            <input class="btn btn-primary " type="submit" value="Afficher les listes">
+        </div>
+    </center>
+
+
+}
+@if (ViewBag.list == "")
+{
+
+}
+else
+{
+    @Html.Partial("ListAdmissionResult")
+}

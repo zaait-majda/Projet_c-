@@ -450,8 +450,390 @@ namespace ProjetASPMVC1.Controllers
         * Partie Deliberation__END
         */
 
-        // chart 4eme
-        public ActionResult MyChartNiveau4()
+        /*
+          * begin
+          * Partie statistique des admis de 3 annes
+          */
+        public ActionResult statistiqueDesAdmis3Annee()
+        {
+            //pour les admis
+            List<DataPoint> dataPointsForInfoAdmis = new List<DataPoint>();
+            List<DataPoint> dataPointsForIndusAdmis = new List<DataPoint>();
+            List<DataPoint> dataPointsForGpmcAdmis = new List<DataPoint>();
+            List<DataPoint> dataPointsForGtrAdmis = new List<DataPoint>();
+            //pour les atente
+            List<DataPoint> dataPointsForInfoAttente = new List<DataPoint>();
+            List<DataPoint> dataPointsForIndusAttente = new List<DataPoint>();
+            List<DataPoint> dataPointsForGpmcAttente = new List<DataPoint>();
+            List<DataPoint> dataPointsForGtrAttente = new List<DataPoint>();
+            //pour les admis
+            var infoAdmis = new SortedList<string, int>();
+            var indusAdmis = new SortedList<string, int>();
+            var gpmcAdmis = new SortedList<string, int>();
+            var gtrAdmis = new SortedList<string, int>();
+            //pour les attent
+            var infoAttente = new SortedList<string, int>();
+            var indusAttente = new SortedList<string, int>();
+            var gpmcAttente = new SortedList<string, int>();
+            var gtrAttente = new SortedList<string, int>();
+
+            var query = (from candidat in db.Candidats
+                         join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
+                         join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
+                         where candidat.statut.Equals("ADMIS_Att") && candidat.niveau.Equals("3eme")
+                         select new
+                         {
+                             nomFiliere = filiere.nom_fil,
+                             nomDiplome = diplome.nom_diplome,
+
+                         }).ToList();
+            var queryAttente = (from candidat in db.Candidats
+                                join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
+                                join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
+                                where candidat.statut.Equals("ADMIS_Att") && candidat.niveau.Equals("3eme")
+                                select new
+                                {
+                                    nomFiliere = filiere.nom_fil,
+                                    nomDiplome = diplome.nom_diplome,
+
+                                }).ToList();
+
+            foreach (var candidat in query)
+            {
+
+                if (candidat.nomFiliere.Equals("informatique"))
+                {
+                    if (infoAdmis.ContainsKey(candidat.nomDiplome))
+                    {
+                        infoAdmis[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        infoAdmis.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("industriel"))
+                {
+                    if (indusAdmis.ContainsKey(candidat.nomDiplome))
+                    {
+                        indusAdmis[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        indusAdmis.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("telecome"))
+                {
+                    if (gtrAdmis.ContainsKey(candidat.nomDiplome))
+                    {
+                        gtrAdmis[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gtrAdmis.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else
+                {
+                    if (gpmcAdmis.ContainsKey(candidat.nomDiplome))
+                    {
+                        gpmcAdmis[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gpmcAdmis.Add(candidat.nomDiplome, 1);
+                    }
+                }
+            }
+            // pour les attents
+            foreach (var candidat in queryAttente)
+            {
+
+                if (candidat.nomFiliere.Equals("informatique"))
+                {
+                    if (infoAttente.ContainsKey(candidat.nomDiplome))
+                    {
+                        infoAttente[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        infoAttente.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("industriel"))
+                {
+                    if (indusAttente.ContainsKey(candidat.nomDiplome))
+                    {
+                        indusAttente[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        indusAttente.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("telecome"))
+                {
+                    if (gtrAttente.ContainsKey(candidat.nomDiplome))
+                    {
+                        gtrAttente[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gtrAttente.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else
+                {
+                    if (gpmcAttente.ContainsKey(candidat.nomDiplome))
+                    {
+                        gpmcAttente[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gpmcAttente.Add(candidat.nomDiplome, 1);
+                    }
+                }
+            }
+            foreach (var i in infoAdmis)
+            {
+                dataPointsForInfoAdmis.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in indusAdmis)
+            {
+                dataPointsForIndusAdmis.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gpmcAdmis)
+            {
+                dataPointsForGpmcAdmis.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gtrAdmis)
+            {
+                dataPointsForGtrAdmis.Add(new DataPoint(i.Key, i.Value));
+            }
+            //pour la liste d'attente
+            foreach (var i in infoAttente)
+            {
+                dataPointsForInfoAttente.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in indusAttente)
+            {
+                dataPointsForIndusAttente.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gpmcAttente)
+            {
+                dataPointsForGpmcAttente.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gtrAttente)
+            {
+                dataPointsForGtrAttente.Add(new DataPoint(i.Key, i.Value));
+            }
+            //passer les donnees aux views
+
+            ViewBag.dataPointsForInfoAdmis = JsonConvert.SerializeObject(dataPointsForInfoAdmis);
+            ViewBag.dataPointsForIndusAdmis = JsonConvert.SerializeObject(dataPointsForIndusAdmis);
+            ViewBag.dataPointsForGpmcAdmis = JsonConvert.SerializeObject(dataPointsForGpmcAdmis);
+            ViewBag.dataPointsForGtrAdmis = JsonConvert.SerializeObject(dataPointsForGtrAdmis);
+            // attent
+            ViewBag.dataPointsForInfoAttente = JsonConvert.SerializeObject(dataPointsForInfoAttente);
+            ViewBag.dataPointsForIndusAttente = JsonConvert.SerializeObject(dataPointsForIndusAttente);
+            ViewBag.dataPointsForGpmcAttente = JsonConvert.SerializeObject(dataPointsForGpmcAttente);
+            ViewBag.dataPointsForGtrAttente = JsonConvert.SerializeObject(dataPointsForGtrAttente);
+            return View("statistique_Des_Admis_En_3_Anees");
+        }
+        public ActionResult statistiqueDesAdmis4Annee()
+        {
+            List<DataPoint> dataPointsForInfoAdmis = new List<DataPoint>();
+            List<DataPoint> dataPointsForIndusAdmis = new List<DataPoint>();
+            List<DataPoint> dataPointsForGpmcAdmis = new List<DataPoint>();
+            List<DataPoint> dataPointsForGtrAdmis = new List<DataPoint>();
+            //pour les atente
+            List<DataPoint> dataPointsForInfoAttente = new List<DataPoint>();
+            List<DataPoint> dataPointsForIndusAttente = new List<DataPoint>();
+            List<DataPoint> dataPointsForGpmcAttente = new List<DataPoint>();
+            List<DataPoint> dataPointsForGtrAttente = new List<DataPoint>();
+            //pour les admis
+            var infoAdmis = new SortedList<string, int>();
+            var indusAdmis = new SortedList<string, int>();
+            var gpmcAdmis = new SortedList<string, int>();
+            var gtrAdmis = new SortedList<string, int>();
+            //pour les attent
+            var infoAttente = new SortedList<string, int>();
+            var indusAttente = new SortedList<string, int>();
+            var gpmcAttente = new SortedList<string, int>();
+            var gtrAttente = new SortedList<string, int>();
+
+            var query = (from candidat in db.Candidats
+                         join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
+                         join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
+                         where candidat.statut.Equals("ADMIS_Att") && candidat.niveau.Equals("4eme")
+                         select new
+                         {
+                             nomFiliere = filiere.nom_fil,
+                             nomDiplome = diplome.nom_diplome,
+
+                         }).ToList();
+            var queryAttente = (from candidat in db.Candidats
+                                join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
+                                join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
+                                where candidat.statut.Equals("ADMIS_Att") && candidat.niveau.Equals("4eme")
+                                select new
+                                {
+                                    nomFiliere = filiere.nom_fil,
+                                    nomDiplome = diplome.nom_diplome,
+
+                                }).ToList();
+
+            foreach (var candidat in query)
+            {
+
+                if (candidat.nomFiliere.Equals("informatique"))
+                {
+                    if (infoAdmis.ContainsKey(candidat.nomDiplome))
+                    {
+                        infoAdmis[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        infoAdmis.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("industriel"))
+                {
+                    if (indusAdmis.ContainsKey(candidat.nomDiplome))
+                    {
+                        indusAdmis[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        indusAdmis.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("telecome"))
+                {
+                    if (gtrAdmis.ContainsKey(candidat.nomDiplome))
+                    {
+                        gtrAdmis[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gtrAdmis.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else
+                {
+                    if (gpmcAdmis.ContainsKey(candidat.nomDiplome))
+                    {
+                        gpmcAdmis[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gpmcAdmis.Add(candidat.nomDiplome, 1);
+                    }
+                }
+            }
+            // pour les attents
+            foreach (var candidat in queryAttente)
+            {
+
+                if (candidat.nomFiliere.Equals("informatique"))
+                {
+                    if (infoAttente.ContainsKey(candidat.nomDiplome))
+                    {
+                        infoAttente[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        infoAttente.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("industriel"))
+                {
+                    if (indusAttente.ContainsKey(candidat.nomDiplome))
+                    {
+                        indusAttente[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        indusAttente.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.Equals("telecome"))
+                {
+                    if (gtrAttente.ContainsKey(candidat.nomDiplome))
+                    {
+                        gtrAttente[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gtrAttente.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else
+                {
+                    if (gpmcAttente.ContainsKey(candidat.nomDiplome))
+                    {
+                        gpmcAttente[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gpmcAttente.Add(candidat.nomDiplome, 1);
+                    }
+                }
+            }
+            foreach (var i in infoAdmis)
+            {
+                dataPointsForInfoAdmis.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in indusAdmis)
+            {
+                dataPointsForIndusAdmis.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gpmcAdmis)
+            {
+                dataPointsForGpmcAdmis.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gtrAdmis)
+            {
+                dataPointsForGtrAdmis.Add(new DataPoint(i.Key, i.Value));
+            }
+            //pour la liste d'attente
+            foreach (var i in infoAttente)
+            {
+                dataPointsForInfoAttente.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in indusAttente)
+            {
+                dataPointsForIndusAttente.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gpmcAttente)
+            {
+                dataPointsForGpmcAttente.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gtrAttente)
+            {
+                dataPointsForGtrAttente.Add(new DataPoint(i.Key, i.Value));
+            }
+            //passer les donnees aux views
+
+            ViewBag.dataPointsForInfoAdmis = JsonConvert.SerializeObject(dataPointsForInfoAdmis);
+            ViewBag.dataPointsForIndusAdmis = JsonConvert.SerializeObject(dataPointsForIndusAdmis);
+            ViewBag.dataPointsForGpmcAdmis = JsonConvert.SerializeObject(dataPointsForGpmcAdmis);
+            ViewBag.dataPointsForGtrAdmis = JsonConvert.SerializeObject(dataPointsForGtrAdmis);
+            // attent
+            ViewBag.dataPointsForInfoAttente = JsonConvert.SerializeObject(dataPointsForInfoAttente);
+            ViewBag.dataPointsForIndusAttente = JsonConvert.SerializeObject(dataPointsForIndusAttente);
+            ViewBag.dataPointsForGpmcAttente = JsonConvert.SerializeObject(dataPointsForGpmcAttente);
+            ViewBag.dataPointsForGtrAttente = JsonConvert.SerializeObject(dataPointsForGtrAttente);
+            return View("statistique_Des_Admis_En_4_Anees");
+        }
+
+    
+
+
+
+    // chart 4eme
+    public ActionResult MyChartNiveau4()
         {
 
             var x = from p in db.Filieres select p.nom_fil;
@@ -729,7 +1111,7 @@ namespace ProjetASPMVC1.Controllers
                                         if (somme >= seuil)
                                         {
 
-                                            db.Candidats.Find(etu.CIN).convocu = true;
+                                            //db.Candidats.Find(etu.CIN).convocu = true;
                                             db.Candidats.Find(etu.CIN).statut = "pres";
                                             db.SaveChanges();
 
@@ -787,7 +1169,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-                                            db.Candidats.Find(etu.CIN).convocu = true;
+                                            //db.Candidats.Find(etu.CIN).convocu = true;
                                             db.Candidats.Find(etu.CIN).statut = "pres";
                                             db.SaveChanges();
                                             list.Add(etu);
@@ -885,7 +1267,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-                                            db.Candidats.Find(etu.CIN).convocu = true;
+                                            //db.Candidats.Find(etu.CIN).convocu = true;
                                             db.Candidats.Find(etu.CIN).statut = "pres";
                                             db.SaveChanges();
                                             list.Add(etu);
@@ -942,7 +1324,7 @@ namespace ProjetASPMVC1.Controllers
                                         somme = ((n1 * nts.s1) + (n2 * nts.s2) + (nts.s3 * n3) + (nts.s4 * n4) + (nts.s5 * n5) + (nts.s6 * n6) + (bac * Convert.ToDouble(etu.note_bac))) / (n1 + n2 + n3 + n4 + n5 + n6);
                                         if (somme >= seuil)
                                         {
-                                            db.Candidats.Find(etu.CIN).convocu = true;
+                                            //db.Candidats.Find(etu.CIN).convocu = true;
                                             db.Candidats.Find(etu.CIN).statut = "pres";
                                             db.SaveChanges();
                                             list.Add(etu);
@@ -1000,7 +1382,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var v in db.Candidats.ToList())
             {
 
-                if (v.id_fil == Convert.ToInt32(Session["id_fil3"]) && v.convocu==true && v.niveau.Equals("3eme"))
+                if (v.id_fil == Convert.ToInt32(Session["id_fil3"]) && v.statut.Equals("pres") && v.niveau.Equals("3eme"))
                 {
                     conv.Add(v);
                 }
@@ -1016,7 +1398,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var v in db.Candidats.ToList())
             {
 
-                if (v.id_fil == Convert.ToInt32(Session["id_fil4"]) && v.convocu == true && v.niveau.Equals("4eme"))
+                if (v.id_fil == Convert.ToInt32(Session["id_fil4"]) && v.statut.Equals("pres") && v.niveau.Equals("4eme"))
                 {
                     conv.Add(v);
                 }
@@ -1048,7 +1430,7 @@ namespace ProjetASPMVC1.Controllers
             var query = (from candidat in db.Candidats
                          join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
                          join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
-                         where candidat.convocu == false && candidat.niveau.Equals("3eme")
+                         where candidat.statut.Equals("pres") && candidat.niveau.Equals("3eme")
                          select new
                          {
                              nomFiliere = filiere.nom_fil,
@@ -1146,7 +1528,7 @@ namespace ProjetASPMVC1.Controllers
             var query = (from candidat in db.Candidats
                          join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
                          join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
-                         where candidat.convocu == false && candidat.niveau.Equals("4eme")
+                         where candidat.statut.Equals("pres") && candidat.niveau.Equals("4eme")
                          select new
                          {
                              nomFiliere = filiere.nom_fil,

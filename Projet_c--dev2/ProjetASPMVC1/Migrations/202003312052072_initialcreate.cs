@@ -3,7 +3,7 @@ namespace ProjetASPMVC1.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate1 : DbMigration
+    public partial class initialcreate : DbMigration
     {
         public override void Up()
         {
@@ -49,20 +49,27 @@ namespace ProjetASPMVC1.Migrations
                 .Index(t => t.id_note)
                 .Index(t => t.id_diplome);
             
-            AddColumn("dbo.Candidats", "convocu", c => c.Boolean(nullable: false));
+ 
             AddColumn("dbo.Candidats", "nom_dip", c => c.String());
+            AddColumn("dbo.Notes", "notemath", c => c.Double());
+            AddColumn("dbo.Notes", "notespec", c => c.Double());
+            DropColumn("dbo.Notes", "math");
+            DropColumn("dbo.Notes", "specialite");
         }
         
         public override void Down()
         {
+            AddColumn("dbo.Notes", "specialite", c => c.Double());
+            AddColumn("dbo.Notes", "math", c => c.Double());
             DropForeignKey("dbo.corbeils", "id_note", "dbo.Notes");
             DropForeignKey("dbo.corbeils", "id_fil", "dbo.Filieres");
             DropForeignKey("dbo.corbeils", "id_diplome", "dbo.Diplomes");
             DropIndex("dbo.corbeils", new[] { "id_diplome" });
             DropIndex("dbo.corbeils", new[] { "id_note" });
             DropIndex("dbo.corbeils", new[] { "id_fil" });
+            DropColumn("dbo.Notes", "notespec");
+            DropColumn("dbo.Notes", "notemath");
             DropColumn("dbo.Candidats", "nom_dip");
-            DropColumn("dbo.Candidats", "convocu");
             DropTable("dbo.corbeils");
         }
     }

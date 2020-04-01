@@ -84,6 +84,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
@@ -205,11 +208,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -221,25 +219,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003292211585_InitialCreate.cs" />
-    <Compile Include="Migrations\202003292211585_InitialCreate.Designer.cs">
-      <DependentUpon>202003292211585_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003262148524_InitialCreate5.cs" />
-    <Compile Include="Migrations\202003262148524_InitialCreate5.Designer.cs">
-      <DependentUpon>202003262148524_InitialCreate5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003281144191_InitialCreate6.cs" />
-    <Compile Include="Migrations\202003281144191_InitialCreate6.Designer.cs">
-      <DependentUpon>202003281144191_InitialCreate6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003292245569_InitialCreate7.cs" />
-    <Compile Include="Migrations\202003292245569_InitialCreate7.Designer.cs">
-      <DependentUpon>202003292245569_InitialCreate7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003301400424_InitialCreate1.cs" />
-    <Compile Include="Migrations\202003301400424_InitialCreate1.Designer.cs">
-      <DependentUpon>202003301400424_InitialCreate1.cs</DependentUpon>
+    <Compile Include="Migrations\202003312052072_initialcreate.cs" />
+    <Compile Include="Migrations\202003312052072_initialcreate.Designer.cs">
+      <DependentUpon>202003312052072_initialcreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -268,7 +250,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\canvasjs.min.js" />
+    <Content Include="Content\canvasjs.js" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\css2\animate.css" />
     <Content Include="css\css2\bootstrap.css" />
@@ -714,6 +696,8 @@
     <Content Include="Views\Admins\ListAdmission3eme.cshtml" />
     <Content Include="Views\Admins\ListAdmissionResult.cshtml" />
     <Content Include="Views\Admins\ListAdmission4eme.cshtml" />
+    <Content Include="Views\Admins\statistique_Des_Admis_En_3_Anees.cshtml" />
+    <Content Include="Views\Admins\statistique_Des_Admis_En_4_Anees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -732,20 +716,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003292211585_InitialCreate.resx">
-      <DependentUpon>202003292211585_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003262148524_InitialCreate5.resx">
-      <DependentUpon>202003262148524_InitialCreate5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003281144191_InitialCreate6.resx">
-      <DependentUpon>202003281144191_InitialCreate6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003292245569_InitialCreate7.resx">
-      <DependentUpon>202003292245569_InitialCreate7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003301400424_InitialCreate1.resx">
-      <DependentUpon>202003301400424_InitialCreate1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003312052072_initialcreate.resx">
+      <DependentUpon>202003312052072_initialcreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -789,7 +761,7 @@
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>

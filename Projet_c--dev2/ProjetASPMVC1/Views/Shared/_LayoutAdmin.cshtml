@@ -15,8 +15,7 @@
 
         body {
             font-family: montserrat, arial, verdana;
-            background-color:gainsboro;
-         
+            background-color: gainsboro;
         }
     </style>
 </head>
@@ -27,18 +26,18 @@
         </button><!-- Navbar Search-->
         <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
             <div class="input-group">
-          
+
             </div>
         </form>
         <i class="fa fa-bell" style="font-size:20px;color:white;"></i> <span style="color:white;">@RenderSection("Msg", required: false)</span>
         <!-- Navbar-->
         <ul class="navbar-nav ml-auto ml-md-0">
             <li class="nav-item dropdown">
-              
+
                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                   
+
                     @Html.ActionLink("Logout", "LogOut", "Admins")
                 </div>
             </li>
@@ -54,7 +53,7 @@
                         </div>
 
                         <span style="margin-top:40px;margin-bottom:20px;margin-left:15px;"><img src="~/img/admin.jpg" style="border-radius:30px;width:50px;height:50px; margin-right:20px;" />Welcome <p style="margin-left:80px;">@Session["login"]</p></span>
-                      
+
                         <ul class="navbar-nav ml-auto ml-md-0">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -68,26 +67,7 @@
                         </ul>
 
                         <div class="sb-sidenav-menu-heading">Operations</div>
-
-                        <ul class="navbar-nav ml-auto ml-md-0">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i>Statistiques</div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-
-                                    @Html.ActionLink("Statistiques", "getChartForPreselction3annee", "Admins")
-                                </div>
-                            </li>
-                        </ul>
-
-
-
-
-
-
-
-
+                       
 
                         <ul class="navbar-nav ml-auto ml-md-0">
                             <li class="nav-item dropdown">
@@ -103,7 +83,7 @@
                                     <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Présélection", "preselection", "Admins")
                                     <div class="dropdown-divider"></div>
-                                    @Html.ActionLink("Statistiques", "getChartForPreselction3annee", "Admins")
+                                    @Html.ActionLink("Statistiques des convoqués", "getChartForPreselction3annee", "Admins")
                                     <div class="dropdown-divider"></div>
                                     <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Correction Génie informatique", "correction", "Admins", new { niveau = "3eme", idfil = "1" }, null)
@@ -113,10 +93,12 @@
                                     @Html.ActionLink("Correction Génie Telecom", "correction", "Admins", new { niveau = "3eme", idfil = "3" }, null)
                                     <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Correction Génie GPMC", "correction", "Admins", new { niveau = "3eme", idfil = "2" }, null)
-                                      <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Délibération", "Deliberation3eme", "Admins")
                                     <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Liste d'admission", "ListAdmission3eme", "Admins")
+                                    <div class="dropdown-divider"></div>
+                                    @Html.ActionLink("statistique des admis en 3 annees", "statistiqueDesAdmis3Annee", "Admins")
                                 </div>
 
                             </li>
@@ -135,7 +117,7 @@
                                     <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Présélection", "preselection4eme", "Admins")
                                     <div class="dropdown-divider"></div>
-                                    @Html.ActionLink("Statistiques", "getChartForPreselction4annee", "Admins")
+                                    @Html.ActionLink("Statistiques des convoqués", "getChartForPreselction4annee", "Admins")
                                     <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Correction Génie informatique", "correction", "Admins", new { niveau = "4eme", idfil = "1" }, null)
                                     <div class="dropdown-divider"></div>
@@ -146,10 +128,13 @@
                                     @Html.ActionLink("Correction Génie Telecom", "correction", "Admins", new { niveau = "4eme", idfil = "3" }, null)
                                     <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Correction Gééie GPMC", "correction", "Admins", new { niveau = "4eme", idfil = "2" }, null)
-                                     <div class="dropdown-divider"></div>
+                                    <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Délibération", "Deliberation4eme", "Admins")
                                     <div class="dropdown-divider"></div>
                                     @Html.ActionLink("Liste d'admission", "ListAdmission4eme", "Admins")
+                                    <div class="dropdown-divider"></div>
+                                    @Html.ActionLink("statistique des admis en 4 annees", "statistiqueDesAdmis4Annee", "Admins")
+
                                 </div>
                             </li>
                         </ul>

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ProjetASPMVC1.Models.Candidat>
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml ";
+}
+<link href="~/css/DelibationStyle.css" rel="stylesheet" />
+
+
+<div>
+    <h4>Délibération après concours</h4>
+    <p> 4éme Année</p>
+
+    @using (Html.BeginForm("ResultatDelib4eme", "Admins", FormMethod.Post))
+    {
+
+        <div class="form-group d-flex d-sm-flex justify-content-sm-center align-items-sm-end">
+            <div><label class="justify-content-start" id="fil">Filière :&nbsp;</label></div>
+            <div>@Html.DropDownList("id_fil", ViewBag.f as SelectList, htmlAttributes: new { @class = "btn btn-secondary dropdown-toggle  " })</div>
+        </div>
+        <div class="form-group d-sm-flex justify-content-sm-center align-items-sm-end">
+            <label>Coefficients des notes :</label>
+
+            <div><label>Math :</label><input class="form-control" name="coeff_math" type="number" required></div>
+
+            <div><label>Specialite :</label><input class="form-control" name="coeff_specialite" type="number" required></div>
+
+        </div>
+        <div class="form-group d-sm-flex justify-content-sm-center align-items-sm-end">
+            <label>Nombre des places :</label>
+
+            <div><input class="form-control" name="nbr_places" type="number" required></div>
+
+        </div>
+        <div class="form-group d-sm-flex justify-content-sm-center align-items-sm-end ">
+
+            <label>Liste d'attent :</label>
+
+            <div class="listattent"><input class="form-control" name="list_att" type="number" required></div>
+
+        </div>
+        <div class="form-group d-sm-flex justify-content-sm-center align-items-sm-start">
+
+            <label>Note Minimal :</label>
+
+            <div class="listattent"><input class="form-control" name="note_min" type="number" required></div>
+
+        </div>
+        <div class="form-group d-sm-flex justify-content-sm-center ">
+
+            <label class="classement">Classement Par :</label>
+
+            <div class="listattent">
+                <select name="choix1" class="form-control">
+                    <optgroup label="This is a group">
+                        <option value="1" selected>Note globale</option>
+                        <option value="2">Note Mathematiques</option>
+                        <option value="3">Note du bac</option>
+                    </optgroup>
+                </select>
+                <select name="choix2" class="form-control">
+                    <optgroup label="This is a group">
+                        <option value="1">Note globale</option>
+                        <option value="2" selected>Note Mathematiques</option>
+                        <option value="3">Note du bac</option>
+                    </optgroup>
+                </select>
+                <select name="choix3" class="form-control">
+                    <optgroup label="This is a group">
+                        <option value="1">Note globale</option>
+                        <option value="2">Note Mathematiques</option>
+                        <option value="3" selected>Note du bac</option>
+                    </optgroup>
+                </select>
+                <input class="btn btn-primary afficherliste" type="submit" value="Afficher la liste">
+            </div>
+
+        </div>
+    }
+</div>

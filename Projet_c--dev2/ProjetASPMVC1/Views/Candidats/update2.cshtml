@@ -91,7 +91,7 @@
                                         <li>@Html.ActionLink("Diplomes obtenus", "update2", "Candidats", new { cin = ViewBag.CIN }, htmlAttributes: null)</li>
                                         <li>@Html.ActionLink("choix de filière", "update3", "Candidats", new { cin = ViewBag.CIN }, htmlAttributes: null)</li>
                                         <li>@Html.ActionLink("Télécharger les epreuvres", "Telecharger", "Candidats")</li>
-
+                                        <li>@Html.ActionLink("Supprimer compte", "deleteCompte", "Candidats")</li>
                                         <li>@Html.ActionLink("Déconnexion", "LogOut", "Home")</li>
                                     </ul>
                                 </div>
@@ -108,7 +108,7 @@
         <h6 style="color:blue">@ViewBag.messageconfirm</h6>
     </center>
     <hr />
-    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;" />
+    <img src='~/img/@Html.DisplayFor(model => model.photo)' style="margin-left:100px; float:left;margin-top:100px;width:150px;height:150px;" />
     <form class="form" action="updatediplome" method="post">
 
         <div class="form-horizontal">

@@ -30,5 +30,6 @@ namespace ProjetASPMVC1.Models
         public string etablissement { get; set; }
 
         public virtual ICollection<Candidat> Candidats { get; set; }
+        public virtual ICollection<corbeil> Corbeil{ get; set; }
     }
 }

@@ -1,0 +1,208 @@
+﻿@model IEnumerable<ProjetASPMVC1.Models.Candidat>
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml ";
+}
+
+<center>
+    <h4>Résultat Délibération</h4>
+
+</center>
+@if (ViewBag.error != "")
+{
+    <center>
+        <div class="alert alert-danger" role="alert">
+            Vous n'avez aucun candidat préselectioné <a href="#" class="alert-link">Cliquer ici</a>. pour revenir au page de preselection.
+        </div>
+    </center>
+}
+else
+{
+    var i = 1;
+    <center>
+
+        <p><strong>Filière @ViewBag.Filiere</strong> </p><br />
+        <p>@ViewBag.total étudiants</p>
+        <div class="card-columns">
+            <div class="card bg-primary">
+                <div class="card-body text-center">
+                    <p style="color:white"><strong>Liste principale </strong></p>
+                    <p class="card-text" style="color:white">@ViewBag.principal étudiants || @ViewBag.principalratio %</p>
+                </div>
+            </div>
+            <div class="card bg-light">
+                <div class="card-body text-center">
+                    <p><strong>Liste d'attent</strong></p>
+                    <p class="card-text"> @ViewBag.att étudiants || @ViewBag.attratio  %</p>
+                </div>
+            </div>
+            <div class="card bg-dark">
+                <div class="card-body text-center" >
+                    <p style="color:white"><strong>Coefficient des notes</strong></p>
+                    <p class="card-text" style="color:white" >
+                        Math : @ViewBag.coefMath
+                        || Specialite : @ViewBag.coefspec
+                        || Note minimal: @ViewBag.noteMin
+                    </p>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <div class="card mb-4">
+        <div class="card-header"><i class="fas fa-table mr-1"></i>Resultats de délibération @ViewBag.annee année</div>
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <br />
+                <table class="table table-bordered   table-primary" id="dataTable" width="100%" cellspacing="0">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>
+                                N°
+                            </th>
+                            <th>
+                                Non Conformité
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CNE)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.n_dossier)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.prenom)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.nom)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ville)
+                            </th>
+                            <th>Note concours</th>
+                            <th>Note Specialité</th>
+                            <th>Note Math</th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.type_bac)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.annee_bac)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.note_bac)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.mention_bac)
+                            </th>
+
+                            <th>
+                                @Html.DisplayNameFor(model => model.email)
+                            </th>
+                            <th>Note S1</th>
+                            <th>Note S2</th>
+                            <th>Note S3</th>
+                            <th>Note S4</th>
+                            <th>Note S5</th>
+                            <th>Note S6</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @i
+                                </td>
+                                <td>
+
+                                    @Html.ActionLink("NonConforme", "candidatNonConforme", new { cin = item.CIN }, htmlAttributes: new { @class = "btn btn-danger  " })
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CNE)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.n_dossier)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.prenom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nom)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ville)
+                                </td>
+                                <td style="background-color:lavender">
+                                    @Html.DisplayFor(modelItem => item.Notes.note_concours)
+                                </td>
+                                <td style="background-color:lightblue">
+                                    @Html.DisplayFor(modelItem => item.Notes.notespec)
+                                </td>
+                                <td style="background-color:lightgreen">
+                                    @Html.DisplayFor(modelItem => item.Notes.notemath)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.type_bac)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.annee_bac)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.note_bac)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.mention_bac)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.email)
+                                </td>
+                                <td style="background-color:lightcoral">
+                                    @Html.DisplayFor(modelItem => item.Notes.s1)
+                                </td>
+                                <td style="background-color:lightcoral">
+                                    @Html.DisplayFor(modelItem => item.Notes.s2)
+                                </td>
+                                <td style="background-color:lightcoral">
+                                    @Html.DisplayFor(modelItem => item.Notes.s3)
+                                </td>
+                                <td style="background-color:lightcoral">
+                                    @Html.DisplayFor(modelItem => item.Notes.s4)
+                                </td>
+                                <td style="background-color:lightcoral">
+                                    @Html.DisplayFor(modelItem => item.Notes.s5)
+                                </td>
+                                <td style="background-color:lightcoral">
+                                    @Html.DisplayFor(modelItem => item.Notes.s6)
+                                </td>
+
+
+
+                            </tr>
+                            i++;
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <center>
+            @if (@ViewBag.annee == "3eme")
+            {
+                <p style="font-size:30px">@Html.ActionLink("Listes d'admission", "ListAdmis3emeDelib")</p>
+            }
+            else
+            {
+                <p style="font-size:30px">@Html.ActionLink("Listes d'admission", "ListAdmis4emeDelib")</p>
+            }
+        </center> 
+    </div>
+    <center>
+       
+          
+
+        
+    </center>
+}

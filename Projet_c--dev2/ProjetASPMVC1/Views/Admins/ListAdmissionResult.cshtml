@@ -1,0 +1,110 @@
+﻿<div style="text-align:center;margin-left:150px;margin-right:150px;">
+    
+    <br />
+    <p><strong> @ViewBag.filiere</strong></p>
+    <br />
+    <p style="font-size:45px">List principal</p>
+
+    <table class="table table-bordered   table-light" id="dataTable" width="60%" cellspacing="0">
+        <thead>
+            <tr>
+            <tr>
+                <th>
+                    CNE
+                </th>
+                <th>
+                    Prenom
+                </th>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    CNI
+                </th>
+
+                <th>
+                    N° dossier
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @ViewBag.admisPR)
+            {
+                <tr>
+                    <td>
+                        @item.CNE
+                    </td>
+                    <td>
+                        @item.prenom
+                    </td>
+                    <td>
+                        @item.nom
+                    </td>
+                    <td>
+                        @item.CIN
+                    </td>
+
+                    <td>
+                        @item.n_dossier
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+    <p style="font-size:45px">List d'attent</p>
+    <table class="table table-bordered   table-light" id="dataTable" width="60%" cellspacing="0">
+        <thead>
+            <tr>
+            <tr>
+                <th>
+                    CNE
+                </th>
+                <th>
+                    Prenom
+                </th>
+                <th>
+                    Nom
+                </th>
+                <th>
+                    CNI
+                </th>
+
+                <th>
+                    N° dossier
+                </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in @ViewBag.admisATT)
+            {
+                <tr>
+                    <td>
+                        @item.CNE
+                    </td>
+                    <td>
+                        @item.prenom
+                    </td>
+                    <td>
+                        @item.nom
+                    </td>
+                    <td>
+                        @item.CIN
+                    </td>
+
+                    <td>
+                        @item.n_dossier
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+
+</div>

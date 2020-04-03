@@ -65,6 +65,7 @@ namespace ProjetASPMVC1.Models
         public String email { set; get; }
         public virtual bool EmailConfirmed { get; set; }
         public String statut { set; get; }
+        public Boolean convocu { set; get; }
         [Required]
         public String niveau { set; get; }
         [Required]
@@ -79,6 +80,8 @@ namespace ProjetASPMVC1.Models
         public virtual Notes Notes { set; get; }
         [ForeignKey("Diplome")]
         public int id_diplome { set; get; }
+
+        public string nom_dip { set; get; }
 
         public virtual Diplome Diplome { set; get; }
 

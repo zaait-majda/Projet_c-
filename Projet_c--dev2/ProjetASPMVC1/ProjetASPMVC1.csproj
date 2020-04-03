@@ -81,10 +81,25 @@
     <Reference Include="GitHub, Version=1.20.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\GitHub.1.20.0\lib\netstandard2.0\GitHub.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Azure.KeyVault.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>C:\Users\zaait\source\repos\AzureCloudService\packages\Microsoft.Azure.KeyVault.Core.1.0.0\lib\net40\Microsoft.Azure.KeyVault.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Data.Edm, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>C:\Users\zaait\source\repos\AzureCloudService\packages\Microsoft.Data.Edm.5.7.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>C:\Users\zaait\source\repos\AzureCloudService\packages\Microsoft.Data.OData.5.7.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Services.Client, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>C:\Users\zaait\source\repos\AzureCloudService\packages\Microsoft.Data.Services.Client.5.7.0\lib\net40\Microsoft.Data.Services.Client.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.3.0.0\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
@@ -93,6 +108,15 @@
     </Reference>
     <Reference Include="Microsoft.Owin.Hosting, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Hosting.3.0.0\lib\net45\Microsoft.Owin.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Diagnostics, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.ServiceRuntime, Version=2.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAzure.Storage, Version=8.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>C:\Users\zaait\source\repos\AzureCloudService\packages\WindowsAzure.Storage.8.0.1\lib\net45\Microsoft.WindowsAzure.Storage.dll</HintPath>
     </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -126,6 +150,10 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Spatial, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>C:\Users\zaait\source\repos\AzureCloudService\packages\System.Spatial.5.7.0\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
     <Reference Include="System.Text.Encodings.Web, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Text.Encodings.Web.4.7.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
@@ -192,6 +220,7 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Serialization" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -203,29 +232,27 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminsController.cs" />
     <Compile Include="Controllers\BoitMessagesController.cs" />
     <Compile Include="Controllers\CandidatsController.cs" />
+    <Compile Include="Controllers\corbeilsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003270040082_InitialCreate.cs" />
-    <Compile Include="Migrations\202003270040082_InitialCreate.Designer.cs">
-      <DependentUpon>202003270040082_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202004031906352_InitialCreate.cs" />
+    <Compile Include="Migrations\202004031906352_InitialCreate.Designer.cs">
+      <DependentUpon>202004031906352_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BoitMessage.cs" />
     <Compile Include="Models\Candidat.cs" />
+    <Compile Include="Models\corbeil.cs" />
+    <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\Diplome.cs" />
     <Compile Include="Models\Filiere.cs" />
     <Compile Include="Models\Notes.cs" />
@@ -247,27 +274,20 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\canvasjs.js" />
     <Content Include="css\bootstrap.min.css" />
-    <Content Include="css\css2\ajax-loader.gif" />
     <Content Include="css\css2\animate.css" />
-    <Content Include="css\css2\bootstrap-datepicker.css" />
-    <Content Include="css\css2\bootstrap.min.css" />
-    <Content Include="css\css2\bootstrap\bootstrap-grid.css" />
-    <Content Include="css\css2\bootstrap\bootstrap-reboot.css" />
-    <Content Include="css\css2\css\bootstrap-reboot.css" />
-    <Content Include="css\css2\css\mixins\_text-hide.css" />
-    <Content Include="css\css2\flaticon.css" />
+    <Content Include="css\css2\bootstrap.css" />
+    <Content Include="css\css2\flexslider.css" />
     <Content Include="css\css2\icomoon.css" />
-    <Content Include="css\css2\ionicons.min.css" />
     <Content Include="css\css2\magnific-popup.css" />
     <Content Include="css\css2\owl.carousel.min.css" />
     <Content Include="css\css2\owl.theme.default.min.css" />
     <Content Include="css\css2\style.css" />
+    <Content Include="css\DelibationStyle.css" />
     <Content Include="css\elegant-icons.css" />
     <Content Include="css\flaticon.css" />
     <Content Include="css\font-awesome.min.css" />
-    <Content Include="css\images\ui-icons_444444_256x240.png" />
-    <Content Include="css\images\ui-icons_555555_256x240.png" />
     <Content Include="css\jquery-ui.min.css" />
     <Content Include="css\magnific-popup.css" />
     <Content Include="css\main.css" />
@@ -284,6 +304,12 @@
     <Content Include="fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
     <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\fonts2\bootstrap\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\fonts2\flaticon\backup.txt" />
+    <Content Include="fonts\fonts2\flaticon\font\flaticon.css" />
+    <Content Include="fonts\fonts2\flaticon\font\flaticon.html" />
+    <Content Include="fonts\fonts2\flaticon\font\Flaticon.svg" />
+    <Content Include="fonts\fonts2\icomoon\icomoon.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\iconic\css\material-design-iconic-font.css" />
     <Content Include="fonts\iconic\css\material-design-iconic-font.min.css" />
@@ -308,6 +334,35 @@
     <Content Include="img\hero\hero-2.jpg" />
     <Content Include="img\hero\hero-3.jpg" />
     <Content Include="img\hero\unnamed.jpg" />
+    <Content Include="img\images\about-img-1.jpg" />
+    <Content Include="img\images\about-img-2.jpg" />
+    <Content Include="img\images\blog-1.jpg" />
+    <Content Include="img\images\blog-2.jpg" />
+    <Content Include="img\images\blog-3.jpg" />
+    <Content Include="img\images\blog-4.jpg" />
+    <Content Include="img\images\blog-5.jpg" />
+    <Content Include="img\images\blog-6.jpg" />
+    <Content Include="img\images\classes-1.jpg" />
+    <Content Include="img\images\classes-2.jpg" />
+    <Content Include="img\images\classes-3.jpg" />
+    <Content Include="img\images\classes-4.jpg" />
+    <Content Include="img\images\classes-5.jpg" />
+    <Content Include="img\images\classes-6.jpg" />
+    <Content Include="img\images\classes-7.jpg" />
+    <Content Include="img\images\classes-8.jpg" />
+    <Content Include="img\images\classes-9.jpg" />
+    <Content Include="img\images\event.jpg" />
+    <Content Include="img\images\img_bg_1.jpg" />
+    <Content Include="img\images\img_bg_2.jpg" />
+    <Content Include="img\images\img_bg_3.jpg" />
+    <Content Include="img\images\img_bg_4.jpg" />
+    <Content Include="img\images\img_bg_5.jpg" />
+    <Content Include="img\images\loader.gif" />
+    <Content Include="img\images\loc.png" />
+    <Content Include="img\images\person1.jpg" />
+    <Content Include="img\images\person2.jpg" />
+    <Content Include="img\images\person3.jpg" />
+    <Content Include="img\images\person4.jpg" />
     <Content Include="img\index.png" />
     <Content Include="img\loc.png" />
     <Content Include="img\login.png" />
@@ -378,9 +433,103 @@
     <Content Include="fonts\poppins\Poppins-Thin.ttf" />
     <Content Include="fonts\poppins\Poppins-ThinItalic.ttf" />
     <Content Include="js\.DS_Store" />
+    <Content Include="img\images\.DS_Store" />
     <Content Include="css\css2\.DS_Store" />
-    <Content Include="css\css2\bootstrap\.DS_Store" />
-    <Content Include="css\css2\css\.DS_Store" />
+    <Content Include="css\css2\bootstrap.css.map" />
+    <Content Include="css\css2\style.css.map" />
+    <Content Include="css\sass\.DS_Store" />
+    <Content Include="css\sass\bootstrap.scss" />
+    <Content Include="css\sass\bootstrap\.DS_Store" />
+    <Content Include="css\sass\bootstrap\mixins\_alerts.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_background-variant.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_border-radius.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_buttons.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_center-block.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_clearfix.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_forms.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_gradients.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_grid-framework.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_grid.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_hide-text.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_image.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_labels.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_list-group.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_nav-divider.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_nav-vertical-align.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_opacity.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_pagination.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_panels.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_progress-bar.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_reset-filter.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_reset-text.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_resize.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_responsive-visibility.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_size.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_tab-focus.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_table-row.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_text-emphasis.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_text-overflow.scss" />
+    <Content Include="css\sass\bootstrap\mixins\_vendor-prefixes.scss" />
+    <Content Include="css\sass\bootstrap\_alerts.scss" />
+    <Content Include="css\sass\bootstrap\_badges.scss" />
+    <Content Include="css\sass\bootstrap\_breadcrumbs.scss" />
+    <Content Include="css\sass\bootstrap\_button-groups.scss" />
+    <Content Include="css\sass\bootstrap\_buttons.scss" />
+    <Content Include="css\sass\bootstrap\_carousel.scss" />
+    <Content Include="css\sass\bootstrap\_close.scss" />
+    <Content Include="css\sass\bootstrap\_code.scss" />
+    <Content Include="css\sass\bootstrap\_component-animations.scss" />
+    <Content Include="css\sass\bootstrap\_dropdowns.scss" />
+    <Content Include="css\sass\bootstrap\_forms.scss" />
+    <Content Include="css\sass\bootstrap\_glyphicons.scss" />
+    <Content Include="css\sass\bootstrap\_grid.scss" />
+    <Content Include="css\sass\bootstrap\_input-groups.scss" />
+    <Content Include="css\sass\bootstrap\_jumbotron.scss" />
+    <Content Include="css\sass\bootstrap\_labels.scss" />
+    <Content Include="css\sass\bootstrap\_list-group.scss" />
+    <Content Include="css\sass\bootstrap\_media.scss" />
+    <Content Include="css\sass\bootstrap\_mixins.scss" />
+    <Content Include="css\sass\bootstrap\_modals.scss" />
+    <Content Include="css\sass\bootstrap\_navbar.scss" />
+    <Content Include="css\sass\bootstrap\_navs.scss" />
+    <Content Include="css\sass\bootstrap\_normalize.scss" />
+    <Content Include="css\sass\bootstrap\_pager.scss" />
+    <Content Include="css\sass\bootstrap\_pagination.scss" />
+    <Content Include="css\sass\bootstrap\_panels.scss" />
+    <Content Include="css\sass\bootstrap\_popovers.scss" />
+    <Content Include="css\sass\bootstrap\_print.scss" />
+    <Content Include="css\sass\bootstrap\_progress-bars.scss" />
+    <Content Include="css\sass\bootstrap\_responsive-embed.scss" />
+    <Content Include="css\sass\bootstrap\_responsive-utilities.scss" />
+    <Content Include="css\sass\bootstrap\_scaffolding.scss" />
+    <Content Include="css\sass\bootstrap\_tables.scss" />
+    <Content Include="css\sass\bootstrap\_theme.scss" />
+    <Content Include="css\sass\bootstrap\_thumbnails.scss" />
+    <Content Include="css\sass\bootstrap\_tooltip.scss" />
+    <Content Include="css\sass\bootstrap\_type.scss" />
+    <Content Include="css\sass\bootstrap\_utilities.scss" />
+    <Content Include="css\sass\bootstrap\_variables.scss" />
+    <Content Include="css\sass\bootstrap\_wells.scss" />
+    <Content Include="css\sass\style.scss" />
+    <Content Include="css\sass\_bootstrap-compass.scss" />
+    <Content Include="css\sass\_bootstrap-mincer.scss" />
+    <Content Include="css\sass\_bootstrap-sprockets.scss" />
+    <Content Include="fonts\fonts2\.DS_Store" />
+    <Content Include="fonts\fonts2\bootstrap\.DS_Store" />
+    <Content Include="fonts\fonts2\bootstrap\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\fonts2\bootstrap\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\fonts2\bootstrap\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\fonts2\bootstrap\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\fonts2\flaticon\.DS_Store" />
+    <Content Include="fonts\fonts2\flaticon\font\Flaticon.eot" />
+    <Content Include="fonts\fonts2\flaticon\font\Flaticon.ttf" />
+    <Content Include="fonts\fonts2\flaticon\font\Flaticon.woff" />
+    <Content Include="fonts\fonts2\flaticon\font\_flaticon.scss" />
+    <Content Include="fonts\fonts2\flaticon\license\license.pdf" />
+    <Content Include="fonts\fonts2\icomoon\.DS_Store" />
+    <Content Include="fonts\fonts2\icomoon\icomoon.eot" />
+    <Content Include="fonts\fonts2\icomoon\icomoon.ttf" />
+    <Content Include="fonts\fonts2\icomoon\icomoon.woff" />
     <None Include="js\jquery-3.3.1.intellisense.js" />
     <Content Include="js\google-map.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
@@ -403,6 +552,20 @@
     <Content Include="js\jquery.validate.unobtrusive.js" />
     <Content Include="js\jquery.validate.unobtrusive.min.js" />
     <Content Include="js\jquery.waypoints.min.js" />
+    <Content Include="js\js2\bootstrap.min.js" />
+    <Content Include="js\js2\google_map.js" />
+    <Content Include="js\js2\jquery.countTo.js" />
+    <Content Include="js\js2\jquery.easing.1.3.js" />
+    <Content Include="js\js2\jquery.flexslider-min.js" />
+    <Content Include="js\js2\jquery.magnific-popup.min.js" />
+    <Content Include="js\js2\jquery.min.js" />
+    <Content Include="js\js2\jquery.stellar.min.js" />
+    <Content Include="js\js2\jquery.waypoints.min.js" />
+    <Content Include="js\js2\magnific-popup-options.js" />
+    <Content Include="js\js2\main.js" />
+    <Content Include="js\js2\modernizr-2.6.2.min.js" />
+    <Content Include="js\js2\owl.carousel.min.js" />
+    <Content Include="js\js2\respond.min.js" />
     <Content Include="js\main.js" />
     <Content Include="js\modernizr-2.8.3.js" />
     <Content Include="js\owl.carousel.min.js" />
@@ -429,6 +592,7 @@
     <Content Include="EmailTemplate\Text.cshtml" />
     <Content Include="js\jquery-3.3.1.min.map" />
     <Content Include="js\jquery-3.3.1.slim.min.map" />
+    <Content Include="js\js2\.DS_Store" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -533,11 +697,34 @@
     <Content Include="Views\Admins\preselectionCalcule.cshtml" />
     <Content Include="Views\Admins\preselectionCalcule4eme.cshtml" />
     <Content Include="Views\BoitMessages\Index2.cshtml" />
+    <Content Include="Views\Home\Index2.cshtml" />
+    <Content Include="Views\Shared\_Index.cshtml" />
+    <Content Include="Views\Admins\AfficheConvoque3.cshtml" />
+    <Content Include="Views\Admins\AfficheConvoque4.cshtml" />
+    <Content Include="Views\Admins\Statistique.cshtml" />
+    <Content Include="Views\Admins\StatistiqueView.cshtml" />
+    <Content Include="Views\Admins\rechercher.cshtml" />
+    <Content Include="Views\Admins\rechercherCorbeil.cshtml" />
+    <Content Include="Views\Admins\DeleteCor.cshtml" />
+    <Content Include="Views\Admins\rechercher4eme.cshtml" />
+    <Content Include="Views\Admins\rechercherCorbeil4eme.cshtml" />
     <Content Include="Views\Admins\correction.cshtml" />
-    <Content Include="Views\Shared\_ConvoqueDossierdeja.cshtml" />
+    <Content Include="Views\Candidats\deleteCompte.cshtml" />
+    <Content Include="Views\Admins\Deliberation3eme.cshtml" />
+    <Content Include="Views\Admins\Deliberation4eme.cshtml" />
+    <Content Include="Views\Admins\test.cshtml" />
+    <Content Include="Views\Admins\ResultatDeliberation.cshtml" />
+    <Content Include="Views\Admins\ListAdmisDelib.cshtml" />
+    <Content Include="Views\Admins\ListAdmission3eme.cshtml" />
+    <Content Include="Views\Admins\ListAdmissionResult.cshtml" />
+    <Content Include="Views\Admins\ListAdmission4eme.cshtml" />
+    <Content Include="Views\Admins\statistique_Des_Admis_En_3_Anees.cshtml" />
+    <Content Include="Views\Admins\statistique_Des_Admis_En_4_Anees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="css\images\" />
+    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -553,8 +740,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003270040082_InitialCreate.resx">
-      <DependentUpon>202003270040082_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004031906352_InitialCreate.resx">
+      <DependentUpon>202004031906352_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -564,6 +751,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>langues.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -595,7 +785,7 @@
   </ProjectExtensions>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
-      <ErrorText>Ce projet fait référence à des packages NuGet qui sont manquants sur cet ordinateur. Utilisez l'option de restauration des packages NuGet pour les télécharger. Pour plus d'informations, consultez http://go.microsoft.com/fwlink/?LinkID=322105. Le fichier manquant est : {0}.</ErrorText>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>

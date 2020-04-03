@@ -9,7 +9,7 @@ namespace ProjetASPMVC1.Models
 {
     public class Projet_ContextBD : DbContext
     {
-        public Projet_ContextBD() : base("BD_Projet_csharp")
+        public Projet_ContextBD() : base("StudentData")
         {
         }
         public DbSet<Candidat> Candidats { get; set; }
@@ -18,5 +18,7 @@ namespace ProjetASPMVC1.Models
         public DbSet<Diplome> Diplomes { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<BoitMessage> message { get; set; }
+        public DbSet<corbeil> corbeils { get; set; }
+        
     }
 }

@@ -51,6 +51,8 @@ namespace ProjetASPMVC1.Controllers
         {
             int userId = (int)Session["CIN"];
 
+
+
             Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
@@ -204,6 +206,7 @@ namespace ProjetASPMVC1.Controllers
             db.SaveChanges();
             cand.id_diplome = dip.id_diplome;
             cand.id_note = note.id_note;
+            cand.nom_dip = dip.nom_diplome;
             db.Candidats.Add(cand);
             db.SaveChanges();
 
@@ -294,9 +297,9 @@ namespace ProjetASPMVC1.Controllers
             using (var ddb = new Projet_ContextBD())
             {
                 Candidat Data = ddb.Candidats.Where(x => x.CIN == regId).FirstOrDefault();
-                Data.EmailConfirmed =true;
+                Data.EmailConfirmed = true;
 
-                db.SaveChanges();
+                ddb.SaveChanges();
                 var msg = "Your Email Is Verified!";
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
@@ -416,6 +419,7 @@ namespace ProjetASPMVC1.Controllers
             Candidat.note_bac = note_bac;
             Candidat.mention_bac = mention_bac;
             Candidat.niveau = niveau;
+            Candidat.nom_dip= nom_diplome;
             db.SaveChanges();
 
             int iddip = Candidat.id_diplome;
@@ -425,6 +429,8 @@ namespace ProjetASPMVC1.Controllers
             dip.etablissement = etablissment;
 
             db.SaveChanges();
+
+
 
             int idnote = Candidat.id_note;
             Notes n = db.Notes.Find(idnote);
@@ -508,5 +514,24 @@ namespace ProjetASPMVC1.Controllers
         {
             return View();
         }
+        public ActionResult deleteCompte()
+        {
+
+         
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult deleteCompteConfirm()
+        {
+
+            Candidat can = db.Candidats.Find(Session["CIN"]);
+            db.Candidats.Remove(can);
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
+
+
+
     }
 }

@@ -1,0 +1,187 @@
+﻿
+
+@model ProjetASPMVC1.Models.Filiere
+
+@{
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml ";
+}
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.3.1.js"></script>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+
+
+</head>
+<body style="margin-left:20px;">
+
+    <br />
+
+
+
+
+    <table>
+        <tr>
+            <th>
+
+                <i class="fas fa-search"></i>  Par filiere  @Html.DropDownListFor(x => x.id_fil, ViewBag.f as SelectList, "Selectionner un filiere", new { id = "Fil" })
+            </th>
+
+            <th style="padding-left:50px;">
+
+
+                <i class="fas fa-search"></i>  Par diplome <select name="nom_diplome" id="nom_dip">
+
+                    <option value="Licence">Licence</option>
+                    <option value="Licence pro">Licence pro</option>
+                    <option value="DUT">DUT</option>
+                    <option value="BTS">BTS</option>
+                </select>
+            </th>
+            <th style="padding-left:50px;">
+                <i class="fas fa-search"></i>  Par matricule @Html.DropDownList("n_dossier", ViewBag.m as SelectList, "Selectionner Matricule", new { id = "nd" })
+
+            </th>
+
+        </tr>
+    </table>
+
+    <br /><br />
+    @using (Html.BeginForm("DeleteCor", "Admins", FormMethod.Post))
+    {
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered " id="dataTable" width="100%" cellspacing="0">
+                <thead>
+
+                    <tr class="table-danger">
+                        <th>
+                            Supprimer
+                        </th>
+                        <th>
+                            CIN
+                        </th>
+                        <th>
+                            Prenom
+                        </th>
+                        <th>
+                            Nom
+                        </th>
+                        <th>
+                            Matricule
+                        </th>
+                        <th>
+                            Addresse
+                        </th>
+                        <th>
+                            Telephone
+                        </th>
+                        <th>
+                            Sexe
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody id="contenu" name="contenu"></tbody>
+
+            </table>
+        </div>
+    }
+
+    <script>
+
+
+
+        $(function () {
+
+
+            $("#nd").change(function () {
+
+                $.get("/Admins/GetEtudiantByIdMatriculeCor4eme", {
+
+                    n_dossier: $("#nd").val()
+                }, function (data) {
+
+                    $("#contenu").empty();
+
+                    $.each(data, function (index, ligne) {
+                        $("#contenu").append("<tr ><td><input type='submit'  class='btn btn-danger' value=" + ligne.CIN + "  name='CIN'>|<i class='fa fa-trash'></i></td> <td> " + ligne.CIN + "</td><td>" + ligne.prenom + "</td><td>" + ligne.nom + "</td><td>" + ligne.n_dossier + "</td><td>" + ligne.addresse + "</td><td>" + ligne.tel + "</td><td>" + ligne.sexe + "</td><tr>"
+
+
+
+
+
+
+
+                        )
+                    });
+                })
+            });
+
+
+
+            $("#nom_dip").change(function () {
+
+                $.get("/Admins/GetEtudiantByIdDipCor4eme", {
+
+                    nom_diplome: $("#nom_dip").val()
+                }, function (data) {
+
+                    $("#contenu").empty();
+
+                    $.each(data, function (index, ligne) {
+                        $("#contenu").append("<tr ><td><input type='submit'  class='btn btn-danger' value=" + ligne.CIN + "  name='CIN'>|<i class='fa fa-trash'></i></td> <td> " + ligne.CIN + "</td><td>" + ligne.prenom + "</td><td>" + ligne.nom + "</td><td>" + ligne.n_dossier + "</td><td>" + ligne.addresse + "</td><td>" + ligne.tel + "</td><td>" + ligne.sexe + "</td><tr>"
+
+
+
+
+
+
+
+                        )
+                    });
+                })
+            });
+
+
+            $("#Fil").change(function () {
+
+                $.get("/Admins/GetEtudiantByIdCor4eme", {
+
+                    id_fil: $("#Fil").val()
+                }, function (data) {
+
+                    $("#contenu").empty();
+
+                    $.each(data, function (index, ligne) {
+                        $("#contenu").append("<tr ><td><input type='submit'  class='btn btn-danger' value=" + ligne.CIN + "  name='CIN'>|<i class='fa fa-trash'></i></td> <td> " + ligne.CIN + "</td><td>" + ligne.prenom + "</td><td>" + ligne.nom + "</td><td>" + ligne.n_dossier + "</td><td>" + ligne.addresse + "</td><td>" + ligne.tel + "</td><td>" + ligne.sexe + "</td><tr>"
+
+
+
+
+
+
+
+                        )
+                    });
+                })
+            });
+
+
+
+
+
+
+
+
+        });
+
+    </script>
+
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,201 @@
+﻿
+@{
+    ViewBag.Title = "statistique_Des_Admis_En_4_Anees";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<html>
+<head>
+    <script>
+window.onload = function () {
+
+  var chart1 = new CanvasJS.Chart("chartContainerForInfoAdmis", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+        text: "statistique des admis en 4 ème année génie informatique"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+        type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForInfoAdmis)
+	}]
+});
+
+
+
+        //chart for industriel students
+    var chart2 = new CanvasJS.Chart("chartContainerForIndusAdmis", {
+            animationEnabled: true,
+
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "statistique des admis en 4 ème annee génie industriel"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForIndusAdmis)
+	}]
+});
+
+
+    //for gtr
+
+    var chart3 = new CanvasJS.Chart("chartContainerForGtrAdmis", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+        text: "statistique des admis en 4 ème annee génie Télécom et réseau"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForGtrAdmis)
+	}]
+});
+
+
+    //for gpmc
+    var chart4 = new CanvasJS.Chart("chartContainerForGpmcAdmis", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+        text: "statistique des admis en 4 ème annee génie des procédés et céramique"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForGpmcAdmis)
+	}]
+    });
+    /**************************************************************************************/
+    var chart5 = new CanvasJS.Chart("chartContainerForInfoAttente", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+        text: "statistique de la liste d'attente en 4 ème année génie informatique"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+        type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForInfoAttente)
+	}]
+});
+
+
+
+        //chart for industriel students
+    var chart6 = new CanvasJS.Chart("chartContainerForIndusAttente", {
+            animationEnabled: true,
+
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+		text: "statistique de la list d'attente en 4 ème annee génie industriel"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForIndusAttente)
+	}]
+});
+
+
+    //for gtr
+
+    var chart7 = new CanvasJS.Chart("chartContainerForGtrAttente", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+        text: "statistique de la list d'attente en 4 ème annee génie Télécom et réseau"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForGtrAttente)
+	}]
+});
+
+
+    //for gpmc
+    var chart8 = new CanvasJS.Chart("chartContainerForGpmcAttente", {
+	animationEnabled: true,
+	theme: "light2", // "light1", "light2", "dark1", "dark2"
+	title: {
+        text: "statistique de la list d'attente en 4 ème annee génie des procédés et céramique"
+	},
+	axisY: {
+		title: "Nombre des condidats"
+	},
+	data: [{
+		type: "column",
+		dataPoints: @Html.Raw(ViewBag.dataPointsForGpmcAttente)
+	}]
+    });
+    //generation des charts
+
+    chart1.render();
+    chart2.render();
+    chart3.render();
+    chart4.render();
+    chart5.render();
+    chart6.render();
+    chart7.render();
+    chart8.render();
+}
+    </script>
+</head>
+<body
+
+     <p>
+        <a class="btn btn-primary" data-toggle="collapse" href="#admis" role="button" aria-expanded="false" aria-controls="admis"><i class="far fa-chart-bar"></i>&nbsp; statistique Des candidats Admis En 4 Anees</a>
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#attent" aria-expanded="false" aria-controls="attent"><i class="far fa-chart-bar"></i>&nbsp; Des candidats en liste d'attente En 4 Anees</button>
+      
+    </p>
+    <div class="container" id="admis">
+        <h2>statistique Des candidats Admis En 4 Anees</h2>
+        <div class="row">
+            <div id="chartContainerForInfoAdmis" style="height:300px;width:40%;"></div>
+            <div id="chartContainerForIndusAdmis" style="height:300px;width:40%;margin-left:20px"></div>
+        </div>
+
+        <div class="row">
+            <div id="chartContainerForGpmcAdmis" style="height:300px;width:40%;margin-top:20px"></div>
+            <div id="chartContainerForGtrAdmis" style="height:300px;width:40%;margin-top:20px;margin-left:20px"></div>
+        </div>
+    </div>  
+    <div class="container" id="attent">
+        <h2>statistique Des candidats en liste d'attente En 4 Anees</h2>
+        <div class="row">
+            <div id="chartContainerForInfoAttente" style="height:300px;width:40%;"></div>
+            <div id="chartContainerForIndusAttente" style="height:300px;width:40%;margin-left:20px"></div>
+        </div>
+
+        <div class="row">
+            <div id="chartContainerForGpmcAttente" style="height:300px;width:40%;margin-top:20px"></div>
+            <div id="chartContainerForGtrAttente" style="height:300px;width:40%;margin-top:20px;margin-left:20px"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <script src="~/Content/canvasjs.js"></script>
+</body>
+</html>
+

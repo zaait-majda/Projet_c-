@@ -501,7 +501,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in query)
             {
 
-                if (candidat.nomFiliere.Equals("informatique"))
+                if (candidat.nomFiliere.Equals("Génie informatique"))
                 {
                     if (infoAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -512,7 +512,7 @@ namespace ProjetASPMVC1.Controllers
                         infoAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("industriel"))
+                else if (candidat.nomFiliere.Equals("Génie industrielle"))
                 {
                     if (indusAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -523,7 +523,7 @@ namespace ProjetASPMVC1.Controllers
                         indusAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("telecome"))
+                else if (candidat.nomFiliere.Equals("Génie Telecom"))
                 {
                     if (gtrAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -550,7 +550,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in queryAttente)
             {
 
-                if (candidat.nomFiliere.Equals("informatique"))
+                if (candidat.nomFiliere.Equals("Génie informatique"))
                 {
                     if (infoAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -561,7 +561,7 @@ namespace ProjetASPMVC1.Controllers
                         infoAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("industriel"))
+                else if (candidat.nomFiliere.Equals("Génie industrielle"))
                 {
                     if (indusAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -572,7 +572,7 @@ namespace ProjetASPMVC1.Controllers
                         indusAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("telecome"))
+                else if (candidat.nomFiliere.Equals("Génie Telecom"))
                 {
                     if (gtrAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -687,7 +687,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in query)
             {
 
-                if (candidat.nomFiliere.Equals("informatique"))
+                if (candidat.nomFiliere.Equals("Génie informatique"))
                 {
                     if (infoAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -698,7 +698,7 @@ namespace ProjetASPMVC1.Controllers
                         infoAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("industriel"))
+                else if (candidat.nomFiliere.Equals("Génie industrielle"))
                 {
                     if (indusAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -709,7 +709,7 @@ namespace ProjetASPMVC1.Controllers
                         indusAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("telecome"))
+                else if (candidat.nomFiliere.Equals("Génie Telecom"))
                 {
                     if (gtrAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -736,7 +736,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in queryAttente)
             {
 
-                if (candidat.nomFiliere.Equals("informatique"))
+                if (candidat.nomFiliere.Equals("Génie informatique"))
                 {
                     if (infoAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -747,7 +747,7 @@ namespace ProjetASPMVC1.Controllers
                         infoAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("industriel"))
+                else if (candidat.nomFiliere.Equals("Génie industrielle"))
                 {
                     if (indusAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -758,7 +758,7 @@ namespace ProjetASPMVC1.Controllers
                         indusAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("telecome"))
+                else if (candidat.nomFiliere.Equals("Génie Telecom"))
                 {
                     if (gtrAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -1441,7 +1441,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in query)
             {
 
-                if (candidat.nomFiliere.Equals("informatique"))
+                if (candidat.nomFiliere.Equals("Génie informatique"))
                 {
                     if (info.ContainsKey(candidat.nomDiplome))
                     {
@@ -1452,7 +1452,7 @@ namespace ProjetASPMVC1.Controllers
                         info.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("industriel"))
+                else if (candidat.nomFiliere.Equals("Génie industrielle"))
                 {
                     if (indus.ContainsKey(candidat.nomDiplome))
                     {
@@ -1463,7 +1463,7 @@ namespace ProjetASPMVC1.Controllers
                         indus.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("telecome"))
+                else if (candidat.nomFiliere.Equals("Génie Telecom"))
                 {
                     if (gtr.ContainsKey(candidat.nomDiplome))
                     {
@@ -1539,7 +1539,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in query)
             {
 
-                if (candidat.nomFiliere.Equals("informatique"))
+                if (candidat.nomFiliere.Equals("Génie informatique"))
                 {
                     if (info.ContainsKey(candidat.nomDiplome))
                     {
@@ -1550,7 +1550,7 @@ namespace ProjetASPMVC1.Controllers
                         info.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("industriel"))
+                else if (candidat.nomFiliere.Equals("Génie industrielle"))
                 {
                     if (indus.ContainsKey(candidat.nomDiplome))
                     {
@@ -1561,7 +1561,7 @@ namespace ProjetASPMVC1.Controllers
                         indus.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("telecome"))
+                else if (candidat.nomFiliere.Equals("Génie Telecom"))
                 {
                     if (gtr.ContainsKey(candidat.nomDiplome))
                     {

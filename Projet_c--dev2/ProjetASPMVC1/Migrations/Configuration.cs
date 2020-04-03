@@ -18,10 +18,10 @@ namespace ProjetASPMVC1.Migrations
         {
 
             var fil = new List<Filiere>();
-            fil.Add(new Filiere { nom_fil = "Génie informatique" });
-            fil.Add(new Filiere { nom_fil = "Génie GPMC" });
-            fil.Add(new Filiere { nom_fil = "Génie Telecom" });
-            fil.Add(new Filiere { nom_fil = "Génie industrielle" });
+            fil.Add(new Filiere { nom_fil = "Gï¿½nie informatique" });
+            fil.Add(new Filiere { nom_fil = "Gï¿½nie GPMC" });
+            fil.Add(new Filiere { nom_fil = "Gï¿½nie Telecom" });
+            fil.Add(new Filiere { nom_fil = "Gï¿½nie industrielle" });
             base.Seed(context);
         }
     }

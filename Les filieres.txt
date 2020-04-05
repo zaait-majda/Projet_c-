@@ -1,0 +1,5 @@
+
+insert into Filieres values('Génie informatique')
+insert into Filieres values('Génie GPMC')
+insert into Filieres values('Génie Telecom')
+insert into Filieres values('Génie industrielle')

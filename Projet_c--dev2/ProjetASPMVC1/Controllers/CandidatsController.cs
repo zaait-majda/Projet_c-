@@ -232,12 +232,21 @@ namespace ProjetASPMVC1.Controllers
         public ActionResult EXportPDF()
         {
             id = (string)Session["CIN"];
-
-            return new ActionAsPdf("fiche2")
+            Candidat can = db.Candidats.Find(Session["CIN"]);
+            if (can.statut.Equals("ADMIS_PR"))
             {
-                FileName = Server.MapPath("~/Content/fiche.pdf")
-            };
-            //frm
+
+                return new ActionAsPdf("fiche2")
+                {
+                    FileName = Server.MapPath("~/Content/fiche.pdf")
+                };
+            }
+            else
+            {
+
+                Response.Write("<script>alert(\'vous avez pas le droit de telecharge le recu\');</" + "script>");
+                return View("Home");
+            }
         }
 
         public ActionResult fiche2()

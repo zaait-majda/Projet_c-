@@ -1,8 +1,6 @@
 namespace ProjetASPMVC1.Migrations
 {
-    using ProjetASPMVC1.Models;
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -16,13 +14,18 @@ namespace ProjetASPMVC1.Migrations
 
         protected override void Seed(ProjetASPMVC1.Models.Projet_ContextBD context)
         {
+            //  This method will be called after migrating to the latest version.
 
-            var fil = new List<Filiere>();
-            fil.Add(new Filiere { nom_fil = "G�nie informatique" });
-            fil.Add(new Filiere { nom_fil = "G�nie GPMC" });
-            fil.Add(new Filiere { nom_fil = "G�nie Telecom" });
-            fil.Add(new Filiere { nom_fil = "G�nie industrielle" });
-            base.Seed(context);
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
     }
 }

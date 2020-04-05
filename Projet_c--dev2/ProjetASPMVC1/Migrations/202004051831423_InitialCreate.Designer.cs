@@ -13,7 +13,7 @@ namespace ProjetASPMVC1.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202004031906352_InitialCreate"; }
+            get { return "202004051831423_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source

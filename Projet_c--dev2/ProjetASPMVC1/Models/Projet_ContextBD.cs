@@ -9,7 +9,7 @@ namespace ProjetASPMVC1.Models
 {
     public class Projet_ContextBD : DbContext
     {
-        public Projet_ContextBD() : base("StudentData")
+        public Projet_ContextBD() : base("Projet_ContextBD")
         {
         }
         public DbSet<Candidat> Candidats { get; set; }

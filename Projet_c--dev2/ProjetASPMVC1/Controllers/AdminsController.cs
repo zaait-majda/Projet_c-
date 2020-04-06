@@ -1953,7 +1953,7 @@ namespace ProjetASPMVC1.Controllers
         {
             int id = Convert.ToInt32(idfil);
             var candidats = db.Candidats.Include(c => c.Diplome).Include(c => c.Filiere).Include(c => c.Notes);
-            candidats = candidats.Where(c => c.niveau == niveau && c.id_fil == id);
+            candidats = candidats.Where(c => c.niveau == niveau && c.id_fil == id && c.statut == "pres");
             ViewBag.msg = msg;
             return View(candidats.ToList());
 
@@ -1975,7 +1975,16 @@ namespace ProjetASPMVC1.Controllers
                 Notes n = db.Notes.Find(idnote);
                 n.notemath = Double.Parse(Notes1[i]);
                 n.notespec = Double.Parse(Notes2[i]);
-                n.note_concours = (n.notemath + n.notespec) / 2;
+                 if(n.notemath==0 && n.notespec == 0)
+                {
+                    cand.statut = "absent_au_cncrs";
+                }
+                else
+                {
+                    cand.statut = "present_au_cncrs";
+                    n.note_concours = (n.notemath + n.notespec) / 2;
+                }
+                
                 db.SaveChanges();
 
             }

@@ -30,3 +30,10 @@ else
 {
     @Html.Partial("ListAdmissionResult")
 }
+<center>
+    @if (@ViewBag.exist =="exist")
+    {
+        <button type="button" class="btn btn-outline-info" style="color:white;padding:10px;">  @Html.ActionLink("Imprimer les listes", "EXportPDF3eme", new { id_fil = ViewBag.id_fil })</button>
+
+    }
+</center>

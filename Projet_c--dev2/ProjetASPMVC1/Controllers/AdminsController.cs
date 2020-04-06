@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Rotativa;
 using System.Web.Routing;
 using ClosedXML.Excel;
 using Newtonsoft.Json;
@@ -298,19 +299,50 @@ namespace ProjetASPMVC1.Controllers
         {
             ViewBag.list = "";
             ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
+           
             return View();
         }
         [HttpPost]
         public ActionResult ListAdmission3emeResult(int? id_fil)
         {
+            
             ViewBag.list = "list";
+            ViewBag.id_fil = id_fil;
             ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
             ViewBag.filiere= db.Filieres.Find(id_fil).nom_fil;
+            
+            List<Candidat> admisPR = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "ADMIS_PR").Where(p => p.id_fil == id_fil
+            ).ToList();
+            if (admisPR.Count != 0)
+            {
+                ViewBag.exist = "exist";
+            }
+            else
+            {
+                ViewBag.exist = "";
+            }
+            ViewBag.admisPR = admisPR;
+            ViewBag.admisATT = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "ADMIS_Att").Where(p => p.id_fil == id_fil
+           ).ToList();
+            return View("ListAdmission3eme");
+        }
+        public ActionResult PrintLists3eme(int id_fil)
+        {
+            
+            ViewBag.filiere = db.Filieres.Find(id_fil).nom_fil;
             ViewBag.admisPR = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "ADMIS_PR").Where(p => p.id_fil == id_fil
             ).ToList();
             ViewBag.admisATT = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "ADMIS_Att").Where(p => p.id_fil == id_fil
            ).ToList();
-            return View("ListAdmission3eme");
+
+            return View();
+        }
+        public ActionResult EXportPDF3eme(int id_fil)
+        {
+            return new ActionAsPdf("PrintLists3eme",new { id_fil = id_fil })
+            {
+                FileName = Server.MapPath("~/Content/PrintLists3eme.pdf")
+            };
         }
         public ActionResult deleberationResult4eme()
         {
@@ -432,17 +464,45 @@ namespace ProjetASPMVC1.Controllers
         [HttpPost]
         public ActionResult ListAdmission4emeResult(int? id_fil)
         {
+            ViewBag.admisP = "";
             ViewBag.list = "list";
+            ViewBag.id_fil = id_fil;
             ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
             ViewBag.filiere = db.Filieres.Find(id_fil).nom_fil;
-            ViewBag.admisPR = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "ADMIS_PR").Where(p => p.id_fil == id_fil
-            ).ToList();
+            List<Candidat> admisPR = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "ADMIS_PR").Where(p => p.id_fil == id_fil
+         ).ToList();
+            if (admisPR.Count != 0)
+            {
+                ViewBag.exist = "exist";
+            }
+            else
+            {
+                ViewBag.exist = "";
+            }
+            ViewBag.admisPR = admisPR;
             ViewBag.admisATT = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "ADMIS_Att").Where(p => p.id_fil == id_fil
            ).ToList();
             return View("ListAdmission4eme");
         }
 
+        public ActionResult PrintLists4eme(int id_fil)
+        {
 
+            ViewBag.filiere = db.Filieres.Find(id_fil).nom_fil;
+            ViewBag.admisPR = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "ADMIS_PR").Where(p => p.id_fil == id_fil
+            ).ToList();
+            ViewBag.admisATT = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "ADMIS_Att").Where(p => p.id_fil == id_fil
+           ).ToList();
+
+            return View();
+        }
+        public ActionResult EXportPDF4eme(int id_fil)
+        {
+            return new ActionAsPdf("PrintLists4eme", new { id_fil = id_fil })
+            {
+                FileName = Server.MapPath("~/Content/PrintLists4eme.pdf")
+            };
+        }
 
 
         /*

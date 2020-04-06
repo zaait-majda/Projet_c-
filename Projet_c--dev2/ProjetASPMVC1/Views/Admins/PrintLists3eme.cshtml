@@ -1,11 +1,28 @@
-﻿<div style="text-align:center;margin-left:150px;margin-right:150px;">
+﻿<head>
+    <link href="~/css/style.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+</head>
+<style>
+    .div-princ{
+        text-align:center;
+    }
+</style>
+<div class="div-princ border-bottom-0">
 
     <br />
-    <p><strong> @ViewBag.filiere</strong></p>
+    <span style="font-size:30px; padding-left:50px; color:cornflowerblue;">Écoles Nationales des Sciences Appliquées</span>
     <br />
-    <p style="font-size:45px">Liste principal</p>
+    <br />
+    <br />
+    <p style="font-size:25px">Liste d'admission pour @ViewBag.filiere 4éme année</p>
+    <br />
+    <p style="font-size:15px;">Liste principal</p>
 
-    <table class="table table-bordered   table-light" id="dataTable" width="60%" cellspacing="0">
+    <p style="font-size:25px"> @ViewBag.filiere</p>
+    <br />
+    <p style="font-size:15px;">Liste principal</p>
+
+    <table class="table table-striped  table-light" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
             <tr>
@@ -54,9 +71,10 @@
             }
         </tbody>
     </table>
-
-    <p style="font-size:45px">Liste d'attente</p>
-    <table class="table table-bordered   table-light" id="dataTable" width="60%" cellspacing="0">
+    <br />
+    <p style="font-size:15px">Liste d'attente</p>
+    <br />
+    <table class="table table-striped   table-light" id="dataTable" width="100%" cellspacing="0">
         <thead>
             <tr>
             <tr>

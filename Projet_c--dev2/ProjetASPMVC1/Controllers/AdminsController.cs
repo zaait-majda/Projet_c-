@@ -166,7 +166,7 @@ namespace ProjetASPMVC1.Controllers
         {
              List<Candidat> admis_principal = new List<Candidat>();
              List<Candidat> admis_att = new List<Candidat>();
-            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p=>p.statut== "pres").Where(p => p.id_fil == id_fil
+            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p=>p.statut== "Present_au_cncrs").Where(p => p.id_fil == id_fil
             ).ToList();
              if (candidats.Count() != 0)
             {
@@ -353,7 +353,7 @@ namespace ProjetASPMVC1.Controllers
         {
             List<Candidat> admis_principal = new List<Candidat>();
             List<Candidat> admis_att = new List<Candidat>();
-            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "pres").Where(p => p.id_fil == id_fil
+            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "Present_au_cncrs").Where(p => p.id_fil == id_fil
             ).ToList();
             if (candidats.Count() != 0)
             {

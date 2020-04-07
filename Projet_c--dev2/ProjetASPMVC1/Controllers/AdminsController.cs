@@ -166,7 +166,7 @@ namespace ProjetASPMVC1.Controllers
         {
              List<Candidat> admis_principal = new List<Candidat>();
              List<Candidat> admis_att = new List<Candidat>();
-            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p=>p.statut== "Present_au_cncrs").Where(p => p.id_fil == id_fil
+            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p=>p.statut== "present_au_cncrs").Where(p => p.id_fil == id_fil
             ).ToList();
              if (candidats.Count() != 0)
             {
@@ -353,7 +353,7 @@ namespace ProjetASPMVC1.Controllers
         {
             List<Candidat> admis_principal = new List<Candidat>();
             List<Candidat> admis_att = new List<Candidat>();
-            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "Present_au_cncrs").Where(p => p.id_fil == id_fil
+            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "4eme").Where(p => p.statut == "present_au_cncrs").Where(p => p.id_fil == id_fil
             ).ToList();
             if (candidats.Count() != 0)
             {
@@ -2035,7 +2035,16 @@ namespace ProjetASPMVC1.Controllers
                 Notes n = db.Notes.Find(idnote);
                 n.notemath = Double.Parse(Notes1[i]);
                 n.notespec = Double.Parse(Notes2[i]);
-                n.note_concours = (n.notemath + n.notespec) / 2;
+                if (n.notemath == 0 && n.notespec == 0)
+                {
+                    cand.statut = "absent_au_cncrs";
+                }
+                else
+                {
+                    cand.statut = "present_au_cncrs";
+                    n.note_concours = (n.notemath + n.notespec) / 2;
+                }
+
                 db.SaveChanges();
 
             }
@@ -2051,5 +2060,6 @@ namespace ProjetASPMVC1.Controllers
 
 
 
+
     }
-    }
+}

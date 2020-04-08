@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewBag.Title = "Statistique";
+    ViewBag.Title = "statistique_Des_Presents_4annee";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -13,13 +13,14 @@ window.onload = function () {
 	animationEnabled: true,
 	theme: "light2", // "light1", "light2", "dark1", "dark2"
 	title: {
-		text: "statistique des condidats en 3 eme annee genie informatique"
-	},
+		text: "statistique des condidats présents au concours 4ème année génie informatique"
+        },
+        exportEnabled: true,
 	axisY: {
 		title: "Nombre des condidats"
 	},
 	data: [{
-		type: "column",
+		type: "pie",
 		dataPoints: @Html.Raw(ViewBag.dataPointsForInfo)
 	}]
 });
@@ -30,15 +31,17 @@ window.onload = function () {
         var chart2 = new CanvasJS.Chart("chartContainerForIndus", {
             animationEnabled: true,
 
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            exportEnabled: true,
 	title: {
-		text: "statistique des condidats en 4 eme annee genie industriel"
-	},
+        text: "statistique des condidats présents au concours 4ème année génie industriel"
+            },
+
 	axisY: {
 		title: "Nombre des condidats"
 	},
 	data: [{
-		type: "column",
+        type: "pie",
 		dataPoints: @Html.Raw(ViewBag.dataPointsForIndus)
 	}]
 });
@@ -48,15 +51,16 @@ window.onload = function () {
 
     var chart3 = new CanvasJS.Chart("chartContainerForGtr", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
-		text: "statistique des condidats en 4 eme annee genie telecome et reseau"
+        text: "statistique des condidats présents au concours 4ème année génie télécome et réseau"
 	},
 	axisY: {
 		title: "Nombre des condidats"
 	},
 	data: [{
-		type: "column",
+        type: "pie",
 		dataPoints: @Html.Raw(ViewBag.dataPointsForGtr)
 	}]
 });
@@ -65,15 +69,16 @@ window.onload = function () {
     //for gpmc
     var chart4 = new CanvasJS.Chart("chartContainerForGpmc", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
-		text: "statistique des condidats en 4 eme annee genie des procede et ceramique"
+        text: "statistique des condidats présents au concours 4ème année génie des procédés et céramique"
 	},
 	axisY: {
 		title: "Nombre des condidats"
 	},
 	data: [{
-		type: "column",
+        type: "pie",
 		dataPoints: @Html.Raw(ViewBag.dataPointsForGpmc)
 	}]
 });
@@ -86,7 +91,7 @@ window.onload = function () {
 </head>
 <body>
 
-    <h2>statistique des convocu du 4 annees</h2>
+    <h2>statistique des condidats présents au concours 4 ème année</h2>
     <div class="container">
         <div class="row">
             <div id="chartContainerForInfo" style="height:300px;width:40%;"></div>

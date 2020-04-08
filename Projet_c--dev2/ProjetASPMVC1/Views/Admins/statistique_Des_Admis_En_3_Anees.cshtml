@@ -12,7 +12,8 @@ window.onload = function () {
 
     var chart1 = new CanvasJS.Chart("chartContainerForInfoAdmis", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
         text: "statistique des admis en 3 ème année génie informatique"
 	},
@@ -31,7 +32,8 @@ window.onload = function () {
     var chart2 = new CanvasJS.Chart("chartContainerForIndusAdmis", {
             animationEnabled: true,
 
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2
+        exportEnabled: true,
 	title: {
 		text: "statistique des admis en 3 ème annee génie industriel"
 	},
@@ -49,7 +51,8 @@ window.onload = function () {
 
     var chart3 = new CanvasJS.Chart("chartContainerForGtrAdmis", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
         text: "statistique des admis en 3 ème annee génie Télécom et réseau"
 	},
@@ -66,7 +69,8 @@ window.onload = function () {
     //for gpmc
     var chart4 = new CanvasJS.Chart("chartContainerForGpmcAdmis", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
         text: "statistique des admis en 3 ème annee génie des procédés et céramique"
 	},
@@ -100,7 +104,8 @@ window.onload = function () {
     var chart6 = new CanvasJS.Chart("chartContainerForIndusAttente", {
             animationEnabled: true,
 
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2
+        exportEnabled: true,
 	title: {
 		text: "statistique de la list d'attente en 3 ème annee génie industriel"
 	},
@@ -118,7 +123,8 @@ window.onload = function () {
 
     var chart7 = new CanvasJS.Chart("chartContainerForGtrAttente", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
         text: "statistique de la list d'attente en 3 ème annee génie Télécom et réseau"
 	},
@@ -135,7 +141,8 @@ window.onload = function () {
     //for gpmc
     var chart8 = new CanvasJS.Chart("chartContainerForGpmcAttente", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
         text: "statistique de la list d'attente en 3 ème annee génie des procédés et céramique"
 	},
@@ -163,12 +170,12 @@ window.onload = function () {
 <body>
     <p class="container">
         <div>
-            &nbsp;&nbsp;  <a class="btn btn-primary col-lg-4 " data-toggle="collapse" href="#admis" role="button" aria-expanded="false" aria-controls="admis"><i class="far fa-chart-bar"></i>&nbsp; statistique Des candidats Admis En 3 Anees</a>
-            &nbsp;&nbsp;  <button class="btn btn-primary col-lg-4" type="button" data-toggle="collapse" data-target="#attent" aria-expanded="false" aria-controls="attent"><i class="far fa-chart-bar"></i>&nbsp; Des candidats en liste d'attente En 3 Années</button>
+            <a class="btn btn-primary col-lg-4 " data-toggle="collapse" href="#admis" role="button" aria-expanded="false" aria-controls="admis"><i class="far fa-chart-bar"></i>&nbsp; statistique Des candidats Admis En 3 Anees</a>
+            <button class="btn btn-primary col-lg-4" type="button" data-toggle="collapse" data-target="#attent" aria-expanded="false" aria-controls="attent"><i class="far fa-chart-bar"></i>&nbsp; Des candidats en liste d'attente En 3 Anees</button>
         </div>
     </p>
     <div class="container" id="admis">
-        <h2>statistique Des candidats Admis En 3 Années</h2>
+        <h2>statistique Des candidats Admis En 3 Anees</h2>
         <div class="row">
             <div id="chartContainerForInfoAdmis" style="height:300px;width:40%;"></div>
             <div id="chartContainerForIndusAdmis" style="height:300px;width:40%;margin-left:20px"></div>
@@ -178,9 +185,9 @@ window.onload = function () {
             <div id="chartContainerForGpmcAdmis" style="height:300px;width:40%;margin-top:20px"></div>
             <div id="chartContainerForGtrAdmis" style="height:300px;width:40%;margin-top:20px;margin-left:20px"></div>
         </div>
-    </div>  
+    </div>
     <div class="container" id="attent">
-        <h2>statistique Des candidats en liste d'attente En 3 Années</h2>
+        <h2>statistique Des candidats en liste d'attente En 3 Anees</h2>
         <div class="row">
             <div id="chartContainerForInfoAttente" style="height:300px;width:40%;"></div>
             <div id="chartContainerForIndusAttente" style="height:300px;width:40%;margin-left:20px"></div>

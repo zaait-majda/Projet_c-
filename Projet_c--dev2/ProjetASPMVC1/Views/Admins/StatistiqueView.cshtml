@@ -11,7 +11,8 @@ window.onload = function () {
 
     var chart1 = new CanvasJS.Chart("chartContainerForInfo", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
 		text: "statistique des condidats en 3 eme annee genie informatique"
 	},
@@ -30,7 +31,8 @@ window.onload = function () {
         var chart2 = new CanvasJS.Chart("chartContainerForIndus", {
             animationEnabled: true,
 
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            exportEnabled: true,
 	title: {
 		text: "statistique des condidats en 3 eme annee genie industriel"
 	},
@@ -48,7 +50,8 @@ window.onload = function () {
 
     var chart3 = new CanvasJS.Chart("chartContainerForGtr", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
 		text: "statistique des condidats en 3 eme annee genie telecome et reseau"
 	},
@@ -65,7 +68,8 @@ window.onload = function () {
     //for gpmc
     var chart4 = new CanvasJS.Chart("chartContainerForGpmc", {
 	animationEnabled: true,
-	theme: "light2", // "light1", "light2", "dark1", "dark2"
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        exportEnabled: true,
 	title: {
 		text: "statistique des condidats en 3 eme annee genie des procede et ceramique"
 	},
@@ -85,12 +89,8 @@ window.onload = function () {
     </script>
 </head>
 <body>
-    <p style="margin:auto">
-      &nbsp;&nbsp;  <a class="btn btn-primary" data-toggle="collapse" href="#convocu" role="button" aria-expanded="false" aria-controls="convocu"><i class="far fa-chart-bar"></i>&nbsp;afficher les statistique des convoquees du 3 annees</a>
-    </p>
- 
-    <div class="container" id="convocu">
-        <h2>statistique des convoquees du 3 annees</h2>
+    <h2>statistique des convocu du 3 annees</h2>
+    <div class="container">
         <div class="row">
             <div id="chartContainerForInfo" style="height:300px;width:40%;"></div>
             <div id="chartContainerForIndus" style="height:300px;width:40%;margin-left:20px"></div>

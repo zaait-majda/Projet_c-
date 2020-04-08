@@ -79,9 +79,9 @@ namespace ProjetASPMVC1.Controllers
            string GSM, string type_bac,
            string annee_bac, string note_bac, string mention_bac,
            string nationnalite, string sexe, string password, string password_conf, string photo,
-           string email, string niveau, string date_naiss,
+           string email, string niveau, string date_naiss, string redoublant,
            string id_fil, string s1, string s2, string s3, string s4, string s5, string s6, string nom_dip,
-           string villeDip, string etab
+           string villeDip, string etab, string scan_dip
 
 
             )
@@ -99,7 +99,7 @@ namespace ProjetASPMVC1.Controllers
             dip.nom_diplome = nom_dip;
             dip.ville_diplome = ville;
             dip.etablissement = etab;
-
+            dip.scan_dip = scan_dip;
             cand.id_fil = Convert.ToInt32(id_fil);
 
             cand.CNE = CNE;
@@ -151,9 +151,11 @@ namespace ProjetASPMVC1.Controllers
             string GSM, string type_bac,
             string annee_bac, string note_bac, string mention_bac,
             string nationnalite, string sexe, string password, string password_conf, string photo,
-            string email, string niveau, string date_naiss,
+            string email, string niveau, string date_naiss, string redoublant,
             string id_fil, string s1, string s2, string s3, string s4, string s5, string s6, string nom_dip,
-            string villeDip, string etab
+            string villeDip, string etab, string scan_dip
+
+
 
 
              )
@@ -171,7 +173,7 @@ namespace ProjetASPMVC1.Controllers
             dip.nom_diplome = nom_dip;
             dip.ville_diplome = ville;
             dip.etablissement = etab;
-
+            dip.scan_dip = scan_dip;
             cand.id_fil = Convert.ToInt32(id_fil);
 
             cand.CNE = CNE;
@@ -198,7 +200,9 @@ namespace ProjetASPMVC1.Controllers
             cand.photo = photo;
             cand.email = email;
             cand.statut = "Candidat";
+
             cand.niveau = niveau;
+            cand.redoublant = redoublant;
             cand.date_naiss = Convert.ToDateTime(date_naiss);
             db.Notes.Add(note);
             db.SaveChanges();
@@ -308,7 +312,7 @@ namespace ProjetASPMVC1.Controllers
                 Candidat Data = ddb.Candidats.Where(x => x.CIN == regId).FirstOrDefault();
                 Data.EmailConfirmed = true;
 
-                db.SaveChanges();
+                ddb.SaveChanges();
                 var msg = "Your Email Is Verified!";
                 return Json(msg, JsonRequestBehavior.AllowGet);
             }
@@ -335,19 +339,19 @@ namespace ProjetASPMVC1.Controllers
 
         public ActionResult update(String cin, String msg)
         {
-            
+
             Candidat candidat = db.Candidats.Find(Session["CIN"]);
             ViewBag.CIN = cin;
             ViewBag.messageconfirm = msg;
             return View(candidat);
         }
 
-    
+
         public ActionResult Home()
         {
 
             Candidat candidat = db.Candidats.Find(Session["CIN"]);
-  
+
             return View(candidat);
         }
 
@@ -428,7 +432,7 @@ namespace ProjetASPMVC1.Controllers
             Candidat.note_bac = note_bac;
             Candidat.mention_bac = mention_bac;
             Candidat.niveau = niveau;
-            Candidat.nom_dip= nom_diplome;
+            Candidat.nom_dip = nom_diplome;
             db.SaveChanges();
 
             int iddip = Candidat.id_diplome;
@@ -496,7 +500,7 @@ namespace ProjetASPMVC1.Controllers
         }
 
         public ActionResult Telecharger()
-        {   
+        {
             return View();
         }
         public ActionResult Troisiemegtr()
@@ -526,7 +530,7 @@ namespace ProjetASPMVC1.Controllers
         public ActionResult deleteCompte()
         {
 
-         
+
             return View();
         }
 

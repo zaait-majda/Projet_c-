@@ -29,13 +29,14 @@
 
     <style>
 
+
         * {
             margin: 0;
             padding: 0;
         }
 
         html {
-            height:200%;
+            height: 200%;
             /*Image only BG fallback*/
             background: url('http://thecodeplayer.com/uploads/media/gs.png');
             /*background = gradient + image pattern combo*/
@@ -45,7 +46,6 @@
         body {
             font-family: montserrat, arial, verdana;
             background-image: url('../../img/papers.co-sj80-magic-color-purple-gradation-blur-40-wallpaper.jpg');
-           
             height: 100%;
             background-size: cover;
         }
@@ -273,6 +273,7 @@
                 <h3 class="fs-subtitle">Etape 2</h3>
                 <input type="password" name="password" placeholder="Password" />
                 <input type="password" name="password_conf" placeholder="Confirmer le Password" />
+                Photo
                 <input type="file" name="photo" placeholder="photo" />
                 <input type="text" name="tel" placeholder="Telephone" />
                 <input type="text" name="GSM" placeholder="GSM" />
@@ -287,13 +288,14 @@
             <fieldset>
                 <h2 class="fs-title">Suite l'inscription</h2>
                 <h3 class="fs-subtitle">Etape 3</h3>
-
                 <select name="niveau" style="width:260px;height:50px;border-radius:5px; border:1px solid lightgray;color:gray;margin-bottom:20px;">
                     <option>selectionner  votre niveaau</option>
                     <option value="3eme">3emme</option>
                     <option value="4eme">4eme</option>
                 </select>
                 <input type="date" name="date_naiss" placeholder="Date de naissance" />
+                <span>Redoublant:<br /> Oui <input type="radio" value="Oui" name="redoublant" /> Non <input type="radio" value="Non" name="redoublant" /></span>
+
                 @Html.DropDownList("id_fil", ViewBag.f as SelectList, htmlAttributes: new { @class = "form-control" })
                 <input type="text" name="s1" placeholder="Note  de s1" style="margin-top:20px;" />
                 <input type="text" name="s2" placeholder="Note  de s2" />
@@ -305,15 +307,16 @@
                     <option>selectionner  votre diplome</option>
                     <option value="Licence">Licence</option>
                     <option value="Licence pro">Licence pro</option>
-                    <option value="BUT">BUT</option>
+                    <option value="BTS">BTS</option>
                     <option value="DUT">DUT</option>
                 </select>
                 <input type="text" name="villeDip" placeholder="Ville de Diplome" />
                 <input type="text" name="etab" placeholder="Etablissement" />
+                diplome scanné
+                <input type="file" name="scan_dip" placeholder="dilome scanné" />
 
                 <input type="button" name="previous" class="previous action-button bg-info" value="Previous" />
                 <input type="submit" name="submit" style="background-color:cornflowerblue;opacity:08; color:white;" value="Valider" />
-
             </fieldset>
         </div>
 

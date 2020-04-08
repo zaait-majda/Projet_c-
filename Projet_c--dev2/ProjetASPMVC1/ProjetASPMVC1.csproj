@@ -219,6 +219,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004081813227_InitialCreate.cs" />
+    <Compile Include="Migrations\202004081813227_InitialCreate.Designer.cs">
+      <DependentUpon>202004081813227_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004081831235_InitialCreate1.cs" />
+    <Compile Include="Migrations\202004081831235_InitialCreate1.Designer.cs">
+      <DependentUpon>202004081831235_InitialCreate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004082000084_InitialCreate2.cs" />
+    <Compile Include="Migrations\202004082000084_InitialCreate2.Designer.cs">
+      <DependentUpon>202004082000084_InitialCreate2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\BoitMessage.cs" />
@@ -715,6 +727,15 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\202004081813227_InitialCreate.resx">
+      <DependentUpon>202004081813227_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004081831235_InitialCreate1.resx">
+      <DependentUpon>202004081831235_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004082000084_InitialCreate2.resx">
+      <DependentUpon>202004082000084_InitialCreate2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ressources\langues.fr.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>langues.fr.Designer.cs</LastGenOutput>

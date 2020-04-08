@@ -28,7 +28,8 @@ namespace ProjetASPMVC1.Models
         public string ville_diplome { get; set; }
         [Required]
         public string etablissement { get; set; }
-
+        [Required]
+        public string scan_dip { get; set; }
         public virtual ICollection<Candidat> Candidats { get; set; }
         public virtual ICollection<corbeil> Corbeil{ get; set; }
     }

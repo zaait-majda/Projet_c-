@@ -84,7 +84,8 @@ namespace ProjetASPMVC1.Models
         public string nom_dip { set; get; }
 
         public virtual Diplome Diplome { set; get; }
-
+        [Required]
+        public String redoublant { set; get; }
 
     }
 }

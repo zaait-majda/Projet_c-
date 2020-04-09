@@ -51,6 +51,7 @@ namespace ProjetASPMVC1.Migrations
                         id_note = c.Int(nullable: false),
                         id_diplome = c.Int(nullable: false),
                         nom_dip = c.String(),
+                        redoublant = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.CIN)
                 .ForeignKey("dbo.Diplomes", t => t.id_diplome, cascadeDelete: true)
@@ -68,6 +69,7 @@ namespace ProjetASPMVC1.Migrations
                         nom_diplome = c.String(nullable: false),
                         ville_diplome = c.String(nullable: false),
                         etablissement = c.String(nullable: false),
+                        scan_dip = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.id_diplome);
             

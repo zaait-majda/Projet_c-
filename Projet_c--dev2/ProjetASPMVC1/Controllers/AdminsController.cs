@@ -121,7 +121,7 @@ namespace ProjetASPMVC1.Controllers
                                 index = j;
                                 break;
                             }
-                            if(cd[j].Notes.notemath == cd[index].Notes.notemath)
+                            if (cd[j].Notes.notemath == cd[index].Notes.notemath)
                             {
                                 if (Int32.Parse(cd[j].note_bac) > Int32.Parse(cd[index].note_bac))
                                 {
@@ -129,7 +129,7 @@ namespace ProjetASPMVC1.Controllers
                                     break;
                                 }
                             }
-                          
+
                         }
                         //Tester sur le choix de troisième critere
                         if (choix == 3)
@@ -137,7 +137,7 @@ namespace ProjetASPMVC1.Controllers
                             if (Int32.Parse(cd[j].note_bac) > Int32.Parse(cd[index].note_bac))
                             {
                                 index = j;
-                                  break;
+                                break;
                             }
                             if (Int32.Parse(cd[j].note_bac) == Int32.Parse(cd[index].note_bac))
                             {
@@ -156,69 +156,257 @@ namespace ProjetASPMVC1.Controllers
                 var HighetCand = cd[index];
                 cd[index] = cd[i];
                 cd[i] = HighetCand;
-             
+
             }
             return cd;
         }
-
-
-        public ActionResult ResultatDelib3eme(int id_fil,int coeff_math,int coeff_specialite,int nbr_places,int list_att,int note_min,int choix1, int choix2, int choix3)
+        public ActionResult statistique_Des_Presents_3annee()
         {
-             List<Candidat> admis_principal = new List<Candidat>();
-             List<Candidat> admis_att = new List<Candidat>();
-            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p=>p.statut== "present_au_cncrs").Where(p => p.id_fil == id_fil
-            ).ToList();
-             if (candidats.Count() != 0)
+            List<DataPoint> dataPointsForInfo = new List<DataPoint>();
+            List<DataPoint> dataPointsForIndus = new List<DataPoint>();
+            List<DataPoint> dataPointsForGpmc = new List<DataPoint>();
+            List<DataPoint> dataPointsForGtr = new List<DataPoint>();
+
+            var info = new SortedList<string, int>();
+            var indus = new SortedList<string, int>();
+            var gpmc = new SortedList<string, int>();
+            var gtr = new SortedList<string, int>();
+
+            var query = (from candidat in db.Candidats
+                         join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
+                         join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
+                         where (candidat.statut.Equals("ADMIS_PR") || candidat.statut.Equals("ADMIS_Att") || candidat.statut.Equals("present_au_cncrs")) && candidat.niveau.Equals("3eme")
+                         select new
+                         {
+                             nomFiliere = filiere.nom_fil,
+                             nomDiplome = diplome.nom_diplome,
+
+                         }).ToList();
+
+            foreach (var candidat in query)
             {
-               foreach(var cand in candidats)
-                 {
-                     cand.Notes.note_concours = ((double)cand.Notes.notemath * coeff_math+ (double)cand.Notes.notespec*coeff_specialite)/(coeff_math+coeff_specialite);
-                     db.SaveChanges();
-                 }
+
+                if (candidat.nomFiliere.ToLower().Contains("info"))
+                {
+                    if (info.ContainsKey(candidat.nomDiplome))
+                    {
+                        info[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        info.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.ToLower().Contains("indus"))
+                {
+                    if (indus.ContainsKey(candidat.nomDiplome))
+                    {
+                        indus[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        indus.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.ToLower().Contains("telec") || candidat.nomFiliere.ToLower().Contains("téléc"))
+                {
+                    if (gtr.ContainsKey(candidat.nomDiplome))
+                    {
+                        gtr[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gtr.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.ToLower().Contains("proc") || (candidat.nomFiliere.ToLower().Contains("gpmc")))
+                {
+                    if (gpmc.ContainsKey(candidat.nomDiplome))
+                    {
+                        gpmc[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gpmc.Add(candidat.nomDiplome, 1);
+                    }
+                }
+            }
+            foreach (var i in info)
+            {
+                dataPointsForInfo.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in indus)
+            {
+                dataPointsForIndus.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gpmc)
+            {
+                dataPointsForGpmc.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gtr)
+            {
+                dataPointsForGtr.Add(new DataPoint(i.Key, i.Value));
+            }
+
+            ViewBag.dataPointsForInfo = JsonConvert.SerializeObject(dataPointsForInfo);
+            ViewBag.dataPointsForIndus = JsonConvert.SerializeObject(dataPointsForIndus);
+            ViewBag.dataPointsForGpmc = JsonConvert.SerializeObject(dataPointsForGpmc);
+            ViewBag.dataPointsForGtr = JsonConvert.SerializeObject(dataPointsForGtr);
+            return View("statistique_Des_Presents_3annee");
+        }
+        public ActionResult statistique_Des_Presents_4annee()
+        {
+            List<DataPoint> dataPointsForInfo = new List<DataPoint>();
+            List<DataPoint> dataPointsForIndus = new List<DataPoint>();
+            List<DataPoint> dataPointsForGpmc = new List<DataPoint>();
+            List<DataPoint> dataPointsForGtr = new List<DataPoint>();
+
+            var info = new SortedList<string, int>();
+            var indus = new SortedList<string, int>();
+            var gpmc = new SortedList<string, int>();
+            var gtr = new SortedList<string, int>();
+
+            var query = (from candidat in db.Candidats
+                         join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
+                         join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
+                         where (candidat.statut.Equals("ADMIS_PR") || candidat.statut.Equals("ADMIS_Att") || candidat.statut.Equals("present_au_cncrs")) && candidat.niveau.Equals("4eme")
+                         select new
+                         {
+                             nomFiliere = filiere.nom_fil,
+                             nomDiplome = diplome.nom_diplome,
+
+                         }).ToList();
+
+            foreach (var candidat in query)
+            {
+
+                if (candidat.nomFiliere.ToLower().Contains("info"))
+                {
+                    if (info.ContainsKey(candidat.nomDiplome))
+                    {
+                        info[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        info.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.ToLower().Contains("indus"))
+                {
+                    if (indus.ContainsKey(candidat.nomDiplome))
+                    {
+                        indus[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        indus.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.ToLower().Contains("telec") || candidat.nomFiliere.ToLower().Contains("téléc"))
+                {
+                    if (gtr.ContainsKey(candidat.nomDiplome))
+                    {
+                        gtr[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gtr.Add(candidat.nomDiplome, 1);
+                    }
+                }
+                else if (candidat.nomFiliere.ToLower().Contains("proc") || (candidat.nomFiliere.ToLower().Contains("gpmc")))
+                {
+                    if (gpmc.ContainsKey(candidat.nomDiplome))
+                    {
+                        gpmc[candidat.nomDiplome]++;
+                    }
+                    else
+                    {
+                        gpmc.Add(candidat.nomDiplome, 1);
+                    }
+                }
+            }
+            foreach (var i in info)
+            {
+                dataPointsForInfo.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in indus)
+            {
+                dataPointsForIndus.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gpmc)
+            {
+                dataPointsForGpmc.Add(new DataPoint(i.Key, i.Value));
+            }
+            foreach (var i in gtr)
+            {
+                dataPointsForGtr.Add(new DataPoint(i.Key, i.Value));
+            }
+
+            ViewBag.dataPointsForInfo = JsonConvert.SerializeObject(dataPointsForInfo);
+            ViewBag.dataPointsForIndus = JsonConvert.SerializeObject(dataPointsForIndus);
+            ViewBag.dataPointsForGpmc = JsonConvert.SerializeObject(dataPointsForGpmc);
+            ViewBag.dataPointsForGtr = JsonConvert.SerializeObject(dataPointsForGtr);
+            return View("statistique_Des_Presents_4annee");
+        }
+
+
+        public ActionResult ResultatDelib3eme(int id_fil, int coeff_math, int coeff_specialite, int nbr_places, int list_att, int note_min, int choix1, int choix2, int choix3)
+        {
+            List<Candidat> admis_principal = new List<Candidat>();
+            List<Candidat> admis_att = new List<Candidat>();
+            List<Candidat> candidats = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "present_au_cncrs").Where(p => p.id_fil == id_fil
+            ).ToList();
+            if (candidats.Count() != 0)
+            {
+                foreach (var cand in candidats)
+                {
+                    cand.Notes.note_concours = ((double)cand.Notes.notemath * coeff_math + (double)cand.Notes.notespec * coeff_specialite) / (coeff_math + coeff_specialite);
+                    db.SaveChanges();
+                }
                 candidats = candidats.AsQueryable().Where(p => p.Notes.note_concours > note_min).ToList();
                 //1eme critere à choisir
-                 switch (choix1)
-                 {
-                     case 1:
-                         candidats=candidats.AsQueryable().OrderByDescending(p => p.Notes.note_concours).ToList();
-                         break;
-                     case 2:
+                switch (choix1)
+                {
+                    case 1:
+                        candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.note_concours).ToList();
+                        break;
+                    case 2:
                         candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.notemath).ToList();
-                         break;
-                     case 3:
+                        break;
+                    case 3:
                         candidats = candidats.AsQueryable().OrderByDescending(p => p.Notes.notespec).ToList();
-                         break;
+                        break;
 
-                     default:
-                         break;
-                 };
+                    default:
+                        break;
+                };
                 //
                 candidats = sortCandidat(candidats, choix2);
                 Session["candidatsDelib"] = candidats;
 
-             
 
-                 for (int i = 0; i < nbr_places; i++)
-                  {
+
+                for (int i = 0; i < nbr_places; i++)
+                {
                     Candidat cand = null;
                     try
                     {
                         cand = candidats.ElementAt(i);
-                       
+
 
                     }
-                    catch (System.ArgumentOutOfRangeException e)  
+                    catch (System.ArgumentOutOfRangeException e)
                     {
                         break;
                     }
-                    
+
                     admis_principal.Add(cand);
-                      cand.statut = "ADMIS_PR";
-                      db.SaveChanges();
+                    cand.statut = "ADMIS_PR";
+                    db.SaveChanges();
 
                 }
-                  for (int i = nbr_places; i < list_att+nbr_places; i++)
-                  {
+                for (int i = nbr_places; i < list_att + nbr_places; i++)
+                {
                     Candidat cand = null;
                     try
                     {
@@ -226,13 +414,13 @@ namespace ProjetASPMVC1.Controllers
 
 
                     }
-                    catch (System.ArgumentOutOfRangeException e) 
+                    catch (System.ArgumentOutOfRangeException e)
                     {
                         break;
                     }
                     admis_att.Add(cand);
-                      cand.statut = "ADMIS_Att";
-                       db.SaveChanges();
+                    cand.statut = "ADMIS_Att";
+                    db.SaveChanges();
 
                 }
                 Session["admispr"] = admis_principal;
@@ -241,7 +429,7 @@ namespace ProjetASPMVC1.Controllers
                 ViewBag.id_fil = id_fil;
                 ViewBag.Filiere = db.Filieres.Find(id_fil).nom_fil;
                 ViewBag.att = admis_att.Count;
-                ViewBag.attratio = (int)(((double)admis_att.Count/ (double)candidats.Count)*100);
+                ViewBag.attratio = (int)(((double)admis_att.Count / (double)candidats.Count) * 100);
                 ViewBag.principal = admis_principal.Count;
                 ViewBag.principalratio = (int)(((double)admis_principal.Count / (double)candidats.Count) * 100);
                 ViewBag.total = candidats.Count;
@@ -257,18 +445,18 @@ namespace ProjetASPMVC1.Controllers
                 return View("ResultatDeliberation");
             }
 
-        
+
 
 
         }
-        
+
         public ActionResult candidatNonConforme(string cin)
         {
-            List<Candidat>  candidats = (List < Candidat > )Session["candidatsDelib"];
+            List<Candidat> candidats = (List<Candidat>)Session["candidatsDelib"];
             Candidat candidat = null;
-            foreach(var cnd in candidats)
+            foreach (var cnd in candidats)
             {
-               if(cnd.CIN == cin)
+                if (cnd.CIN == cin)
                 {
                     var admis = db.Candidats.Find(cin);
                     admis.statut = "NON_Conforme";
@@ -292,25 +480,25 @@ namespace ProjetASPMVC1.Controllers
             ViewBag.annee = admisprincipal.ElementAt(0).niveau;
             ViewBag.admisPR = admisprincipal;
             ViewBag.admisATT = (List<Candidat>)Session["admisatt"];
-            
+
             return View("ListAdmisDelib");
         }
         public ActionResult ListAdmission3eme()
         {
             ViewBag.list = "";
             ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
-           
+
             return View();
         }
         [HttpPost]
         public ActionResult ListAdmission3emeResult(int? id_fil)
         {
-            
+
             ViewBag.list = "list";
             ViewBag.id_fil = id_fil;
             ViewBag.f = new SelectList(db.Filieres, "id_fil", "nom_fil");
-            ViewBag.filiere= db.Filieres.Find(id_fil).nom_fil;
-            
+            ViewBag.filiere = db.Filieres.Find(id_fil).nom_fil;
+
             List<Candidat> admisPR = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "ADMIS_PR").Where(p => p.id_fil == id_fil
             ).ToList();
             if (admisPR.Count != 0)
@@ -328,7 +516,7 @@ namespace ProjetASPMVC1.Controllers
         }
         public ActionResult PrintLists3eme(int id_fil)
         {
-            
+
             ViewBag.filiere = db.Filieres.Find(id_fil).nom_fil;
             ViewBag.admisPR = db.Candidats.Where(p => p.niveau == "3eme").Where(p => p.statut == "ADMIS_PR").Where(p => p.id_fil == id_fil
             ).ToList();
@@ -339,7 +527,7 @@ namespace ProjetASPMVC1.Controllers
         }
         public ActionResult EXportPDF3eme(int id_fil)
         {
-            return new ActionAsPdf("PrintLists3eme",new { id_fil = id_fil })
+            return new ActionAsPdf("PrintLists3eme", new { id_fil = id_fil })
             {
                 FileName = Server.MapPath("~/Content/PrintLists3eme.pdf")
             };
@@ -409,7 +597,7 @@ namespace ProjetASPMVC1.Controllers
                     {
                         cand = candidats.ElementAt(i);
                     }
-                    catch (System.ArgumentOutOfRangeException e) 
+                    catch (System.ArgumentOutOfRangeException e)
                     {
                         break;
                     }
@@ -431,7 +619,7 @@ namespace ProjetASPMVC1.Controllers
                 ViewBag.coefspec = coeff_specialite;
                 ViewBag.noteMin = note_min;
                 ViewBag.error = "";
-                return View("ResultatDeliberation",candidats);
+                return View("ResultatDeliberation", candidats);
             }
             else
             {
@@ -540,7 +728,7 @@ namespace ProjetASPMVC1.Controllers
             var query = (from candidat in db.Candidats
                          join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
                          join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
-                         where candidat.statut.Equals("ADMIS_Att") && candidat.niveau.Equals("3eme")
+                         where candidat.statut.Equals("ADMIS_PR") && candidat.niveau.Equals("3eme")
                          select new
                          {
                              nomFiliere = filiere.nom_fil,
@@ -561,7 +749,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in query)
             {
 
-                if (candidat.nomFiliere.Equals("Génie informatique"))
+                if (candidat.nomFiliere.ToLower().Contains("info"))
                 {
                     if (infoAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -572,7 +760,7 @@ namespace ProjetASPMVC1.Controllers
                         infoAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie industrielle"))
+                else if (candidat.nomFiliere.ToLower().Contains("indus"))
                 {
                     if (indusAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -583,7 +771,7 @@ namespace ProjetASPMVC1.Controllers
                         indusAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie Telecom"))
+                else if (candidat.nomFiliere.ToLower().Contains("telec") || candidat.nomFiliere.ToLower().Contains("téléc"))
                 {
                     if (gtrAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -594,7 +782,7 @@ namespace ProjetASPMVC1.Controllers
                         gtrAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else
+                else if (candidat.nomFiliere.ToLower().Contains("proc") || (candidat.nomFiliere.ToLower().Contains("gpmc")))
                 {
                     if (gpmcAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -610,7 +798,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in queryAttente)
             {
 
-                if (candidat.nomFiliere.Equals("Génie informatique"))
+                if (candidat.nomFiliere.ToLower().Contains("info"))
                 {
                     if (infoAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -621,7 +809,7 @@ namespace ProjetASPMVC1.Controllers
                         infoAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie industrielle"))
+                else if (candidat.nomFiliere.ToLower().Contains("indus"))
                 {
                     if (indusAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -632,7 +820,7 @@ namespace ProjetASPMVC1.Controllers
                         indusAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie Telecom"))
+                else if (candidat.nomFiliere.ToLower().Contains("telec") || candidat.nomFiliere.ToLower().Contains("téléc"))
                 {
                     if (gtrAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -643,7 +831,7 @@ namespace ProjetASPMVC1.Controllers
                         gtrAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else
+                else if (candidat.nomFiliere.ToLower().Contains("proc") || (candidat.nomFiliere.Contains("gpmc")))
                 {
                     if (gpmcAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -726,7 +914,7 @@ namespace ProjetASPMVC1.Controllers
             var query = (from candidat in db.Candidats
                          join filiere in db.Filieres on candidat.id_fil equals filiere.id_fil
                          join diplome in db.Diplomes on candidat.id_diplome equals diplome.id_diplome
-                         where candidat.statut.Equals("ADMIS_Att") && candidat.niveau.Equals("4eme")
+                         where candidat.statut.Equals("ADMIS_PR") && candidat.niveau.Equals("4eme")
                          select new
                          {
                              nomFiliere = filiere.nom_fil,
@@ -747,7 +935,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in query)
             {
 
-                if (candidat.nomFiliere.Equals("Génie informatique"))
+                if (candidat.nomFiliere.ToLower().Contains("info"))
                 {
                     if (infoAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -758,7 +946,7 @@ namespace ProjetASPMVC1.Controllers
                         infoAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie industrielle"))
+                else if (candidat.nomFiliere.ToLower().Contains("indus"))
                 {
                     if (indusAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -769,7 +957,7 @@ namespace ProjetASPMVC1.Controllers
                         indusAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie Telecom"))
+                else if (candidat.nomFiliere.ToLower().Contains("telec") || candidat.nomFiliere.ToLower().Contains("téléc"))
                 {
                     if (gtrAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -780,7 +968,7 @@ namespace ProjetASPMVC1.Controllers
                         gtrAdmis.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else
+                else if (candidat.nomFiliere.ToLower().Contains("proc") || (candidat.nomFiliere.ToLower().Contains("gpmc")))
                 {
                     if (gpmcAdmis.ContainsKey(candidat.nomDiplome))
                     {
@@ -796,7 +984,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in queryAttente)
             {
 
-                if (candidat.nomFiliere.Equals("Génie informatique"))
+                if (candidat.nomFiliere.ToLower().Contains("info"))
                 {
                     if (infoAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -807,7 +995,7 @@ namespace ProjetASPMVC1.Controllers
                         infoAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie industrielle"))
+                else if (candidat.nomFiliere.ToLower().Contains("indus"))
                 {
                     if (indusAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -818,7 +1006,7 @@ namespace ProjetASPMVC1.Controllers
                         indusAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie Telecom"))
+                else if (candidat.nomFiliere.ToLower().Contains("telec") || candidat.nomFiliere.ToLower().Contains("téléc"))
                 {
                     if (gtrAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -829,7 +1017,7 @@ namespace ProjetASPMVC1.Controllers
                         gtrAttente.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else
+                else if (candidat.nomFiliere.ToLower().Contains("proc") || (candidat.nomFiliere.Contains("gpmc")))
                 {
                     if (gpmcAttente.ContainsKey(candidat.nomDiplome))
                     {
@@ -888,12 +1076,12 @@ namespace ProjetASPMVC1.Controllers
             return View("statistique_Des_Admis_En_4_Anees");
         }
 
-    
 
 
 
-    // chart 4eme
-    public ActionResult MyChartNiveau4()
+
+        // chart 4eme
+        public ActionResult MyChartNiveau4()
         {
 
             var x = from p in db.Filieres select p.nom_fil;
@@ -1243,7 +1431,7 @@ namespace ProjetASPMVC1.Controllers
 
                 }
             }
-         
+
             return list.ToList();
 
         }
@@ -1501,7 +1689,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in query)
             {
 
-                if (candidat.nomFiliere.Equals("Génie informatique"))
+                if (candidat.nomFiliere.ToLower().Contains("info"))
                 {
                     if (info.ContainsKey(candidat.nomDiplome))
                     {
@@ -1512,7 +1700,7 @@ namespace ProjetASPMVC1.Controllers
                         info.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie industrielle"))
+                else if (candidat.nomFiliere.ToLower().Contains("indus"))
                 {
                     if (indus.ContainsKey(candidat.nomDiplome))
                     {
@@ -1523,7 +1711,7 @@ namespace ProjetASPMVC1.Controllers
                         indus.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie Telecom"))
+                else if (candidat.nomFiliere.ToLower().Contains("telec") || candidat.nomFiliere.ToLower().Contains("téléc"))
                 {
                     if (gtr.ContainsKey(candidat.nomDiplome))
                     {
@@ -1534,7 +1722,7 @@ namespace ProjetASPMVC1.Controllers
                         gtr.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else
+                else if (candidat.nomFiliere.ToLower().Contains("proc") || (candidat.nomFiliere.ToLower().Contains("gpmc")))
                 {
                     if (gpmc.ContainsKey(candidat.nomDiplome))
                     {
@@ -1599,7 +1787,7 @@ namespace ProjetASPMVC1.Controllers
             foreach (var candidat in query)
             {
 
-                if (candidat.nomFiliere.Equals("Génie informatique"))
+                if (candidat.nomFiliere.ToLower().Contains("info"))
                 {
                     if (info.ContainsKey(candidat.nomDiplome))
                     {
@@ -1610,7 +1798,7 @@ namespace ProjetASPMVC1.Controllers
                         info.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie industrielle"))
+                else if (candidat.nomFiliere.ToLower().Contains("indus"))
                 {
                     if (indus.ContainsKey(candidat.nomDiplome))
                     {
@@ -1621,7 +1809,7 @@ namespace ProjetASPMVC1.Controllers
                         indus.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else if (candidat.nomFiliere.Equals("Génie Telecom"))
+                else if (candidat.nomFiliere.ToLower().Contains("telec") || candidat.nomFiliere.ToLower().Contains("téléc"))
                 {
                     if (gtr.ContainsKey(candidat.nomDiplome))
                     {
@@ -1632,7 +1820,7 @@ namespace ProjetASPMVC1.Controllers
                         gtr.Add(candidat.nomDiplome, 1);
                     }
                 }
-                else
+                else if (candidat.nomFiliere.ToLower().Contains("proc") || (candidat.nomFiliere.ToLower().Contains("gpmc")))
                 {
                     if (gpmc.ContainsKey(candidat.nomDiplome))
                     {

@@ -57,7 +57,7 @@ namespace ProjetASPMVC1.Models
         public String password { set; get; }
         [Required]
         [DataType(DataType.Password)]
-        [Compare("password",ErrorMessage ="les champs ne sont pas compatibles")]
+        [Compare("password", ErrorMessage = "les champs ne sont pas compatibles")]
         public String password_conf { set; get; }
         [Required]
         public String photo { set; get; }
@@ -84,7 +84,8 @@ namespace ProjetASPMVC1.Models
         public string nom_dip { set; get; }
 
         public virtual Diplome Diplome { set; get; }
-
+        [Required]
+        public String redoublant { set; get; }
 
     }
 }

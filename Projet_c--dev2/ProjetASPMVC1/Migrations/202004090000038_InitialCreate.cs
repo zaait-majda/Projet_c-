@@ -1,4 +1,4 @@
-namespace ProjetASPMVC1.Migrations
+﻿namespace ProjetASPMVC1.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

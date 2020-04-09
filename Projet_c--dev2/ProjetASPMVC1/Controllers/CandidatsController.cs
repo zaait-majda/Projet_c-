@@ -225,7 +225,7 @@ namespace ProjetASPMVC1.Controllers
         {
             ViewBag.CIN = id;
 
-            Candidat candidat = db.Candidats.Find(id);
+            Candidat candidat = db.Candidats.Find(Session["CIN"]);
             if (candidat == null)
             {
                 return HttpNotFound();
@@ -233,6 +233,10 @@ namespace ProjetASPMVC1.Controllers
 
             return View(candidat);
         }
+
+
+
+
         public ActionResult EXportPDF()
         {
             id = (string)Session["CIN"];
@@ -248,10 +252,24 @@ namespace ProjetASPMVC1.Controllers
             else
             {
 
-                Response.Write("<script>alert(\'vous avez pas le droit de telecharge le recu\');</" + "script>");
-                return View("Home");
+            
+                return View("Next_Err");
             }
         }
+
+
+
+        public ActionResult Next_Err()
+
+        {
+           
+
+            Candidat candidat = db.Candidats.Find(Session["CIN"]);
+         
+
+            return View(candidat);
+        }
+
 
         public ActionResult fiche2()
 
